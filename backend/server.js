@@ -5,7 +5,7 @@ let express = require('express'),
     bodyParser = require('body-parser');
 
 // mongoose instance connection url connection
-mongoose.connect('mongodb://localhost:27017/toDo', function(err, db){
+mongoose.connect('mongodb://localhost:27017/ecoweb', function(err, db){
     useMongoClient: true
     if (err) throw err;
     console.log("Database created!");
@@ -36,4 +36,4 @@ let initApp = require('./api/app');
 initApp(app);
 
 app.listen(port);
-console.log('ToDo RESTful API server started on: ' + port);
+console.log('Ecoweb RESTful API server started on: ' + port);
