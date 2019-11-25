@@ -1,9 +1,9 @@
-let express = require('express'),
-    app = express(),
+let express = require('express'), 
+    app = express(),  // create express app
     port = process.env.PORT || 3000,
     mongoose = require('mongoose'), //created model loading here
     bodyParser = require('body-parser');
-
+ 
 // mongoose instance connection url connection
 mongoose.connect('mongodb://localhost:27017/ecoweb', function(err, db){
     useMongoClient: true
@@ -27,9 +27,9 @@ app.use(function (req, res, next) { //next is a function that calls next middlew
     next();
 });
 
-app.get('/',function(req,res){
-    res.sendFile(__dirname+'/index.html');
-})
+app.get('/', (req,res) => {
+    res.json({"message": "Ecoweb started"});
+}); 
 
 //Initialize app
 let initApp = require('./api/app');
