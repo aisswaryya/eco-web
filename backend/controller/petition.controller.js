@@ -71,9 +71,8 @@ exports.update = (req, res) => {
             message: "Petition description can not be empty"
         });
     }
-}
 
-// Find petition by petitionID and update it with the request body
+    // Find petition by petitionID and update it with the request body
 Todo.findByIdAndUpdate(req.params.petitionId, {
     title: req.body.title || "Untited petition",
     target:req.body.target,
@@ -101,3 +100,29 @@ Todo.findByIdAndUpdate(req.params.petitionId, {
     });
 });
 };
+
+// Delete a petition by petitionId 
+exports.delete = (req, res) => {
+    Peition.findByIdAndRemove(req.params.todoId)
+    .then(petition => {
+        if(!petition) {
+            return res.status(404).send({
+                message: "Petition not found with id " + req.params.petitionId
+            });
+        }
+        res.send({message: "Petition deleted successfully!"});
+    }).catch(err => {
+        if(err.kind === 'ObjectId' || err.name === 'NotFound') {
+            return res.status(404).send({
+                message: "Petition not found with id " + req.params.petitionId
+            });                
+        }
+        return res.status(500).send({
+            message: "Can not delete petition with the provided petitionid " + req.params.petitionId
+        });
+    });
+};
+
+
+
+

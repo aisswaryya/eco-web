@@ -14,5 +14,8 @@ module.exports = (app) => {
     // Update a Petition with petitionId
     app.put('/petition/:petitionId', petition.update);
 
+    // Delete a Petition with petitionId
+    app.delete('/petition/:petitionId', petition.delete);
+
     
 }
