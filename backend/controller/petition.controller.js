@@ -62,3 +62,13 @@ exports.findOne =(req,res) => {
         });
     });
 };
+
+// Update a petition identified by Id error handling
+exports.update = (req, res) => {
+    // Validate Request
+    if(!req.body.description) {
+        return res.status(400).send({
+            message: "Petition description can not be empty"
+        });
+    }
+}

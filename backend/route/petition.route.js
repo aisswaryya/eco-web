@@ -11,4 +11,8 @@ module.exports = (app) => {
     app.get('/petition/:petitionId', petition.findOne);
 
     
+    // Update a Petition with petitionId
+    app.put('/petition/:petitionId', petition.update);
+
+    
 }
