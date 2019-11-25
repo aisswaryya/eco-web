@@ -18,5 +18,15 @@ const petition = new Petition({
     username:req.body.username
 });
 
+// Save Petition in the database
+petition.save()
+.then(data => {
+    res.send(data);
+}).catch(err => {
+    res.status(500).send({
+        message: err.message || "Some error occurred while creating Petition."
+    });
+});
+};
 
 }
