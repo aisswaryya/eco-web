@@ -29,4 +29,14 @@ petition.save()
 });
 };
 
-}
+// get all petition
+exports.findAll = (req, res) => {
+    Petition.find()
+    .then(petitionList => {
+        res.send(petitionList);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving petition list."
+        });
+    });
+};
