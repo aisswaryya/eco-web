@@ -40,3 +40,25 @@ exports.findAll = (req, res) => {
         });
     });
 };
+
+//get petition by ID 
+exports.findOne =(req,res) => {
+    Petition.findById(req.params.petitionId)
+    .then(petition => {
+        if(!petiton) {
+            return res.status(404).send({
+                message: "Petition not found with id " + req.params.petitionId
+            });            
+        }
+        res.send(petition);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "Petition not found with id " + req.params.petitionId
+            });                
+        }
+        return res.status(500).send({
+            message: "Error retrieving petition with id " + req.params.petitionId
+        });
+    });
+};
