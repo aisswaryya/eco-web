@@ -72,3 +72,32 @@ exports.update = (req, res) => {
         });
     }
 }
+
+// Find petition by petitionID and update it with the request body
+Todo.findByIdAndUpdate(req.params.petitionId, {
+    title: req.body.title || "Untited petition",
+    target:req.body.target,
+    description: req.body.description,
+    mediapath: req.body.mediapath,
+    email:req.body.email,
+    category:req.body.category,
+    username:req.body.username
+}, {new: true})
+.then(petition => {
+    if(!petition) {
+        return res.status(404).send({
+            message: "Petition not found with id " + req.params.petitionId
+        });
+    }
+    res.send(petition);
+}).catch(err => {
+    if(err.kind === 'ObjectId') {
+        return res.status(404).send({
+            message: "petition not found with id " + req.params.petitionId
+        });                
+    }
+    return res.status(500).send({
+        message: "Error updating petition with id " + req.params.petitionId
+    });
+});
+};
