@@ -30,7 +30,7 @@ mongoose.connect(dbConfig.url, {
 
 // define a simple route
 app.get('/', (req, res) => {
-    res.json({"message": "Ecoweb ."});
+    res.json({"message": "Ecoweb started."});
 });
 
 require('./route/petition.route.js')(app);
