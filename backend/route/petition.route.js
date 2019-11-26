@@ -7,7 +7,7 @@ module.exports = (app) => {
     // Retrieve all petition as List
     app.get('/petition', petition.findAll);
 
-    // Retrieve a single Todo with todoId
+    // Retrieve a single petition with petitionId
     app.get('/petition/:petitionId', petition.findOne);
 
     
@@ -17,5 +17,6 @@ module.exports = (app) => {
     // Delete a Petition with petitionId
     app.delete('/petition/:petitionId', petition.delete);
 
+    
     
 }
