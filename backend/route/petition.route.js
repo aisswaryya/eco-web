@@ -17,6 +17,21 @@ module.exports = (app) => {
     // Delete a Petition with petitionId
     app.delete('/petition/:petitionId', petition.delete);
 
+    // Create a new Signature
+    app.post('/signature', signature.create);
+
+    // Retrieve all signature as List
+    app.get('/signature', signature.findAll);
+
+    // Retrieve a single signature with petitionId
+    app.get('/signature/:petitionId', signature.findOne);
+
+    
+    // Update a signature with petitionId
+    app.put('/signature/:petitionId', signature.update);
+
+    // Delete a Signature with petitionId
+    app.delete('/signature/:petitionId', signature.delete);
     
     
 }
