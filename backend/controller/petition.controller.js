@@ -1,4 +1,4 @@
-const Petition= require('../model/petition.model.js/index.js');
+const Petition= require('../model/petition.model.js');
 
 //create a petition error handling
 exports.create=(req,res)=>{
@@ -45,7 +45,7 @@ exports.findAll = (req, res) => {
 exports.findOne =(req,res) => {
     Petition.findById(req.params.petitionId)
     .then(petition => {
-        if(!petiton) {
+        if(!petition) {
             return res.status(404).send({
                 message: "Petition not found with id " + req.params.petitionId
             });            
@@ -73,7 +73,7 @@ exports.update = (req, res) => {
     }
 
     // Find petition by petitionID and update it with the request body
-Todo.findByIdAndUpdate(req.params.petitionId, {
+Petition.findByIdAndUpdate(req.params.petitionId, {
     title: req.body.title || "Untited petition",
     target:req.body.target,
     description: req.body.description,
@@ -103,7 +103,7 @@ Todo.findByIdAndUpdate(req.params.petitionId, {
 
 // Delete a petition by petitionId 
 exports.delete = (req, res) => {
-    Peition.findByIdAndRemove(req.params.todoId)
+    Petition.findByIdAndRemove(req.params.petitionId)
     .then(petition => {
         if(!petition) {
             return res.status(404).send({

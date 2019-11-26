@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const PetitionSchema = mongoose.Schema({
     title: String,
+    target: String,
     description: String,
     mediapath: String,
     email: String,
