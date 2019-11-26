@@ -1,6 +1,6 @@
 module.exports = (app) => {
-    const petition = require('../controller/petition.controller.js');
-    const signature = require('../controller/signature.controller.js');
+    const petition = require('../petition/controller/petition.controller.js');
+    const signature = require('../petition/controller/signature.controller.js');
 
     // Create a new Petition
     app.post('/petition', petition.create);
