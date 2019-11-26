@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
     res.json({"message": "Ecoweb started."});
 });
 
-require('./route/petition.route.js')(app);
+require('./route/eco.route.js')(app);
 
 // listen for requests
 app.listen(3000, () => {
