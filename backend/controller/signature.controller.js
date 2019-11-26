@@ -2,9 +2,9 @@ const Signature= require('../model/signature.model.js');
 
 //create a signature error handling
 exports.create=(req,res)=>{
-    if(!req.body.description){
+    if(!req.body.petitionId){
         return res.status(400).send({
-            message:"signature cannot be empty"
+            message:"petitionId cannot be empty"
         });
     }
 // create a signature
@@ -63,9 +63,9 @@ exports.findOne =(req,res) => {
     // Update a signature identified by Id error handling
     exports.update = (req, res) => {
     // Validate Request
-    if(!req.body.description) {
+    if(!req.body.petitionId) {
         return res.status(400).send({
-            message: "signature description can not be empty"
+            message: "signature petitionID can not be empty"
         });
     }
 
