@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Petition } from '../model/todo.model';
-import { PetitionService } from '../service/todo.service';
+import { Petition } from '../model/petition.model';
+import { PetitionService } from '../service/petition.service';
+
 @Component({
   selector: 'app-view-petition',
   templateUrl: './view-petition.component.html',
@@ -15,7 +16,7 @@ export class ViewPetitionComponent {
   }
 
   ngOnInit() {
-    this.petitionService.getpetition()
+    this.petitionService.getPetition()
       .subscribe( data => {
         this.petitionList = data;
       });
@@ -23,7 +24,7 @@ export class ViewPetitionComponent {
 
   deletepetition(petition: Petition, id: string): void {
     console.log("Petition ID - "+ id);
-    this.petitionService.deletepetition(petition, id)
+    this.petitionService.deletePetition(petition, id)
       .subscribe( data => {
         this.petitionList = this.petitionList.filter(u => u !== petition);
         alert(petition.title +" deleted successfully.");

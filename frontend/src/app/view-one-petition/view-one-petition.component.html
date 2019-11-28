@@ -1,1 +1,27 @@
-<p>view-one-petition works!</p>
+<div class="col-md-8 container">
+    <h2 class="text-center">ViewByID petition</h2>
+    <div class="form-group">
+        <label >Title - {{petition.title}}</label>
+        <br>
+        <br>
+        <label >Target - {{petition.target}}</label>
+        <br>
+        <br>
+        <label >Description - {{petition.description}}</label>
+        <br>
+        <br>
+        <label >Mediapath- {{petition.mediapath}}</label>
+        <br>
+        <br>
+        <label >Email - {{petition.email}}</label>
+        <br>
+        <br>
+        <label >UserName - {{petition.username}}</label>
+        <br>
+        <br>
+      </div>     
+
+    <button [disabled]="petition.enabled" class="edit" (click)="updatepetition()">Edit</button>    
+    <button class="delete" (click)="deletePetition()">Delete</button>
+    </div>
+

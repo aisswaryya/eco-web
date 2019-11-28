@@ -24,4 +24,14 @@ export class PetitionService {
     console.log("From petition Service Update - "+ id);
     return this.http.put<Petition>(this.petitionUrl + "/" + id, petition);
   }
+
+  // Call delete petition API
+  public deletePetition(todo, id) {
+    console.log(this.petitionUrl + "/"+ id);
+    return this.http.delete(this.petitionUrl + "/"+ id);
+  }
+  // call get petition API
+  public getPetition() {
+    return this.http.get<Petition[]>(this.petitionUrl);
+  }
 }

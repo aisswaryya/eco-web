@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { Petition } from '../model/petition.model';
 import { PetitionService } from '../service/petition.service';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-update-petition',
   templateUrl: './update-petition.component.html',
   styleUrls: ['./update-petition.component.scss']
 })
-export class UpdatePetitionComponent implements OnInit {
+export class UpdatePetitionComponent {
   petition: Petition= new Petition();
   petitionId:string;
   //Constructor with Router and Services
@@ -29,9 +30,5 @@ export class UpdatePetitionComponent implements OnInit {
         });
 
   };
-
-
-  ngOnInit() {
-  }
 
 }

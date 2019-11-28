@@ -1,28 +1,39 @@
 <div class="col-md-8 container">
-    <h2 class="text-center">GetByID Petition</h2>
-    <div class="form-group">
-        <label >Title - {{petition.title}}</label>
-        <br>
-        <br>
-        <label >Target - {{petition.target}}</label>
-        <br>
-        <br>
-        <label >Description - {{petition.description}}</label>
-        <br>
-        <br>
-        <label >MediaPath - {{petition.mediapath}}</label>
-        <br>
-        <br>
-        <label >Email - {{petition.email}}</label>
-        <br>
-        <br>
-        <label >Username - {{petition.username}}</label>
-        <br>
-        <br>
-      </div>     
+    <h2 class="text-center">View All Petition</h2>
 
-    <button [disabled]="petition.enabled" class="edit" (click)="updatepetition()">Edit</button>    
-    <button class="delete" (click)="deletepetition()">Delete</button>
+      <ul id="petitions"  *ngFor="let petition of petitionList">
+      <li>
+          <label >Title - {{petition.title}}</label>
+          <br>
+          <br>
+          <label >Target - {{petition.target}}</label>
+          <br>
+          <br>
+          <label >Description - {{petition.description}}</label>
+          <br>
+          <br>
+          <label >MediaPath - {{petition.mediapath}}</label>
+          <br>
+          <br>
+          <label >Email - {{petition.email}}</label>
+          <br>
+          <br>
+          <label >Username - {{petition.username}}</label>
+          <br>
+          <br>
+
+        <button [disabled]="petition.enabled" class="edit" (click)="updatepetition()">Edit</button>    
+        <button class="delete" (click)="deletepetition()">Delete</button>
+      </li>  
+      </ul> 
+
+
+
+   
  
     </div>
+
+   
+      
+      
 
