@@ -18,4 +18,10 @@ export class PetitionService {
     console.log("Request Object" + petition);
     return this.http.post<Petition>(this.petitionUrl, petition);
   }
+
+  // Call update petition API
+  public updatePetition(petition, id) {
+    console.log("From petition Service Update - "+ id);
+    return this.http.put<Petition>(this.petitionUrl + "/" + id, petition);
+  }
 }

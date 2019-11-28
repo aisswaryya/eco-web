@@ -4,7 +4,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ViewPetitionComponent } from './view-petition/view-petition.component';
 import { CreatePetitionComponent } from './create-petition/create-petition.component';
 import { UpdatePetitionComponent } from './update-petition/update-petition.component';
-import { ViewoneComponent } from './view-one.component/viewone.component';
+import { ViewOnePetitionComponent } from './view-one-petition/view-one-petition.component';
 
 
 
@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'view', component: ViewPetitionComponent},
   {path: 'create', component: CreatePetitionComponent},
   {path: 'update', component: UpdatePetitionComponent},
-  {path: 'viewOne', component: ViewoneComponent}
+  {path: 'viewOne', component: ViewOnePetitionComponent}
 ];
 
 @NgModule({

@@ -9,8 +9,7 @@ import { ViewPetitionComponent } from './view-petition/view-petition.component';
 import { CreatePetitionComponent } from './create-petition/create-petition.component';
 import { UpdatePetitionComponent } from './update-petition/update-petition.component';
 import {PetitionService} from './service/petition.service';
-import { ViewPetitionsComponent } from './view-petitions/view-petitions.component';
-import { ViewoneComponent } from './viewone/viewone.component';
+import { ViewOnePetitionComponent } from './view-one-petition/view-one-petition.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +18,7 @@ import { ViewoneComponent } from './viewone/viewone.component';
     ViewPetitionComponent,
     CreatePetitionComponent,
     UpdatePetitionComponent,
-    ViewPetitionsComponent,
-    ViewoneComponent
+    ViewOnePetitionComponent
   ],
   imports: [
     BrowserModule,
