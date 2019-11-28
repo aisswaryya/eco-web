@@ -1,1 +1,29 @@
-<p>create-petition works!</p>
+<div class="col-md-8 container">
+    <h2 class="text-center">Add petition</h2>
+  <form>
+    <div class="form-group">
+      
+      <input id="new-petition" type="text" [(ngModel)]="petition.title" placeholder="Title" name="title" class="form-control" id="title">
+    </div>
+    <br>
+    <div class="form-group">
+            <input id="new-petition" type="text" [(ngModel)]="petition.target" placeholder="Target" name="target" class="form-control" id="target">
+        </div>
+        <br>
+        <div class="form-group">
+      <input id="new-petition" type="text" [(ngModel)]="petition.description" placeholder="Description" name="description" class="form-control" id="description">
+    </div>
+    <br>
+    <div class="form-group">
+     
+      <input id="new-petition" type="text" [(ngModel)]="petition.mediapath" placeholder="Mediapath" name="mediapath" class="form-control" id="mediapath">
+    </div>
+    <br>
+    <div class="form-group">
+       
+      <input id="new-petition" type="text" [(ngModel)]="petition.username" placeholder="Username" name="username" class="form-control" id="duetime">
+    </div>
+      <br>
+    <button class="btn btn-success" (click)="createPetition()">Create</button>
+  </form>
+  </div>
