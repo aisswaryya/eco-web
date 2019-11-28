@@ -1,9 +1,9 @@
 'use strict';
 module.exports = function (app) {
-    //Initialize models
-    let toDoModel = require('./models/todo');
+    //Initialize model
+    let socialfeedModel = require('./models/socialfeed');
 
     //Initialize routes
-    let toDoRoutes = require('./routes/todo-route');
-    toDoRoutes(app);
+    let socialfeedRoutes = require('./routes/socialfeed-route');
+    socialfeedRoutes(app);
 };

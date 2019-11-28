@@ -3,29 +3,32 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 /**
- * Mongoose schema for todo object.
+ * Mongoose schema for social feed object.
  * Everything in Mongoose starts with a Schema. 
  * Each schema maps to a MongoDB collection and 
  * defines the shape of the documents within that collection.
  */
-let ToDoSchema = new Schema({
+let SocialFeedSchema = new Schema({
     /**
      * Title of the to do item.
      */
+    image: {
+        type: String
+    },
     description: {
         type: String
     },
-    title: {
-        type: String,
-        required: "title is required"
+    location: {
+        type: String
     },
-    completed: {
-        type: String,
-        default: "no"
+    emailId: {
+        type: String
     },
-    dueDate: {
-        type: Date,
-        required: "due date is required"
+    createdDate: {
+        type: Date
+    },
+    updatedDate: {
+        type: Date
     }
 }, {
     /**
@@ -39,7 +42,7 @@ let ToDoSchema = new Schema({
 });
 // Duplicate the id field as mongoose returns _id field instead of id.
 // Virtuals are document properties that you can get and set but that do not get persisted to MongoDB.
-ToDoSchema.virtual('id').get(function(){
+SocialFeedSchema.virtual('id').get(function(){
     return this._id.toHexString();
 });
 
@@ -49,7 +52,7 @@ ToDoSchema.virtual('id').get(function(){
  * For example, if you pass a document to Express' res.json() function, virtuals will not be included by default.
  * To include virtuals in res.json(), you need to set the toJSON schema option to { virtuals: true }
  */
-ToDoSchema.set('toJSON', {
+SocialFeedSchema.set('toJSON', {
     virtuals: true
 });
 
@@ -59,4 +62,4 @@ ToDoSchema.set('toJSON', {
  * Models are responsible for creating and reading documents from the underlying MongoDB database.
  * When you call mongoose.model() on a schema, Mongoose compiles a model for you
  */
-module.exports = mongoose.model('todos', ToDoSchema);
+module.exports = mongoose.model('socialfeeds', SocialFeedSchema);

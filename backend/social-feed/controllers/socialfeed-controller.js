@@ -1,29 +1,29 @@
 /**
- * Controller for todo endpoints.
+ * Controller for socialfeed endpoints.
  */
 
 'use strict';
-//import todo service.
-const toDoService = require('../services/todo-service');
+//import socialfeed service.
+const socialfeedService = require('../services/socialfeed-service');
 /**
- * Returns a list of to-dos in JSON based on the
+ * Returns a list of social feeds in JSON based on the
  * search parameters.
  *
  * @param {request} {HTTP request object}
  * @param {response} {HTTP response object}
  */
 exports.list = function (request, response) {
-    const resolve = (todos) => {
+    const resolve = (socialfeeds) => {
         response.status(200);
-        response.json(todos);
+        response.json(socialfeeds);
     };
-    toDoService.search({})
+    socialfeedService.search({})
         .then(resolve)
         .catch(renderErrorResponse(response));
 };
 
 /**
- * Creates a new todo with the request JSON and
+ * Creates a new socialfeed with the request JSON and
  * returns todo JSON object.
  *
  * @param {request} {HTTP request object}
@@ -31,65 +31,65 @@ exports.list = function (request, response) {
  */
 exports.post = function (request, response) {
     console.log(request.body);
-    const newToDo = Object.assign({}, request.body);
-    const resolve = (todo) => {
+    const newSocialfeed = Object.assign({}, request.body);
+    const resolve = (socialfeed) => {
         response.status(200);
-        response.json(todo);
+        response.json(socialfeed);
     };
-    toDoService.save(newToDo)
+    socialfeedService.save(newSocialfeed)
         .then(resolve)
         .catch(renderErrorResponse(response));
 };
 
 /**
- * Returns a todo object in JSON.
+ * Returns a socialfeed object in JSON.
  *
  * @param {request} {HTTP request object}
  * @param {response} {HTTP response object}
  */
 exports.get = function (request, response) {
-    const resolve = (todo) => {
+    const resolve = (socialfeed) => {
         response.status(200);
-        response.json(todo);
+        response.json(socialfeed);
     };
-    toDoService.get(request.params.todoId)
+    socialfeedService.get(request.params.socialfeedId)
         .then(resolve)
         .catch(renderErrorResponse(response));
 };
 
 /**
- * Updates and returns a todo object in JSON.
+ * Updates and returns a socialfeed object in JSON.
  *
  * @param {request} {HTTP request object}
  * @param {response} {HTTP response object}
  */
 exports.put = function (request, response) {
-    const todo = Object.assign({}, request.body);
+    const socialfeed = Object.assign({}, request.body);
     console.log(request.body);
-    const resolve = (todo) => {
+    const resolve = (socialfeed) => {
         response.status(200);
-        response.json(todo);
+        response.json(socialfeed);
     };
-    todo._id = request.params.todoId;
-    toDoService.update(todo)
+    socialfeed._id = request.params.socialfeedId;
+    socialfeedService.update(socialfeed)
         .then(resolve)
         .catch(renderErrorResponse(response));
 };
 
 /**
- * Deletes a todo object.
+ * Deletes a socialfeed object.
  *
  * @param {request} {HTTP request object}
  * @param {response} {HTTP response object}
  */
 exports.delete = function (request, response) {
-    const resolve = (todo) => {
+    const resolve = (socialfeed) => {
         response.status(200);
         response.json({
-            message: 'ToDo Successfully deleted'
+            message: 'Social feed Successfully deleted'
         });
     };
-    toDoService.delete(request.params.todoId)
+    socialfeedService.delete(request.params.socialfeedId)
         .then(resolve)
         .catch(renderErrorResponse(response));
 };

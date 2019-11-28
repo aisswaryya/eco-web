@@ -32,7 +32,7 @@ app.get('/',function(req,res){
 })
 
 //Initialize app
-let initApp = require('./api/app');
+let initApp = require('./social-feed/app');
 initApp(app);
 
 app.listen(port);
