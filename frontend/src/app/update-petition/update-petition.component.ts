@@ -22,7 +22,8 @@ export class UpdatePetitionComponent implements OnInit {
         .subscribe( data => {
           this.petition = new Petition();
           this.petitionId = "";
-   //this.dataStore.setTodoData(this.todo);
+          //this.todoData = data;
+         //this.dataStore.setTodoData(this.todo);
           alert("petition updated successfully.");
           this.router.navigate(["view"]);
         });
@@ -34,18 +35,3 @@ export class UpdatePetitionComponent implements OnInit {
   }
 
 }
-export class CreatePetitionComponent  {
-  petition: Petition= new Petition();
-  //Constructor with Router and Services
-  constructor(private  router: Router, private petitionService: PetitionService)  { 
-
-  }
-  //Create petition function to call Express JS Create API
-  createPetition(): void {
-    this.petitionService.createPetition(this.petition)
-        .subscribe( data => {
-          alert("petition created successfully.");
-          this.router.navigate(["view"]);
-        });
-
-  };
