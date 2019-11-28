@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Petition } from '../model/petition.model';
 import { PetitionService } from '../service/petition.service';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-create-petition',
   templateUrl: './create-petition.component.html',
@@ -21,9 +22,6 @@ export class CreatePetitionComponent  {
           this.router.navigate(["view"]);
         });
 
-  };
-
-
-  
+};
 }
 

@@ -1,6 +1,5 @@
-
 import { Injectable } from "@angular/core";
-import { Petition } from "../model/petition.model";
+
 
 @Injectable()
 export class petitionDataService {
@@ -15,8 +14,8 @@ export class petitionDataService {
   }
 }
 
-  // Data Service to transfer petition
-//   getTodoData() {
+// Data Service to transfer petition
+//   getTodoData(){
 //     return this.petitionData;
 //   }
 //   setTodoData(data: Petition) {

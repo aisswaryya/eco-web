@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Petition } from '../model/petition.model';
 import { PetitionService } from '../service/petition.service';
 import { Router } from '@angular/router';
+import { petitionDataService } from '../service/datastorage.service';
 
 @Component({
   selector: 'app-update-petition',
@@ -14,7 +15,11 @@ export class UpdatePetitionComponent {
   //Constructor with Router and Services
   constructor(
      private  router: Router,
-     private petitionService: PetitionService)  { 
+     private petitionService: PetitionService,
+     private dataStore: petitionDataService)  { 
+      this.petition = this.dataStore.getpetitionData(); 
+      this.petitionId = this.dataStore.getpetitionId();
+      console.log("Update Component "+ this.petitionId);
   }
 
   //Update petition function to call Express JS Create API
@@ -23,8 +28,8 @@ export class UpdatePetitionComponent {
         .subscribe( data => {
           this.petition = new Petition();
           this.petitionId = "";
-          //this.todoData = data;
-         //this.dataStore.setTodoData(this.todo);
+          //this.petitionData = data;
+         //this.dataStore.setpetitionData(this.petition);
           alert("petition updated successfully.");
           this.router.navigate(["view"]);
         });

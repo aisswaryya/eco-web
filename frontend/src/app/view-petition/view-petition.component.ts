@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Petition } from '../model/petition.model';
 import { PetitionService } from '../service/petition.service';
-
+import { petitionDataService } from '../service/datastore.service'
 @Component({
   selector: 'app-view-petition',
   templateUrl: './view-petition.component.html',
@@ -11,7 +11,11 @@ import { PetitionService } from '../service/petition.service';
 export class ViewPetitionComponent {
 
   petitionList: Petition[];
-  constructor(private router: Router, private petitionService: PetitionService) {
+  constructor(
+    private router: Router, 
+    private petitionService: PetitionService,
+    private dataStore: petitionDataService
+    ) {
 
   }
 
@@ -36,20 +40,17 @@ export class ViewPetitionComponent {
     console.log(petition);
     console.log(id);
     //this.dataStore.setpetitionData(petition);
-    //this.dataStore.setpetitionId(id);
+    this.dataStore.setPetitionId(id);
     this.router.navigate(["update"]);
   }
 
-   
-  
-
-  getpetition(petition: Petition, id: string): void {
+     getpetition(petition: Petition, id: string): void {
     console.log("View By Id");
     console.log(petition);
     console.log(id);
     //this.dataStore.setpetitionData(petition);
-    //this.dataStore.setpetitionId(id);
-    this.router.navigate(["getpetition"]);
+    this.dataStore.setPetitionId(id);
+    this.router.navigate(["viewOne"]);
   }
 
 
