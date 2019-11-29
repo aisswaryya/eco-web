@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Petition } from '../model/petition.model';
 import { PetitionService } from '../service/petition.service';
 import { Router } from '@angular/router';
-import { petitionDataService } from '../service/datastorage.service';
+import { petitionDataService } from '../service/datastore.service';
 
 @Component({
   selector: 'app-update-petition',
@@ -17,8 +17,8 @@ export class UpdatePetitionComponent {
      private  router: Router,
      private petitionService: PetitionService,
      private dataStore: petitionDataService)  { 
-      this.petition = this.dataStore.getpetitionData(); 
-      this.petitionId = this.dataStore.getpetitionId();
+      //this.petition = this.dataStore.getPetitionData(); 
+      this.petitionId = this.dataStore.getPetitionId();
       console.log("Update Component "+ this.petitionId);
   }
 

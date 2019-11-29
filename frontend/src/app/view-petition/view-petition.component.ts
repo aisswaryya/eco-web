@@ -9,7 +9,9 @@ import { petitionDataService } from '../service/datastore.service'
   styleUrls: ['./view-petition.component.scss']
 })
 export class ViewPetitionComponent {
-
+//test
+//public name="pass";
+//petition: Petition = new Petition();
   petitionList: Petition[];
   constructor(
     private router: Router, 
@@ -26,12 +28,11 @@ export class ViewPetitionComponent {
       });
   };
 
-  deletepetition(petition: Petition, id: string): void {
-    console.log("Petition ID - "+ id);
-    this.petitionService.deletePetition(petition, id)
+  deletepetition( id: string): void {
+    console.log("petition ID - "+ id);
+    this.petitionService.deletePetition( id)
       .subscribe( data => {
-        this.petitionList = this.petitionList.filter(u => u !== petition);
-        alert(petition.title +" deleted successfully.");
+        alert(id +" deleted successfully.");
       })
   };
 

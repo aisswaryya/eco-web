@@ -26,12 +26,18 @@ export class PetitionService {
   }
 
   // Call delete petition API
-  public deletePetition(todo, id) {
+  public deletePetition(id) {
     console.log(this.petitionUrl + "/"+ id);
     return this.http.delete(this.petitionUrl + "/"+ id);
   }
-  // call get petition API
+  // call get all petition API
   public getPetition() {
     return this.http.get<Petition[]>(this.petitionUrl);
+  }
+
+  // call get by ID petition API
+  public getbyIDPetition(id) {
+    console.log(this.petitionUrl + "/"+ id);
+    return this.http.get<Petition>(this.petitionUrl + "/" + id);
   }
 }

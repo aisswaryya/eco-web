@@ -1,6 +1,9 @@
 <div class="col-md-8 container">
     <h2 class="text-center">View All Petition</h2>
 
+         
+
+
       <ul id="petitions"  *ngFor="let petition of petitionList">
       <li>
           <label >Title - {{petition.title}}</label>
@@ -22,8 +25,8 @@
           <br>
           <br>
 
-        <button [disabled]="petition.enabled" class="edit" (click)="updatepetition()">Edit</button>    
-        <button class="delete" (click)="deletepetition()">Delete</button>
+        <button class="edit" (click)="updatepetition(petition._id)">Edit</button>    
+        <button class="delete" (click)="deletepetition(petition._id)">Delete</button>
       </li>  
       </ul> 
 </div>

@@ -21,7 +21,7 @@
         <br>
       </div>     
 
-    <button [disabled]="petition.enabled" class="edit" (click)="updatepetition()">Edit</button>    
-    <button class="delete" (click)="deletePetition()">Delete</button>
+    <button class="edit" (click)="updatepetition(petition._id)">Edit</button>    
+    <button class="delete" (click)="deletePetition(petition)">Delete</button>
     </div>
 

@@ -10,6 +10,7 @@ import { CreatePetitionComponent } from './create-petition/create-petition.compo
 import { UpdatePetitionComponent } from './update-petition/update-petition.component';
 import {PetitionService} from './service/petition.service';
 import { ViewOnePetitionComponent } from './view-one-petition/view-one-petition.component';
+import {petitionDataService }from './service/datastore.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { ViewOnePetitionComponent } from './view-one-petition/view-one-petition.
     FormsModule,
     HttpClientModule
   ],
-  providers: [PetitionService],
+  providers: [PetitionService, petitionDataService],
   bootstrap: [AppComponent]
   
 })
