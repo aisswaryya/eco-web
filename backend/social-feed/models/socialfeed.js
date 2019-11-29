@@ -12,9 +12,10 @@ let SocialFeedSchema = new Schema({
     /**
      * Title of the to do item.
      */
-    image: {
+    imageType: {
         type: String
     },
+    data: Buffer,
     description: {
         type: String
     },
