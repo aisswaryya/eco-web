@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-social-feed',
-  templateUrl: './social-feed.component.html',
-  styleUrls: ['./social-feed.component.scss']
+  selector: 'app-social-feed-list',
+  templateUrl: './social-feed-list.component.html',
+  styleUrls: ['./social-feed-list.component.scss']
 })
-export class SocialFeedComponent implements OnInit {
+export class SocialFeedListComponent implements OnInit {
 
   constructor() { }
 
