@@ -15,6 +15,10 @@
   </div>
   <br>
   <div class="form-group">
+    <input id="new-petition" type="text" [(ngModel)]="petition.email" placeholder="Email" name="email" class="form-control" id="email">
+  </div>
+  <br>
+  <div class="form-group">
    
     <input id="update-petition" type="text" [(ngModel)]="petition.mediapath" placeholder="Mediapath" name="mediapath" class="form-control" id="mediapath">
   </div>
@@ -24,6 +28,6 @@
     <input id="update-petition" type="text" [(ngModel)]="petition.username" placeholder="Username" name="username" class="form-control" id="duetime">
   </div>
     <br>
-  <button class="btn btn-success" (click)="createPetition()">Create</button>
+  <button class="btn btn-success" (click)="updatePetition()">Update</button>
 </form>
 </div>

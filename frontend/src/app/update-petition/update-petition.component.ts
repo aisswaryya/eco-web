@@ -17,9 +17,13 @@ export class UpdatePetitionComponent {
      private  router: Router,
      private petitionService: PetitionService,
      private dataStore: petitionDataService)  { 
-      //this.petition = this.dataStore.getPetitionData(); 
-      this.petitionId = this.dataStore.getPetitionId();
-      console.log("Update Component "+ this.petitionId);
+     this.petitionId = this.dataStore.getPetitionId();
+     console.log("Update Component "+ this.petitionId);
+     this.petitionService.getbyIDPetition(this.petitionId)
+      .subscribe( data => {
+        this.petition = data;
+      });
+      console.log("Update Petition "+ this.petition);
   }
 
   //Update petition function to call Express JS Create API
@@ -28,8 +32,6 @@ export class UpdatePetitionComponent {
         .subscribe( data => {
           this.petition = new Petition();
           this.petitionId = "";
-          //this.petitionData = data;
-         //this.dataStore.setpetitionData(this.petition);
           alert("petition updated successfully.");
           this.router.navigate(["view"]);
         });

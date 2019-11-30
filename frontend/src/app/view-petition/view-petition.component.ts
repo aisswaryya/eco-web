@@ -9,9 +9,6 @@ import { petitionDataService } from '../service/datastore.service'
   styleUrls: ['./view-petition.component.scss']
 })
 export class ViewPetitionComponent {
-//test
-//public name="pass";
-//petition: Petition = new Petition();
   petitionList: Petition[];
   constructor(
     private router: Router, 
@@ -28,24 +25,23 @@ export class ViewPetitionComponent {
       });
   };
 
-  deletepetition( id: string): void {
+  deletepetition( id: string, petition: Petition): void {
     console.log("petition ID - "+ id);
-    this.petitionService.deletePetition( id)
+    this.petitionService.deletePetition(id)
       .subscribe( data => {
+        this.petitionList = this.petitionList.filter(u => u !== petition);
         alert(id +" deleted successfully.");
       })
   };
 
-  updatepetition(petition: Petition, id: string): void {
+  updatepetition(id: string): void {
     console.log("update");
-    console.log(petition);
     console.log(id);
-    //this.dataStore.setpetitionData(petition);
     this.dataStore.setPetitionId(id);
     this.router.navigate(["update"]);
   }
 
-     getpetition(petition: Petition, id: string): void {
+  getpetition(petition: Petition, id: string): void {
     console.log("View By Id");
     console.log(petition);
     console.log(id);
