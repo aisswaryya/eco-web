@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { Petition } from "../model/petition.model";
 import { PetitionService } from "../service/petition.service";
 import { petitionDataService } from '../service/datastore.service';
+import { ViewPetitionComponent } from '../view-petition/view-petition.component';
 
 @Component({
   selector: 'app-view-one-petition',
@@ -22,18 +23,15 @@ export class ViewOnePetitionComponent {
     private petitionService: PetitionService,
     private dataStore: petitionDataService
   ) { 
-    
-    
-  } 
-
-  ngOnInit() {
     this.petitionId = this.dataStore.getPetitionId();
     this.petitionService.getbyIDPetition(this.petitionId)
       .subscribe( data => {
         console.log("Fetch Component "+ this.petitionId);
         this.petition = data;
       });
-  };
+    } 
+
+  
 
   //Delete function for petition
   deletepetition( id: string): void {
@@ -54,4 +52,5 @@ export class ViewOnePetitionComponent {
     this.dataStore.setPetitionId(this.petitionId);
     this.router.navigate(["update"]);
   }
-}
+
+ }

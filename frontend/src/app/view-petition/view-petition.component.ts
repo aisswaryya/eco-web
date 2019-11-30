@@ -41,11 +41,8 @@ export class ViewPetitionComponent {
     this.router.navigate(["update"]);
   }
 
-  getpetition(petition: Petition, id: string): void {
-    console.log("View By Id");
-    console.log(petition);
-    console.log(id);
-    //this.dataStore.setpetitionData(petition);
+  getPetition( id: string): void {
+    console.log("View By Id"+id);
     this.dataStore.setPetitionId(id);
     this.router.navigate(["viewOne"]);
   }

@@ -6,7 +6,7 @@
 
       <ul id="petitions"  *ngFor="let petition of petitionList">
       <li>
-           <button class="edit" (click)="getTodo(todo, todo._id)">Title - {{petition.title}}</button>
+          <button class="edit" (click)="getPetition(petition._id)">Title - {{petition.title}}</button>
           <br>
           <br>
           <label >Target - {{petition.target}}</label>
