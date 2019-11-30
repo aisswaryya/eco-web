@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SocialFeedCreateUpdateComponent } from "../social-feed-create-update/social-feed-create-update.component";
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-social-feed-list',
@@ -7,36 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SocialFeedListComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit() {
   }
 
-  selectedFile = null;
-  public imagePath;
-  imgURL: any;
-  public message: string;
-
-  onFileSelected(event) {
-    let files = event.target.files;
-    if (files.length === 0)
-      return;
-
-    var mimeType = files[0].type;
-    if (mimeType.match(/image\/*/) == null) {
-      this.message = "Only images are supported.";
-      return;
-    }
- 
-    var reader = new FileReader();
-    this.imagePath = files;
-    reader.readAsDataURL(files[0]); 
-    reader.onload = (_event) => { 
-      this.imgURL = reader.result; 
-    }
+  createPost() {
+    // this.todoService.create=true;
+    let dialogRef = this.dialog.open(SocialFeedCreateUpdateComponent, {
+      // panelClass: 'todoModal',
+      height: '600px',
+      width: '500px',
+      data: { 
+        create: true,
+        title:"",
+        description:"",
+        dueDate:"",
+        completed:"no"    
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      // this.getTodo();
+    })
   }
-
-  // onUpload() {
-  //   this.http.post('');
-  // }
 }

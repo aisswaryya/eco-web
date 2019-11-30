@@ -1,0 +1,39 @@
+<div class="detail-edit">
+    <div *ngIf="!data.create" class="header"> Update your feed</div>
+    <div *ngIf="data.create" class="header"> New Post </div>
+    <form [formGroup]="toDoGroup">
+        <div class="fields">
+            <div class="detail">
+                <mat-form-field>
+                    <input formControlName="data" type="file" (change)="onFileSelected($event)" >
+                    <div>
+                        <img [src]="imgURL" height="200" *ngIf="imgURL">
+                    </div>
+                </mat-form-field>
+            </div>
+    
+            <div class="detail">
+                <mat-form-field>
+                    <span class="key">Description:</span>
+                    <span class="value value-2"><input class="input" matInput formControlName="description" [(ngModel)]="data.description" ></span>
+                </mat-form-field>
+            </div>
+    
+            <div class="detail">
+                <mat-form-field>
+                    <span class="key"> Location:</span>
+                    <span class="value value-2"><input class="input" matInput formControlName="location" [(ngModel)]="data.location" ></span>
+                </mat-form-field>
+            </div>
+    
+            <!-- <div class="button" *ngIf="!data.create"> -->
+                <button class="add" mat-stroked-button (click)="saveTodo()">Upload</button>
+            <!-- </div> -->
+    
+            <!-- <div class="button" *ngIf="data.create">
+                <button class="add" mat-stroked-button (click)="createTodo()">Add</button>
+            </div> -->
+    
+        </div>
+    </form>
+    </div>
