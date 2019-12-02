@@ -17,8 +17,8 @@ exports.find = function (params) {
  * Saving the new Event object
  */
 exports.save = function (todo) {
-    const newTodo = new Event(todo);
-    const promise = newTodo.save();
+    const newEvent = new Event(todo);
+    const promise = newEvent.save();
     return promise;
 };
 

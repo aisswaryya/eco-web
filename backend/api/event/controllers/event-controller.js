@@ -10,6 +10,8 @@ exports.post = function (request, response) {
         response.json(event);
     };
     
+    // console.log(newEvent);
+
     eventService.save(newEvent)
         .then(resolve)
         .catch(renderErrorResponse(response));

@@ -1,0 +1,115 @@
+<p>Enter details for the event!</p>
+
+<div class="formDiv">
+    <form #eventForm="ngForm" class="needs-validation">
+
+        {{ eventForm.value | json }}
+
+        <p>Please enter the details for the events!</p>
+
+        <!-- <input ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/> -->
+
+        <!-- Name of the event -->
+        <div class="form-group">
+            <label>Name of the Event</label>
+
+            <input type="text" required [(ngModel)]="eventModel.name" #name="ngModel" name="name" class="form-control">
+
+            <div class="text-danger" *ngIf="name.touched && !name.valid">Name for an Event is Required!
+            </div>
+        </div>
+
+
+        <!-- Cause of the event -->
+        <div class="form-group">
+            <label>Cause</label>
+
+            <input type="text" required [(ngModel)]="eventModel.cause" #cause="ngModel" name="cause" class="form-control">
+
+            <div class="text-danger" *ngIf="cause.touched && !cause.valid">Cause for an Event is Required!
+            </div>
+        </div>
+
+        <!-- Description of the event -->
+        <div class="form-group">
+            <label>Description</label>
+
+            <input type="text" required [(ngModel)]="eventModel.desc" #desc="ngModel" name="desc" class="form-control">
+
+            <div class="text-danger" *ngIf="desc.touched && !desc.valid">Description for an Event is Required!
+            </div>
+        </div>
+
+
+
+        <!--Date picker-->
+
+        <div class="form-group">
+
+            <label>Date of the event</label>
+
+            <div class="input-group">
+
+                <input class="form-control" placeholder="yyyy-mm-dd" name="dateOfEvent" [(ngModel)]="eventModel.dateOfEvent"
+                    ngbDatepicker #d="ngbDatepicker">
+
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                </div>
+
+                <div class="invalid-tooltip">{{ d.invalid ? "Date is invalid" : undefined }}</div>
+
+            </div>
+        </div>
+
+
+        <!-- Time picker -->
+
+        <div class="form-group">
+
+            <label>Time of the event</label>
+
+            <div class="input-group">
+
+                <ngb-timepicker  [(ngModel)]="eventModel.time" name="time"></ngb-timepicker>
+
+            </div>
+        </div>
+
+
+
+        <!-- Description of the event -->
+        <div class="form-group">
+            <label>Max Signups</label>
+
+            <input type="text" required [(ngModel)]="eventModel.maxSignups" #maxSignups="ngModel" name="maxSignups"
+                class="form-control">
+
+            <div class="text-danger" *ngIf="maxSignups.touched && !maxSignups.valid">Max Signups for an Event is
+                Required!
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                <label class="form-check-label" for="invalidCheck">
+                    Agree to terms and conditions
+                </label>
+                <div class="invalid-feedback">
+                    You must agree before submitting.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="text-center">
+            <input class="margin-x-xl" type="submit" (click)="postData()">
+        </div>
+
+    </form>
+
+</div>
+
