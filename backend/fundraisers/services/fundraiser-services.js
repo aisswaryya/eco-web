@@ -13,12 +13,18 @@ const mongoose = require('mongoose'),
 /**
  * Returns an array of Fundraiser objects matching the search parameters.
  *
- * @param key, value
  * @returns {Promise}
+ * @param searchKey
+ * @param value
  */
-exports.search = function (key, value) {
-    const promise = Fundraiser.find({key: value}).exec();
-    return promise;
+exports.search = function (searchBy, value) {
+    if(searchBy === 'emailId') {
+        const promise = Fundraiser.find({emailId: value}).exec();
+        return promise;
+    } else {
+        const promise = Fundraiser.find().exec();
+        return promise;
+    }
 };
 
 /**

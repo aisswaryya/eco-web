@@ -22,7 +22,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.url, {
 	useNewUrlParser: true
 }).then(() => {
-    console.log("Successfully connected to the database");    
+    console.log("Successfully connected to the database");
 }).catch(err => {
     console.log('Could not connect to the database. Exiting now...', err);
     process.exit();
@@ -34,8 +34,17 @@ app.get('/', (req, res) => {
 });
 
 require('./route/eco.route.js')(app);
+// app.get('/',function(req,res){
+//     res.sendFile(__dirname+'/index.html');
+// })
 
 // listen for requests
 app.listen(3000, () => {
     console.log("Server is listening on port 3000");
 });
+//Initialize app
+let initApp = require('./app/app');
+initApp(app);
+
+app.listen(port);
+console.log('Ecoweb RESTful API server started on: ' + port);
