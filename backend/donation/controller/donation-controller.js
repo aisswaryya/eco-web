@@ -11,6 +11,7 @@ const donationService = require('../services/donation-services');
 /**
  * Returns a list of donation in JSON based
  * on the search parameter
+ * If conditions to search by email id, fundraiserId or just simple get
  *
  * @param request
  * @param response

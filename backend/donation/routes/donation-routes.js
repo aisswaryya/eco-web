@@ -4,6 +4,7 @@
 'use strict';
 /**
  * route function
+ * No delete or update for donations
  *
  * @param app
  */

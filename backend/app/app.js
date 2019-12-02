@@ -1,6 +1,6 @@
 'use strict';
 /**
- * Initializing
+ * Initializing the app
  *
  * @param app
  */
