@@ -27,12 +27,12 @@ app.use(function (req, res, next) { //next is a function that calls next middlew
     next();
 });
 
-app.get('/',function(req,res){
-    res.sendFile(__dirname+'/index.html');
-})
+// app.get('/',function(req,res){
+//     res.sendFile(__dirname+'/index.html');
+// })
 
 //Initialize app
-let initApp = require('./api/app');
+let initApp = require('./app/app');
 initApp(app);
 
 app.listen(port);
