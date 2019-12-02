@@ -51,7 +51,7 @@ let FundraiserModel = new Schema({
         default: 0
     },
 
-    // Collected amount incremented as people collect money
+    // Collected amount incremented as people donate money
     collectedAmount: {
         type: Number,
         default: 0
@@ -83,4 +83,4 @@ FundraiserModel.set('toJSON', {
     virtuals: true
 });
 
-module.exports = mongoose.model('donation', FundraiserModel);
+module.exports = mongoose.model('fundraiser', FundraiserModel);
