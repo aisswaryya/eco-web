@@ -13,12 +13,21 @@ const mongoose = require('mongoose'),
 /**
  * Returns an array of Donation objects matching the search parameters.
  *
- * @param key, value
  * @returns {Promise}
+ * @param searchkey
+ * @param value
  */
-exports.search = function (key, value) {
-    const promise = Donation.find({key: value}).exec();
-    return promise;
+exports.search = function (searchkey, value) {
+    if(searchkey === 'emailId') {
+        const promise = Donation.find({emailId: value}).exec();
+        return promise;
+    } else if(searchkey === 'fundraiserId') {
+        const promise = Donation.find({fundraiserId: value}).exec();
+        return promise;
+    } else {
+        const promise = Donation.find({fundraiserId: value}).exec();
+        return promise;
+    }
 };
 
 /**
