@@ -58,7 +58,7 @@ exports.post = function (request, response) {
 };
 
 /**
- * Returns a fundraiser Object in JSON
+ * Returns a donation Object in JSON
  *
  * @param request
  * @param response
