@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'fundraiser-create', component: FundraiserCreateComponent},
   { path: 'my-fundraisers-list', component: MyFundraiserListComponent },
   { path: 'my-fundraiser-detail/:id', component: MyFundraiserDetailComponent },
-  { path: 'donate', component: DonationCreateComponent },
+  { path: 'donate/:id', component: DonationCreateComponent },
   { path: 'my-donations-list', component: MyDonationsListComponent }
 
 ];
