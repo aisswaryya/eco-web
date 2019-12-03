@@ -11,6 +11,11 @@ import { MyFundraiserDetailComponent } from './my-fundraiser-detail/my-fundraise
 import { FundraiserCreateComponent } from './fundraiser-create/fundraiser-create.component';
 import { DonationCreateComponent } from './donation-create/donation-create.component';
 import { MyDonationsListComponent } from './my-donations-list/my-donations-list.component';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
+import {DonationServicesService} from './services/donation-services.service';
+import {FundraiserServicesService} from './services/fundraiser-services.service';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +27,19 @@ import { MyDonationsListComponent } from './my-donations-list/my-donations-list.
     MyFundraiserDetailComponent,
     FundraiserCreateComponent,
     DonationCreateComponent,
-    MyDonationsListComponent
+    MyDonationsListComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
   ],
-  providers: [],
+  providers: [
+    DonationServicesService,
+    FundraiserServicesService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
