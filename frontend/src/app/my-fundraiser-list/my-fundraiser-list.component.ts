@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FundraiserServicesService} from '../services/fundraiser-services.service';
 
 @Component({
   selector: 'app-my-fundraiser-list',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyFundraiserListComponent implements OnInit {
 
-  constructor() { }
+  fundraisers: any = [];
+
+  constructor(private fundraiserService: FundraiserServicesService) { }
 
   ngOnInit() {
+    this.getFundraisersByEmail();
+  }
+
+  getFundraisersByEmail() {
+    this.fundraiserService.getFundraisersByEmailId('thushu22@gmail.com').subscribe(data => {
+      this.fundraisers = data;
+    }, error => {
+      console.log(error);
+      alert('Error fetching Fundraisers');
+    });
   }
 
 }

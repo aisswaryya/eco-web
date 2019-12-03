@@ -11,6 +11,7 @@ creationDate: Date;
         this.fundraiserId = fundraiserId;
         this.emailId = emailId;
         this.amount = amount;
+        this.creationDate = new Date();
     }
 
 }
