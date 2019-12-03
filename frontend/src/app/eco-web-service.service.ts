@@ -7,5 +7,5 @@ export class EcoWebServiceService {
 
   constructor() { }
 
-  //All the common services go here
+  // All the common services go here
 }
