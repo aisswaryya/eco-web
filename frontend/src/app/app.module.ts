@@ -1,34 +1,30 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import {HttpClientModule} from "@angular/common/http";
+import { SharedModule} from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomePageComponent } from './home-page/home-page.component';
-import { ViewPetitionComponent } from './view-petition/view-petition.component';
-import { CreatePetitionComponent } from './create-petition/create-petition.component';
-import { UpdatePetitionComponent } from './update-petition/update-petition.component';
-import {PetitionService} from './service/petition.service';
-import { ViewOnePetitionComponent } from './view-one-petition/view-one-petition.component';
-import {petitionDataService }from './service/datastore.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent} from './navigation/header/header.component';
+import { SidenavListComponent }from './navigation/sidenav-list/sidenav-list.component';
+import { LayoutComponent } from './layout/layout.component';
+import { NotFoundComponent} from './error-pages/not-found/not-found.component';
+import { ServerErrorComponent } from './error-pages/server-error/server-error.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent,
-    ViewPetitionComponent,
-    CreatePetitionComponent,
-    UpdatePetitionComponent,
-    ViewOnePetitionComponent
-  ],
+    HeaderComponent,
+    SidenavListComponent,
+    LayoutComponent,
+    NotFoundComponent,
+    ServerErrorComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    HttpClientModule
+    SharedModule,
+    BrowserAnimationsModule
   ],
-  providers: [PetitionService, petitionDataService],
+  providers: [],
   bootstrap: [AppComponent]
-  
 })
 export class AppModule { }
