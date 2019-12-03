@@ -9,6 +9,8 @@ import { SidenavListComponent }from './navigation/sidenav-list/sidenav-list.comp
 import { LayoutComponent } from './layout/layout.component';
 import { NotFoundComponent} from './error-pages/not-found/not-found.component';
 import { ServerErrorComponent } from './error-pages/server-error/server-error.component';
+import {PetitionService} from './service/petition.service';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -22,9 +24,10 @@ import { ServerErrorComponent } from './error-pages/server-error/server-error.co
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [PetitionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

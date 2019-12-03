@@ -3,7 +3,8 @@ import { Petition } from '../../model/petition.model';
 import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { PetitionService } from '../../service/petition.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-petition',
@@ -11,26 +12,18 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./create-petition.component.scss']
 })
 export class CreatePetitionComponent implements OnInit {
-     public createPetitionForm: FormGroup;
-    private dialogConfig;
+    public createPetitionForm: FormGroup;
   
-    constructor(private location: Location,  private dialog: MatDialog) { }
+    constructor(private  router: Router,private location: Location, private petitionService: PetitionService, private dialog: MatDialog) { }
   
     ngOnInit() {
       this.createPetitionForm = new FormGroup({
         title: new FormControl('', [Validators.required, Validators.maxLength(60)]),
         description: new FormControl('', [Validators.required, Validators.maxLength(60)]),
-        name: new FormControl('', [Validators.required, Validators.maxLength(20)]),
+        username: new FormControl('', [Validators.required, Validators.maxLength(20)]),
         mediapath: new FormControl('', [Validators.maxLength(100)]),
         email: new FormControl('', [Validators.required])
       });
-  
-      this.dialogConfig = {
-        height: '200px',
-        width: '400px',
-        disableClose: true,
-        data: {}
-      }
     }
   
     public hasError = (controlName: string, errorName: string) => {
@@ -40,32 +33,32 @@ export class CreatePetitionComponent implements OnInit {
     public onCancel = () => {
       this.location.back();
     }
-  
+
+    public createPetition = (petitionFormValue) => {
+      if (this.createPetitionForm.valid) {
+        this.executeOwnerCreation(petitionFormValue);
+      }
+    }
       
-    // private executeOwnerCreation = (ownerFormValue) => {
-    //   let owner: OwnerForCreation = {
-    //     name: ownerFormValue.name,
-    //     dateOfBirth: ownerFormValue.dateOfBirth,
-    //     address: ownerFormValue.address
-    //   }
+    private executeOwnerCreation = (petitionFormValue) => {
+      let petition: Petition = {
+        _id:'',
+        title: petitionFormValue.title,
+        description: petitionFormValue.description,
+        username: petitionFormValue.username,
+        mediapath: petitionFormValue.mediapath,
+        email: petitionFormValue.email
+      }
+      console.log(petition);
+      console.log(JSON.stringify(petition));
+      this.petitionService.createPetition(petition)
+        .subscribe( data => {
+          alert("petition created successfully.");
+          this.router.navigate(["petition/list"]);
+        });
+
   
-    //   let apiUrl = 'api/owner';
-    //   this.repository.create(apiUrl, owner)
-    //     .subscribe(res => {
-    //       let dialogRef = this.dialog.open(SuccessDialogComponent, this.dialogConfig);
-  
-    //       //we are subscribing on the [mat-dialog-close] attribute as soon as we click on the dialog button
-    //       dialogRef.afterClosed()
-    //         .subscribe(result => {
-    //           this.location.back();
-    //         });
-    //     },
-    //       (error => {
-    //         this.errorService.dialogConfig = { ...this.dialogConfig };
-    //         this.errorService.handleError(error);
-    //       })
-    //     )
-    // }
+      }
   
   }
    
