@@ -10,6 +10,7 @@ import { MyFundraiserListComponent } from './my-fundraiser-list/my-fundraiser-li
 import { MyFundraiserDetailComponent } from './my-fundraiser-detail/my-fundraiser-detail.component';
 import { FundraiserCreateComponent } from './fundraiser-create/fundraiser-create.component';
 import { DonationCreateComponent } from './donation-create/donation-create.component';
+import { MyDonationsListComponent } from './my-donations-list/my-donations-list.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DonationCreateComponent } from './donation-create/donation-create.compo
     MyFundraiserListComponent,
     MyFundraiserDetailComponent,
     FundraiserCreateComponent,
-    DonationCreateComponent
+    DonationCreateComponent,
+    MyDonationsListComponent
   ],
   imports: [
     BrowserModule,
