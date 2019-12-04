@@ -36,11 +36,11 @@ export class CreatePetitionComponent implements OnInit {
 
     public createPetition = (petitionFormValue) => {
       if (this.createPetitionForm.valid) {
-        this.executeOwnerCreation(petitionFormValue);
+        this.executePetitionCreation(petitionFormValue);
       }
     }
       
-    private executeOwnerCreation = (petitionFormValue) => {
+    private executePetitionCreation = (petitionFormValue) => {
       let petition: Petition = {
         _id:'',
         title: petitionFormValue.title,
