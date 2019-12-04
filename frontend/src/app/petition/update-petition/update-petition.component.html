@@ -1,8 +1,8 @@
 <section fxLayout="row wrap" fxLayoutAlign="center center">
     <mat-card fxFlex="500px" fxFlex.xs="100%">
-      <mat-card-title>Create a new petition</mat-card-title>
-      <!--check autocomplete-->
-      <form [formGroup]="updateForm" autocomplete="on" novalidate (ngSubmit)="updatePetition(updateForm.value)" fxLayout="column wrap"
+      <mat-card-title>Update petition</mat-card-title>
+  
+      <form [formGroup]="updatePetitionForm" autocomplete="off" novalidate (ngSubmit)="updatePetition(updatePetitionForm.value)" fxLayout="column wrap"
         fxLayoutAlign="center center" fxLayoutGap="10px">
         <mat-card-content>
   
@@ -14,7 +14,7 @@
           </mat-form-field>
   
           <mat-form-field>
-            <input matInput type="text" placeholder="Please provide your Description" formControlName="description" id="description">
+            <input matInput type="text" placeholder="Description" formControlName="description" id="description">
             <mat-hint align="end">Not more then 60 characters long.</mat-hint>
             <mat-error *ngIf="hasError('description', 'required')">Description is required</mat-error>
           </mat-form-field>
@@ -26,17 +26,17 @@
           </mat-form-field>
           <mat-form-field>
             <input matInput type="text" placeholder="Mediapath" formControlName="mediapath" id="mediapath">
-    <!-- <mat-error *ngIf="hasError('mediapath', 'required')">Mediapath is required</mat-error> -->
+             <mat-error *ngIf="hasError('mediapath', 'required')">Mediapath is required</mat-error>
          </mat-form-field>
 
          <mat-form-field>
-            <input matInput type="email" placeholder="EmailID" formControlName="email" id="email">
+            <input matInput type="text" placeholder="EmailID" formControlName="email" id="email">
             <mat-error *ngIf="hasError('email', 'required')">*Email is required</mat-error>
          </mat-form-field>
   
         </mat-card-content>
         <mat-card-actions align="center">
-          <button mat-raised-button color="primary" [disabled]="!updateForm.valid">Update</button>
+          <button mat-raised-button color="primary" [disabled]="!updatePetitionForm.valid">Update</button>
           <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
         </mat-card-actions>
       </form>

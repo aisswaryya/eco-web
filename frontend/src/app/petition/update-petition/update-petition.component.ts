@@ -3,6 +3,8 @@ import { Petition } from '../../model/petition.model';
 import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { PetitionService } from '../../service/petition.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-update-petition',
@@ -11,10 +13,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class UpdatePetitionComponent implements OnInit {
   public updatePetitionForm: FormGroup;
-  private dialogConfig;
-  public Petition: Petition;  
+  public petition: Petition = new Petition  ();
+  public petitionId: string 
   
-    constructor(private location: Location,  private dialog: MatDialog) { }
+    constructor(private location: Location,private petitionService: PetitionService,private  router: Router, private dialog: MatDialog,private activeRoute: ActivatedRoute) { }
   
     ngOnInit() {
       this.updatePetitionForm = new FormGroup({
@@ -24,14 +26,9 @@ export class UpdatePetitionComponent implements OnInit {
         mediapath: new FormControl('', [Validators.maxLength(100)]),
         email: new FormControl('', [Validators.required])
       });
-  
-      this.dialogConfig = {
-        height: '200px',
-        width: '400px',
-        disableClose: true,
-        data: {}
-      }
-     // this.getPetitionById();
+       
+      
+     this.getPetitionById();
     }
   
     public hasError = (controlName: string, errorName: string) => {
@@ -43,50 +40,43 @@ export class UpdatePetitionComponent implements OnInit {
     }
   
       
-    // private getOwnerById = () => {
-    //   let ownerId: string = this.activeRoute.snapshot.params['id'];
-        
-    //   let ownerByIdUrl: string = `api/owner/${ownerId}`;
-     
-    //   this.repository.getData(ownerByIdUrl)
-    //     .subscribe(res => {
-    //       this.owner = res as Owner;
-    //       this.ownerForm.patchValue(this.owner);
-    //     },
-    //     (error) => {
-    //       this.errorService.dialogConfig = this.dialogConfig;
-    //       this.errorService.handleError(error);
-    //     })
-    // }
+    
+    public updatePetition = (updatePetitionFormValue) => {
+      if (this.updatePetitionForm.valid) {
+        this.executePetitionUpdation(updatePetitionFormValue);
+      }
+    }
+
+    private getPetitionById = () => {
+      this.petitionId = this.activeRoute.snapshot.params['id'];
+      console.log("Petition ID - "+ this.petitionId);
+      this.petitionService.getbyIDPetition(this.petitionId)
+      .subscribe( data => {
+        this.petition = data as Petition;
+        this.updatePetitionForm.patchValue(this.petition);
+      });
+    }
+         
+    
+    private executePetitionUpdation = (updatePetitionFormValue) => {
+      console.log("Petition Title - "+ updatePetitionFormValue.title);
   
-    // public updateOwner = (ownerFormValue) => {
-    //   if (this.ownerForm.valid) {
-    //     this.executeOwnerUpdate(ownerFormValue);
-    //   }
-    // }
-  
-    // private executeOwnerUpdate = (ownerFormValue) => {
-   
-    //   this.owner.name = ownerFormValue.name;
-    //   this.owner.dateOfBirth = ownerFormValue.dateOfBirth;
-    //   this.owner.address = ownerFormValue.address;
+      this.petition.title = updatePetitionFormValue.title;
+      this.petition.description = updatePetitionFormValue.description;
+      this.petition.username = updatePetitionFormValue.name;
+      this.petition.mediapath = updatePetitionFormValue.mediapath;
+      this.petition.email = updatePetitionFormValue.email;
      
-    //   let apiUrl = `api/owner/${this.owner.id}`;
-    //   this.repository.update(apiUrl, this.owner)
-    //     .subscribe(res => {
-    //       let dialogRef = this.dialog.open(SuccessDialogComponent, this.dialogConfig);
-          
-    //       dialogRef.afterClosed()
-    //         .subscribe(result => {
-    //           this.location.back();
-    //         });
-    //     },
-    //     (error => {
-    //       this.errorService.dialogConfig = this.dialogConfig;
-    //       this.errorService.handleError(error);
-    //     })
-    //   )
-    // }
+      console.log(this.petition);
+      console.log(this.petitionId);
+      console.log(JSON.stringify(this.petition));
+      this.petitionService.updatePetition(this.petition, this.petitionId)
+        .subscribe( data => {
+          alert("petition updated successfully.");
+          this.router.navigate(["petition/list"]);
+        });
+
+    }
   }
    
  
