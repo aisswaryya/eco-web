@@ -20,19 +20,20 @@ export class SocialFeedCreateUpdateComponent implements OnInit {
 
   ngOnInit() {
     this.socialFeedGroup = this._formBuilder.group({
-      data: [null],
+      // data: [null],
       description: [null],
       location: [null]
     });
   }
 
-  selectedFile = null;
+  selectedFile: File = null;
   public imagePath;
   imgURL: any;
   public message: string;
 
   onFileSelected(event) {
     let files = event.target.files;
+    this.selectedFile = <File> event.target.files[0];
     if (files.length === 0)
       return;
 
@@ -46,10 +47,31 @@ export class SocialFeedCreateUpdateComponent implements OnInit {
     this.imagePath = files;
     reader.readAsDataURL(files[0]); 
     reader.onload = (_event) => { 
-      this.imgURL = reader.result; 
+      this.imgURL = reader.result;
+      console.log("*********************"+this.imgURL);
     }
   }
 
+  uploadPost() {
+    let file: File = null;
+    let socialfeed: SocialFeed = new SocialFeed("","","","","", new Date(), new Date());
+    socialfeed.id = "";
+    socialfeed.data= this.imgURL;
+    socialfeed.description= this.socialFeedGroup.get('description').value;
+    socialfeed.location= this.socialFeedGroup.get('location').value;
+    socialfeed.emailId= "abc@gmail.com";
+    socialfeed.createdDate = new Date();
+    socialfeed.updatedDate = new Date();
+    this.socialFeedService.createSocialfeed(socialfeed).subscribe((response) => {
+      //do something with the response
+      console.log("Response is: ", response);
+   },
+   (error) => {
+      //catch the error
+      console.error("An error occurred, ", error);
+   }); 
+   this.dialogRef.close();
+  }
   // onUpload() {
   //   this.http.post('');
   // }

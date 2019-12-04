@@ -15,9 +15,12 @@ mongoose.Promise = global.Promise; //If  we want to use mongoose in different po
 //Adding body parser for handling request and response objects.
 app.use(bodyParser.urlencoded({ //parse url encoded body
     //use is a method to configure the middleware used by the routes of the Express HTTP server object. The method is defined as part of Connect that Express is based upon.
-    extended: true //use qs library; advanced than query string library
+    extended: true, //use qs library; advanced than query string library
+    limit: '50mb'
 }));
-app.use(bodyParser.json()); //body parser is an existing middleware function
+app.use(bodyParser.json({
+    limit: '50mb'
+})); //body parser is an existing middleware function
 //middleware gives you access to req and res in the apps request
 //Enabling CORS
 app.use(function (req, res, next) { //next is a function that calls next middleware function;

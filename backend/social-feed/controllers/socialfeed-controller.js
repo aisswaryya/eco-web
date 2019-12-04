@@ -32,7 +32,9 @@ exports.list = function (request, response) {
  */
 exports.post = function (request, response) {
     
-    request.body.data = fs.readFileSync('/Users/pavanrao/Desktop/Screen\ Shot\ 2019-10-08\ at\ 12.30.08\ PM.png');
+    // request.body.data = fs.readFileSync('/Users/pavanrao/Desktop/Screen\ Shot\ 2019-10-08\ at\ 12.30.08\ PM.png');
+    // console.log("***********Response:"+request.body.data);
+    request.body.data = Buffer.from(request.body.data);
     const newSocialfeed = Object.assign({}, request.body);
     const resolve = (socialfeed) => {
         response.status(200);
