@@ -39,7 +39,7 @@ export class MyFundraiserDetailComponent implements OnInit {
       this.donations = data;
     }, error => {
       console.log(error);
-      alert('Error fetching Fundraisers');
+      alert('Error fetching Donations');
     });
   }
 
