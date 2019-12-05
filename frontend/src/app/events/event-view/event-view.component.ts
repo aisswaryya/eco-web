@@ -13,8 +13,8 @@ export class EventViewComponent implements OnInit {
   events: Array<Event>;
   eventService: EventService;
 
-  latitude = 42.2929;
-  longitude = 32.222;
+  latitude = 42.33611930000001;
+  longitude = -71.07718549999998;
 
   constructor(eventService: EventService) { 
     this.eventService = eventService;
@@ -30,6 +30,14 @@ export class EventViewComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.eventService.getEvents());
+  }
+
+  clickedMarker(eventId){
+    document.getElementById(eventId).scrollIntoView(
+
+      {behavior: "smooth", block: "start", inline: "nearest"}
+
+    );
   }
 
 }

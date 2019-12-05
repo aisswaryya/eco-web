@@ -2,17 +2,17 @@
 <h2>All Events</h2>
 
 <div class="eventList">
-    <div *ngFor="let event of events">
+    <div *ngFor="let event of events" id = "{{ event.id }}">
         <app-event [event]="event"></app-event>
     </div>
 </div>
 
 
 <agm-map [latitude] ='latitude' [longitude] = 'longitude' 
-minZoom = 5 maxZOom = 10000
+minZoom = 5 maxZOom = 10000 [zoom] = "13"
 id = "eventMap"> 
 
-<agm-marker 
+<!-- <agm-marker 
     [latitude]="latitude"
     [longitude]="longitude"
     [markerDraggable]="false"
@@ -22,6 +22,32 @@ id = "eventMap">
     <strong>InfoWindow content</strong>
     </agm-info-window>
 
+</agm-marker> -->
+
+
+<agm-marker 
+*ngFor="let currentEvent of events; let i = index"
+(markerClick)="clickedMarker(currentEvent.id)"
+[latitude]="currentEvent.lat"
+[longitude]="currentEvent.lng"
+(dragEnd)="markerDragEnd(currentEvent, $event)"
+
+[iconUrl] ="
+{
+  url: './icons/marker-icon.ico',
+  scaledSize: {
+      width: 50,
+      height: 50
+  }
+}"
+   
+   >
+
+<agm-info-window>
+<strong>{{ currentEvent.name }}</strong>
+</agm-info-window>
+
 </agm-marker>
+
 
 </agm-map>
