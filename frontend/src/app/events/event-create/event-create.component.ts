@@ -4,10 +4,9 @@ import { FormControl } from '@angular/forms';
 import { Event } from '../models/event';
 import { EventService } from '../services/event.service';
 import { Observable } from 'rxjs';
-import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDateStruct, NgbCalendar, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import { GooglePlaceDirective, GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
-import { GoogleMap } from '@agm/core/services/google-maps-types';
 
 @Component({
   selector: 'app-event-create',
@@ -20,13 +19,21 @@ export class EventCreateComponent implements OnInit {
    * Event service instance
    */
   eventService : EventService;
+  
 
+  constructor(eventService: EventService, config: NgbDatepickerConfig) {
 
-  latitude = 42.2929;
-  longitude = 32.222;
-
-  constructor(eventService: EventService, private calendar: NgbCalendar) {
+    //Injected Event service
     this.eventService = eventService;
+
+    //disabling previous dates than today in datepicker
+    const currentDate = new Date();
+
+    config.minDate = {year:currentDate.getFullYear(), month:currentDate.getMonth()+1, day: currentDate.getDate()};
+    config.maxDate = {year: 2099, month: 12, day: 31};
+
+    //hiding other dates
+    config.outsideDays = 'hidden';
   }
 
   /**
@@ -59,6 +66,10 @@ export class EventCreateComponent implements OnInit {
     
         public handleAddressChange(address: Address) {
 
+          //Setting the value of venue from the address that is provided by google maps
+          this.eventModel.venue = address.formatted_address;
+
+          //Setting the value of lat and lng from the address that is provided by google maps
           this.eventModel.lat = address.geometry.location.lat();
           this.eventModel.lng = address.geometry.location.lng();
 

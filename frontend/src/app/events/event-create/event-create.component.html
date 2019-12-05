@@ -1,18 +1,11 @@
 <p>Enter details for the event!</p>
 
-<agm-map [latitude] ='latitude' [longitude] = 'longitude' 
-minZoom = 5 maxZOom = 10000
-id = "eventMap"> 
-</agm-map>
-
 <div class="formDiv">
     <form #eventForm="ngForm" class="needs-validation">
 
         {{ eventForm.value | json }}
 
         <p>Please enter the details for the events!</p>
-
-        <!-- <input ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/> -->
 
         <!-- Name of the event -->
         <div class="form-group">
@@ -75,7 +68,8 @@ id = "eventMap">
 
             <div class="input-group">
 
-                <input class="form-control" placeholder="yyyy-mm-dd" name="dateOfEvent" [(ngModel)]="eventModel.dateOfEvent"
+                <input class="form-control" placeholder="yyyy-mm-dd" 
+                    name="dateOfEvent" [(ngModel)]="eventModel.dateOfEvent"
                     ngbDatepicker #d="ngbDatepicker">
 
                 <div class="input-group-append">

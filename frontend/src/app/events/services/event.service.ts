@@ -13,15 +13,38 @@ import { Observable } from 'rxjs';
  */
 export class EventService {
 
+  /**
+   * Event resource
+   */
   eventResource: string;
-  eventResourceURL: string;
 
   /**
-   * Constructor.
+   * Event resource along with the url
+   */
+  eventResourceURL: string;
+
+
+  /**
+   * Attendee resource
+   */
+  attendeeResource: string;
+
+  /**
+   * Event resource along with the url
+   */
+  attendeeResourceURL: string;
+
+  /**
+   * Constructor setting the values of the URLs
    */
   constructor(private http: HttpClient) {
-    this.eventResource = 'event';
+    
+    this.eventResource = 'events';
     this.eventResourceURL = `${environment.serverBaseURL}/${this.eventResource}`;
+
+    this.attendeeResource = 'attendees';
+    this.attendeeResourceURL = `${environment.serverBaseURL}/${this.attendeeResource}`;    
+
   }
 
   /**
@@ -31,6 +54,15 @@ export class EventService {
    */
   getEvents(): Observable<Array<Event>> {
     return this.http.get<Array<Event>>(this.eventResourceURL);
+  }
+
+  /**
+   * Returns the Event based on Id.
+   *
+   * @return {Observable<Array<Event>>} {Observable event array of single event}
+   */
+  getEventById(id : Number): Observable<Array<Event>> {
+    return this.http.get<Array<Event>>(`${this.eventResourceURL}/${id}`);
   }
 
   /**
