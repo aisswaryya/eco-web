@@ -6,6 +6,8 @@ active: boolean;
 emailId: string;
 shortDescription: string;
 longDescription: string;
+accountNo: string;
+routingNo: string;
 targetAmount: number;
 collectedAmount: number;
 createdDate: Date;
@@ -17,6 +19,8 @@ modifiedDate: Date;
                 emailId: string,
                 shortDescription: string,
                 longDescription: string,
+                accountNo: string,
+                routingNo: string,
                 targetAmount: number,
                 collectedAmount: number,
                 ) {
@@ -27,6 +31,8 @@ modifiedDate: Date;
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
         this.targetAmount = targetAmount;
+        this.accountNo = accountNo;
+        this.routingNo = routingNo;
         this.collectedAmount = collectedAmount;
         this.createdDate = new Date();
         this.modifiedDate = new Date();

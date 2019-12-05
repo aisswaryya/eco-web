@@ -40,6 +40,7 @@ export class DonationServicesService {
     newDonation = donation ? donation : new Donation(
         '',
         '',
+        '',
         0);
     return this.http.post<Donation>(this.donationResourceUrl, newDonation);
   }

@@ -40,6 +40,8 @@ export class FundraiserServicesService {
         '',
         '',
         '',
+        '',
+        '',
         0,
         0);
     return this.http.post<Fundraiser>(this.fundraiserResourceUrl, newFundraiser);
