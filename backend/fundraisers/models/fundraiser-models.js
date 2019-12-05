@@ -51,6 +51,19 @@ let FundraiserModel = new Schema({
         default: 0
     },
 
+    //bank account number
+    accountNo: {
+        type: String,
+        default: '0000000000'
+    },
+
+    //bank routing number
+    routingNo: {
+        type: String,
+        default: '00000000'
+    },
+
+
     // Collected amount incremented as people donate money
     collectedAmount: {
         type: Number,

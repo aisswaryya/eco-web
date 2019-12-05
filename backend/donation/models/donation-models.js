@@ -22,6 +22,12 @@ let DonationModel = new Schema({
         required: "Email is required"
     },
 
+    //Name of the donor
+    name: {
+        type: String,
+        default: "Anonymous"
+    },
+
     //Donation amount
     amount: {
         type: Number,
