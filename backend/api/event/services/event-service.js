@@ -18,6 +18,9 @@ exports.find = function (params) {
  */
 exports.save = function (todo) {
     const newEvent = new Event(todo);
+
+    console.log(newEvent);
+
     const promise = newEvent.save();
     return promise;
 };

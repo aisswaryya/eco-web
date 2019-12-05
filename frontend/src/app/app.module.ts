@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule , NgbDateAdapter, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
 
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 
@@ -17,13 +17,17 @@ import { EventHomeComponent } from './events/event-home/event-home.component';
 import { EventCreateComponent } from './events/event-create/event-create.component';
 import { EventService } from './events/services/event.service';
 import { HttpClientModule } from '@angular/common/http';
+import { EventViewComponent } from './events/event-view/event-view.component';
+import { EventComponent } from './events/event/event.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     EventHomeComponent,
-    EventCreateComponent
+    EventCreateComponent,
+    EventViewComponent,
+    EventComponent
   ],
   imports: [
     BrowserModule,

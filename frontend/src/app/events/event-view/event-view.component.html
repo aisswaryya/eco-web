@@ -1,0 +1,27 @@
+
+<h2>All Events</h2>
+
+<div class="eventList">
+    <div *ngFor="let event of events">
+        <app-event [event]="event"></app-event>
+    </div>
+</div>
+
+
+<agm-map [latitude] ='latitude' [longitude] = 'longitude' 
+minZoom = 5 maxZOom = 10000
+id = "eventMap"> 
+
+<agm-marker 
+    [latitude]="latitude"
+    [longitude]="longitude"
+    [markerDraggable]="false"
+>
+
+    <agm-info-window>
+    <strong>InfoWindow content</strong>
+    </agm-info-window>
+
+</agm-marker>
+
+</agm-map>

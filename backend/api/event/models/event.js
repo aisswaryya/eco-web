@@ -1,6 +1,7 @@
 'use strict';
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Attendee = require('./attendee');
 
 /**
  *  Schema for Event object.
@@ -28,6 +29,22 @@ let Event = new Schema({
      */
     venue: {
         type: String
+    },
+
+
+    /**
+     * Latitude of the event to show in google maps
+     */
+    lat: {
+        type: Number
+    },
+
+
+    /**
+     * longitude of the event to show in google maps
+     */
+    lng: {
+        type: Number
     },
 
 
@@ -111,6 +128,13 @@ let Event = new Schema({
         default: false
     },
 
+    /**
+     * Name of the host who initialized the event
+     */
+    hostName: {
+        type: String
+    },
+
 
     /**
      * Private/Public event
@@ -161,25 +185,26 @@ let Event = new Schema({
             type: Number
         }
     },
-    // attendees: [
-    //     {
-    //         ref: 'Attendee',
-    //         type: mongoose.Schema.Types.ObjectId
+
+    /**
+     * The Attendees list holding all the attendees
+     */
+    attendees: [
+        
+    ]
+
+    // attendees: {
+    //     // ref: 'Attendee',
+    //     // type: mongoose.Schema.Types.ObjectId
+
+    //     name: {
+    //         type: String
+    //     },
+
+    //     email: {
+    //         type: String
     //     }
-    // ]
-
-    attendees: {
-        // ref: 'Attendee',
-        // type: mongoose.Schema.Types.ObjectId
-
-        name: {
-            type: String
-        },
-
-        email: {
-            type: String
-        }
-    }
+    // }
 
 
 }, {

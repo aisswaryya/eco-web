@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { FormControl } from '@angular/forms';
 import { Event } from '../models/event';
 import { EventService } from '../services/event.service';
 import { Observable } from 'rxjs';
 import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
+import { GooglePlaceDirective, GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import { GoogleMap } from '@agm/core/services/google-maps-types';
 
 @Component({
   selector: 'app-event-create',
@@ -13,19 +16,27 @@ import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 })
 export class EventCreateComponent implements OnInit {
 
+  /**
+   * Event service instance
+   */
   eventService : EventService;
+
+
+  latitude = 42.2929;
+  longitude = 32.222;
 
   constructor(eventService: EventService, private calendar: NgbCalendar) {
     this.eventService = eventService;
   }
 
-  // eventModel = new Event("","","","","","","","","",null,0,false,false,"");
+  /**
+   * The Event model used in two way binding
+   */
   eventModel = new Event();
 
-  log(x){
-    console.log(x);
-  }
-
+  /**
+   * The onSubmit method which is called when submit is clicked in the form
+   */
   postData(){
 
     console.log(this.eventModel.time);
@@ -40,6 +51,21 @@ export class EventCreateComponent implements OnInit {
     console.log(this.eventService);
   }
 
-}
 
+  /**
+   * The Google map component that calls the handleAddressChange whenever a new address is selected
+   */
+  @ViewChild("venue",{static: false}) placesRef : GooglePlaceDirective;
+    
+        public handleAddressChange(address: Address) {
+
+          this.eventModel.lat = address.geometry.location.lat();
+          this.eventModel.lng = address.geometry.location.lng();
+
+          console.log(this.eventModel);
+
+    }
+
+
+}
 

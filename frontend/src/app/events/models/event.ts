@@ -1,3 +1,5 @@
+import { LatLng } from 'ngx-google-places-autocomplete/objects/latLng';
+
 /**
  * Event object
  */
@@ -7,12 +9,16 @@ export class Event {
     name: string;
     cause: string;
     venue: string;
+    lat: Number;
+    lng: Number;
     city: string;
     state: string;
     country: string;
     zip: string;
     description: string;
     status: string;
+
+    hostName: string;
 
 
     //The date object holding the event date information

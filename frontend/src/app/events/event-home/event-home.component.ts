@@ -7,9 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventHomeComponent implements OnInit {
 
-  latitude = 42.2929;
-  longitude = 32.222;
-
   constructor() { }
 
   ngOnInit() {
