@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class ViewPetitionComponent implements OnInit,AfterViewInit {
 
-  public displayedColumns = ['title', 'description', 'mediapath', 'email', 'username'];
+  public displayedColumns = ['title', 'description', 'mediapath', 'email', 'username','details', 'update', 'delete'];
   public dataSource = new MatTableDataSource<Petition>(); 
   petitionList: Petition[];
 
@@ -34,7 +34,9 @@ export class ViewPetitionComponent implements OnInit,AfterViewInit {
     this.petitionService.getPetition()
       .subscribe( data => {
         this.petitionList = data;
+        this.dataSource.data = data as Petition[];
       });
+      console.log(this.petitionList);
   }
 
   public doFilter = (value: string) => {
@@ -51,11 +53,12 @@ export class ViewPetitionComponent implements OnInit,AfterViewInit {
     this.router.navigate([url]);
   }
 
-  public deletepetition(petition: Petition, id: string): void {
+  public deletePetition(petition: Petition, id: string): void {
     console.log("petition ID - "+ id);
     this.petitionService.deletePetition(id)
       .subscribe( data => {
         this.petitionList = this.petitionList.filter(u => u !== petition);
+        this.dataSource.data = this.petitionList;
         alert(petition.title +" deleted successfully.");
       })
   };
