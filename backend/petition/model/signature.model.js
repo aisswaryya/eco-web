@@ -4,7 +4,7 @@ const SignatureSchema = mongoose.Schema({
     name: String,
     petitionId: String,
     email: String,
-    signature: String
+    //signatureId: String
     }, {
     timestamps: true
 });

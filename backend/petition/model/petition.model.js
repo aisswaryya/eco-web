@@ -3,11 +3,13 @@ const mongoose = require('mongoose');
 const PetitionSchema = mongoose.Schema({
     title: String,
     target: String,
-    description: String,
+    shortDescription: String,
+    briefDescription: String,
     mediapath: String,
     email: String,
     category: String,
-    username: String
+    createdby: String
+    
 }, {
     timestamps: true
 });

@@ -12,7 +12,7 @@ const signature = new Signature({
     name: req.body.name || "Untited signature",
     petitionId:req.body.petitionId,
     email:req.body.email,
-    signature:req.body.signature
+    //signatureId:req.body.signatureId
 });
 
 // Save signature in the database

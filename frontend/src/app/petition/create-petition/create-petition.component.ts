@@ -15,14 +15,17 @@ export class CreatePetitionComponent implements OnInit {
     public createPetitionForm: FormGroup;
   
     constructor(private  router: Router,private location: Location, private petitionService: PetitionService, private dialog: MatDialog) { }
-  
+    // initialize form group
     ngOnInit() {
       this.createPetitionForm = new FormGroup({
         title: new FormControl('', [Validators.required, Validators.maxLength(60)]),
-        description: new FormControl('', [Validators.required, Validators.maxLength(60)]),
-        username: new FormControl('', [Validators.required, Validators.maxLength(20)]),
-        mediapath: new FormControl('', [Validators.maxLength(100)]),
-        email: new FormControl('', [Validators.required])
+        target: new FormControl('', [Validators.required, Validators.maxLength(60)]),
+        shortdescription: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+        briefdescription: new FormControl('', [Validators.required, Validators.maxLength(400)]),
+        mediapath: new FormControl('', [Validators.maxLength(60)]),
+        email: new FormControl('', [Validators.required,Validators.maxLength(30)]),
+        category:new FormControl('', [Validators.required,Validators.maxLength(30)]),
+        createdby:new FormControl('', [Validators.required,Validators.maxLength(30)])
       });
     }
   
