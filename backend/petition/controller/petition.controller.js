@@ -11,12 +11,12 @@ exports.create=(req,res)=>{
 const petition = new Petition({
     title: req.body.title || "Untited petition",
     target:req.body.target,
-    shortDescription: req.body.shortdescription,
-    briefDescription: req.body.briefdescription,
+    shortDescription: req.body.shortDescription,
+    briefDescription: req.body.briefDescription,
     mediapath: req.body.mediapath,
     email:req.body.email,
     category:req.body.category,
-    createdby:req.body.username
+    createdby:req.body.createdby
 });
 
 // Save Petition in the database
@@ -77,12 +77,12 @@ exports.update = (req, res) => {
 Petition.findByIdAndUpdate(req.params.petitionId, {
     title: req.body.title || "Untited petition",
     target:req.body.target,
-    shortDescription: req.body.shortdescription,
-    briefDescription: req.body.briefdescription,
+    shortDescription: req.body.shortDescription,
+    briefDescription: req.body.briefDescription,
     mediapath: req.body.mediapath,
     email:req.body.email,
     category:req.body.category,
-    createdby:req.body.username
+    createdby:req.body.createdby
 }, {new: true})
 .then(petition => {
     if(!petition) {
