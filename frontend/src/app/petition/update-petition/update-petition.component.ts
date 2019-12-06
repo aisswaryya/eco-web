@@ -22,7 +22,7 @@ export class UpdatePetitionComponent implements OnInit {
       this.updatePetitionForm = new FormGroup({
         title: new FormControl('', [Validators.required, Validators.maxLength(60)]),
         description: new FormControl('', [Validators.required, Validators.maxLength(60)]),
-        name: new FormControl('', [Validators.required, Validators.maxLength(20)]),
+        username: new FormControl('', [Validators.required, Validators.maxLength(20)]),
         mediapath: new FormControl('', [Validators.maxLength(100)]),
         email: new FormControl('', [Validators.required])
       });
@@ -63,7 +63,7 @@ export class UpdatePetitionComponent implements OnInit {
   
       this.petition.title = updatePetitionFormValue.title;
       this.petition.description = updatePetitionFormValue.description;
-      this.petition.username = updatePetitionFormValue.name;
+      this.petition.username = updatePetitionFormValue.username;
       this.petition.mediapath = updatePetitionFormValue.mediapath;
       this.petition.email = updatePetitionFormValue.email;
      
