@@ -47,10 +47,13 @@ export class CreatePetitionComponent implements OnInit {
       let petition: Petition = {
         _id:'',
         title: petitionFormValue.title,
-        description: petitionFormValue.description,
-        username: petitionFormValue.username,
+        target: petitionFormValue.target,
+        shortDescription: petitionFormValue.shortdescription,
+        briefDescription: petitionFormValue.briefdescription,
         mediapath: petitionFormValue.mediapath,
-        email: petitionFormValue.email
+        email: petitionFormValue.email,
+        category: petitionFormValue.category,
+        createdby:petitionFormValue.createdby
       }
       console.log(petition);
       console.log(JSON.stringify(petition));

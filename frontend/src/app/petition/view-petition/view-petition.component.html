@@ -8,61 +8,36 @@
   </div>
 
   <table align="center"  width="1000" mat-table [dataSource]="dataSource" matSort>
+
     <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Petition Title </th>
       <td mat-cell *matCellDef="let element"> {{element.title}} </td>
     </ng-container>
   
-    <ng-container matColumnDef="description">
+    <ng-container matColumnDef="shortDescription">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
-      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.shortDescription}} </td>
     </ng-container>
   
-    <ng-container matColumnDef="mediapath">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Mediapath </th>
-      <td mat-cell *matCellDef="let element"> {{element.mediapath}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="username">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Username </th>
-        <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+        <ng-container matColumnDef="createdby">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Created by </th>
+        <td mat-cell *matCellDef="let element"> {{element.createdby}} </td>
       </ng-container>
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-      </ng-container> 
-
+     
     <ng-container matColumnDef="details">
-      <th mat-header-cell *matHeaderCellDef> Read More </th>
+      <th mat-header-cell *matHeaderCellDef> Read More</th>
       <td mat-cell *matCellDef="let element">
         <button mat-icon-button color="primary" (click)="redirectToDetails(element._id)">
-            <mat-icon class="mat-18">reorder</mat-icon>
+            Read More...
         </button>
       </td>
     </ng-container>
   
-    <ng-container matColumnDef="update">
-        <th mat-header-cell *matHeaderCellDef> Update </th>
-        <td mat-cell *matCellDef="let element">
-          <button mat-icon-button color="accent" (click)="redirectToUpdate(element._id)">
-              <mat-icon class="mat-18">system_update</mat-icon>
-          </button>
-        </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="delete">
-          <th mat-header-cell *matHeaderCellDef> Delete </th>
-          <td mat-cell *matCellDef="let element">
-            <button mat-icon-button color="warn" (click)="deletePetition(element,element._id)">
-                <mat-icon class="mat-18">delete</mat-icon>
-            </button>
-          </td>
-        </ng-container>
-  
+    
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
   </table>
   
-  <mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 4, 6, 10, 20]">
+  <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20]">
   </mat-paginator>

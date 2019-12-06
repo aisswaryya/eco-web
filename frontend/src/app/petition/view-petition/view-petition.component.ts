@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class ViewPetitionComponent implements OnInit,AfterViewInit {
 
-  public displayedColumns = ['title', 'description', 'mediapath', 'email', 'username','details', 'update', 'delete'];
+  public displayedColumns = ['title', 'shortDescription', 'createdby','details'];//To display table header
   public dataSource = new MatTableDataSource<Petition>(); 
   petitionList: Petition[];
 
@@ -48,20 +48,9 @@ export class ViewPetitionComponent implements OnInit,AfterViewInit {
     this.router.navigate([url]);
   }
 
-  public redirectToUpdate = (id: string) => {
-    let url: string = `/petition/update/${id}`;
-    this.router.navigate([url]);
-  }
+  
 
-  public deletePetition(petition: Petition, id: string): void {
-    console.log("petition ID - "+ id);
-    this.petitionService.deletePetition(id)
-      .subscribe( data => {
-        this.petitionList = this.petitionList.filter(u => u !== petition);
-        this.dataSource.data = this.petitionList;
-        alert(petition.title +" deleted successfully.");
-      })
-  };
+  
 
 
 }

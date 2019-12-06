@@ -21,10 +21,14 @@ export class UpdatePetitionComponent implements OnInit {
     ngOnInit() {
       this.updatePetitionForm = new FormGroup({
         title: new FormControl('', [Validators.required, Validators.maxLength(60)]),
-        description: new FormControl('', [Validators.required, Validators.maxLength(60)]),
-        username: new FormControl('', [Validators.required, Validators.maxLength(20)]),
-        mediapath: new FormControl('', [Validators.maxLength(100)]),
-        email: new FormControl('', [Validators.required])
+        target: new FormControl('', [Validators.required, Validators.maxLength(60)]),
+        shortDescription: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+        briefDescription: new FormControl('', [Validators.required, Validators.maxLength(400)]),
+        mediapath: new FormControl('', [Validators.maxLength(60)]),
+        email: new FormControl('', [Validators.required,Validators.maxLength(30)]),
+        category:new FormControl('', [Validators.required,Validators.maxLength(30)]),
+        createdby:new FormControl('', [Validators.required,Validators.maxLength(30)])
+
       });
        
       
@@ -60,13 +64,16 @@ export class UpdatePetitionComponent implements OnInit {
     
     private executePetitionUpdation = (updatePetitionFormValue) => {
       console.log("Petition Title - "+ updatePetitionFormValue.title);
-  
       this.petition.title = updatePetitionFormValue.title;
-      this.petition.description = updatePetitionFormValue.description;
-      this.petition.username = updatePetitionFormValue.username;
+      this.petition.target = updatePetitionFormValue.target;
+      this.petition.shortDescription = updatePetitionFormValue.shortDescription;
+      this.petition.briefDescription = updatePetitionFormValue.briefDescription;
       this.petition.mediapath = updatePetitionFormValue.mediapath;
       this.petition.email = updatePetitionFormValue.email;
-     
+      this.petition.category = updatePetitionFormValue.category;
+      this.petition.createdby = updatePetitionFormValue.createdby;
+    
+      
       console.log(this.petition);
       console.log(this.petitionId);
       console.log(JSON.stringify(this.petition));
@@ -78,5 +85,4 @@ export class UpdatePetitionComponent implements OnInit {
 
     }
   }
-   
- 
+  

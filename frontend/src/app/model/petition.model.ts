@@ -2,8 +2,8 @@ export class Petition{
  _id:string;
  title: string;
  target: string;
- shortdescription: string;
- briefdescription: string;
+ shortDescription: string;
+ briefDescription: string;
  mediapath: string;
  email: string;
  category: string;

@@ -12,28 +12,51 @@
             <mat-error *ngIf="hasError('title', 'required')">Title is required</mat-error>
             <mat-error *ngIf="hasError('title', 'maxlength')">You have more than 60 characters</mat-error>
           </mat-form-field>
-  
+
           <mat-form-field>
-            <input matInput type="text" placeholder="Description" formControlName="description" id="description">
+            <input matInput type="text" placeholder="Target" formControlName="target" id="target">
             <mat-hint align="end">Not more then 60 characters long.</mat-hint>
-            <mat-error *ngIf="hasError('description', 'required')">Description is required</mat-error>
+            <mat-error *ngIf="hasError('target', 'required')">Target is required</mat-error>
+            <mat-error *ngIf="hasError('target', 'maxlength')">You have more than 60 characters</mat-error>
+          </mat-form-field>
+  
+  
+          <mat-form-field>
+            <input matInput type="text" placeholder="Short Description" formControlName="shortDescription" id="shortDescription">
+            <mat-hint align="end">Not more then 30 characters long.</mat-hint>
+            <mat-error *ngIf="hasError('shortDescription', 'required')">Description is required</mat-error>
           </mat-form-field>
   
           <mat-form-field>
-            <input matInput type="text" placeholder="Username" formControlName="username" id="username">
-            <mat-hint align="end">Not more then 20 characters long.</mat-hint>
-            <mat-error *ngIf="hasError('description', 'required')">Name is required</mat-error>
+            <input matInput type="text" placeholder="Brief Description" formControlName="briefDescription" id="briefDescription">
+            <mat-hint align="end">Not more then 400 characters long.</mat-hint>
+            <mat-error *ngIf="hasError('briefDescription', 'required')">Description is required</mat-error>
           </mat-form-field>
+
+          <mat-form-field>
+            <input matInput type="text" placeholder="Email" formControlName="email" id="email">
+            <mat-hint align="end">Not more then 30 characters long.</mat-hint>
+            <mat-error *ngIf="hasError('email', 'required')">Email is required</mat-error>
+          </mat-form-field>
+
           <mat-form-field>
             <input matInput type="text" placeholder="Mediapath" formControlName="mediapath" id="mediapath">
-             <mat-error *ngIf="hasError('mediapath', 'required')">Mediapath is required</mat-error>
+            <mat-hint align="end">Not more then 60 characters long.</mat-hint>
+            <!-- <mat-error *ngIf="hasError('mediapath', 'required')">Mediapath is required</mat-error>  -->
          </mat-form-field>
 
          <mat-form-field>
-            <input matInput type="text" placeholder="EmailID" formControlName="email" id="email">
-            <mat-error *ngIf="hasError('email', 'required')">*Email is required</mat-error>
-         </mat-form-field>
-  
+            <input matInput type="text" placeholder="Category" formControlName="category" id="category">
+            <mat-hint align="end">Not more then 30 characters long.</mat-hint>
+            <mat-error *ngIf="hasError('category', 'required')">Category is required</mat-error> 
+         </mat-form-field>  
+
+         <mat-form-field>
+          <input matInput type="text" placeholder="CreatedBy" formControlName="createdby" id="createdby">
+          <mat-hint align="end">Not more then 30 characters long.</mat-hint>
+          <mat-error *ngIf="hasError('createdby', 'required')">CreatedBy is required</mat-error> 
+       </mat-form-field> 
+
         </mat-card-content>
         <mat-card-actions align="center">
           <button mat-raised-button color="primary" [disabled]="!updatePetitionForm.valid">Update</button>
