@@ -12,7 +12,7 @@ const signature = new Signature({
     name: req.body.name || "Untited signature",
     petitionId:req.body.petitionId,
     email:req.body.email,
-    username:req.body.username
+    signature:req.body.signature
 });
 
 // Save signature in the database
@@ -74,7 +74,7 @@ exports.findOne =(req,res) => {
         name: req.body.name || "Untited signature",
         petitionId:req.body.petitionId,
         email:req.body.email,
-        username:req.body.username
+        signature:req.body.signature
 }, {new: true})
 .then(signature => {
     if(!signature) {

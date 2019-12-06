@@ -2,7 +2,7 @@ const Petition= require('../model/petition.model.js');
 
 //create a petition error handling
 exports.create=(req,res)=>{
-    if(!req.body.description){
+    if(!req.body.briefDescription){
         return res.status(400).send({
             message:"petition cannot be empty"
         });
@@ -11,11 +11,12 @@ exports.create=(req,res)=>{
 const petition = new Petition({
     title: req.body.title || "Untited petition",
     target:req.body.target,
-    description: req.body.description,
+    shortDescription: req.body.shortdescription,
+    briefDescription: req.body.briefdescription,
     mediapath: req.body.mediapath,
     email:req.body.email,
     category:req.body.category,
-    username:req.body.username
+    createdby:req.body.username
 });
 
 // Save Petition in the database
@@ -66,7 +67,7 @@ exports.findOne =(req,res) => {
 // Update a petition identified by Id error handling
 exports.update = (req, res) => {
     // Validate Request
-    if(!req.body.description) {
+    if(!req.body.briefDescription) {
         return res.status(400).send({
             message: "Petition description can not be empty"
         });
@@ -76,11 +77,12 @@ exports.update = (req, res) => {
 Petition.findByIdAndUpdate(req.params.petitionId, {
     title: req.body.title || "Untited petition",
     target:req.body.target,
-    description: req.body.description,
+    shortDescription: req.body.shortdescription,
+    briefDescription: req.body.briefdescription,
     mediapath: req.body.mediapath,
     email:req.body.email,
     category:req.body.category,
-    username:req.body.username
+    createdby:req.body.username
 }, {new: true})
 .then(petition => {
     if(!petition) {
