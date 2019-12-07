@@ -3,4 +3,5 @@ export class Signature{
     name: string;
     email: string;
     signatureId: string;
+    signed:boolean;
     }

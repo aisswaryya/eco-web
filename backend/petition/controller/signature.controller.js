@@ -72,6 +72,21 @@ exports.getSignatureCount = (req, res) => {
       });
 } 
 
+// get all signature
+exports.getSignatureDocumentCount = (req, res) => {
+    Signature.find()
+    .then(signatureList => {
+        var count = signatureList.length;
+        return res.status(200).send({
+            count
+        });
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving signature list."
+        });
+    });
+};
+
     // Update a signature identified by Id error handling
     exports.update = (req, res) => {
     // Validate Request

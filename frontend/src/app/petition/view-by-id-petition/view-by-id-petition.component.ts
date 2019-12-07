@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';// to fetch the pathparameter I
 import { Petition } from '../../model/petition.model';// traversing petition obj 
 import { PetitionService } from '../../service/petition.service'; // to call HTTP Client
 import { Router } from '@angular/router';// to navigate between various component
-import { Subscriber } from 'rxjs';
+//import { Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-view-by-id-petition',

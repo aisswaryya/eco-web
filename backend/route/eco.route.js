@@ -28,6 +28,9 @@ module.exports = (app) => {
     app.get('/signature/:petitionId', signature.findOne);
 
     // Retrieve a signature count with petitionId
+    app.get('/signature/total/count', signature.getSignatureDocumentCount);
+
+    // Retrieve a signature count with petitionId
     app.get('/signature/count/:petitionId', signature.getSignatureCount);
 
     // Update a signature with petitionId
