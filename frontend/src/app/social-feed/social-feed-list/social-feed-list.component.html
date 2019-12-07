@@ -1,4 +1,11 @@
 <button (click)="createPost()">What's on your mind</button>
-<!--
-    Here comes the list of created feeds
--->
+
+<div *ngFor="let feed of socialFeedList">
+    <div class="social-feed">
+        <span>{{feed.location}}</span>
+        <span>{{feed.description}}</span>
+        <div>
+            <img [src]="url" height="200">
+        </div>
+    </div>
+</div>

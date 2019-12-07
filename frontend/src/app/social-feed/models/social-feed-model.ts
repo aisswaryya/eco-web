@@ -1,12 +1,12 @@
 export class SocialFeed {
     id: string;
-    data: string;
+    data: any;
     description: string;
     location: string;
     emailId: string;
     createdDate: Date;
     updatedDate: Date;
-    constructor(id: string, data: string, description: string, location: string, emailId: string, createdDate: Date, updatedDate: Date) {
+    constructor(id: string, data: any, description: string, location: string, emailId: string, createdDate: Date, updatedDate: Date) {
         this.id = id;
         this.data = data;
         this.description = description;

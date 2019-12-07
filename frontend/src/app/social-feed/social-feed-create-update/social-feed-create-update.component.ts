@@ -26,14 +26,14 @@ export class SocialFeedCreateUpdateComponent implements OnInit {
     });
   }
 
-  selectedFile: File = null;
+  selectedFile: any = null;
   public imagePath;
   imgURL: any;
   public message: string;
 
   onFileSelected(event) {
     let files = event.target.files;
-    this.selectedFile = <File> event.target.files[0];
+    this.selectedFile = files[0];
     if (files.length === 0)
       return;
 
@@ -56,7 +56,7 @@ export class SocialFeedCreateUpdateComponent implements OnInit {
     let file: File = null;
     let socialfeed: SocialFeed = new SocialFeed("","","","","", new Date(), new Date());
     socialfeed.id = "";
-    socialfeed.data= this.imgURL;
+    socialfeed.data= this.selectedFile;
     socialfeed.description= this.socialFeedGroup.get('description').value;
     socialfeed.location= this.socialFeedGroup.get('location').value;
     socialfeed.emailId= "abc@gmail.com";

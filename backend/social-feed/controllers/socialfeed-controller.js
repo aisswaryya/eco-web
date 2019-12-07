@@ -31,18 +31,25 @@ exports.list = function (request, response) {
  * @param {response} {HTTP response object}
  */
 exports.post = function (request, response) {
-    
+    console.log(request.body.data);
     // request.body.data = fs.readFileSync('/Users/pavanrao/Desktop/Screen\ Shot\ 2019-10-08\ at\ 12.30.08\ PM.png');
-    // console.log("***********Response:"+request.body.data);
-    request.body.data = Buffer.from(request.body.data);
-    const newSocialfeed = Object.assign({}, request.body);
-    const resolve = (socialfeed) => {
-        response.status(200);
-        response.json(socialfeed);
-    };
-    socialfeedService.save(newSocialfeed)
-        .then(resolve)
-        .catch(renderErrorResponse(response));
+    //  console.log("***********Response:"+Buffer.from(request.body.data).toString('base64'));
+    // var buffer = new Buffer();
+    fs.writeFile("testImage2.jpeg",request.body.data, function(err) {
+        // If an error occurred, show it and return
+        if (err) throw err;
+        console.log('The file has been saved!');
+        // Successfully wrote to the file!
+      });
+    // request.body.data = Buffer.from(request.body.data);
+    // const newSocialfeed = Object.assign({}, request.body);
+    // const resolve = (socialfeed) => {
+    //     response.status(200);
+    //     response.json(socialfeed);
+    // };
+    // socialfeedService.save(newSocialfeed)
+    //     .then(resolve)
+    //     .catch(renderErrorResponse(response));
 };
 
 /**
