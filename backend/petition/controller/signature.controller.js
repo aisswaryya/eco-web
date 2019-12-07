@@ -12,6 +12,7 @@ const signature = new Signature({
     name: req.body.name || "Untited signature",
     petitionId:req.body.petitionId,
     email:req.body.email,
+    signed:false
     //signatureId:req.body.signatureId
 });
 
@@ -40,7 +41,7 @@ exports.findAll = (req, res) => {
 
 //get signature by ID 
 exports.findOne =(req,res) => {
-    Signature.findById(req.params.petitionId)
+    Signature.find({ petitionId: req.params.petitionId})
     .then(signature => {
         if(!signature) {
             return res.status(404).send({
@@ -59,6 +60,17 @@ exports.findOne =(req,res) => {
         });
     });
 };
+
+//count of signature wrt petitionId
+exports.getSignatureCount = (req, res) => {
+    Signature.countDocuments({ petitionId:  req.params.petitionId}, function (err, count) {
+        console.log('there are %d signatures', count);
+       // res.sendStatus(count);
+       return  res.status(200).send({
+            count
+        });
+      });
+} 
 
     // Update a signature identified by Id error handling
     exports.update = (req, res) => {
