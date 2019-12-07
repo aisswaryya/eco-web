@@ -48,7 +48,7 @@ export class SocialFeedCreateUpdateComponent implements OnInit {
     reader.readAsDataURL(files[0]); 
     reader.onload = (_event) => { 
       this.imgURL = reader.result;
-      console.log("*********************"+this.imgURL);
+      console.log("*******Inside preview**************"+this.imgURL);
     }
   }
 
@@ -56,7 +56,8 @@ export class SocialFeedCreateUpdateComponent implements OnInit {
     let file: File = null;
     let socialfeed: SocialFeed = new SocialFeed("","","","","", new Date(), new Date());
     socialfeed.id = "";
-    socialfeed.data= this.selectedFile;
+    socialfeed.image= this.imgURL;
+    console.log("*******Inside object********"+socialfeed.image);
     socialfeed.description= this.socialFeedGroup.get('description').value;
     socialfeed.location= this.socialFeedGroup.get('location').value;
     socialfeed.emailId= "abc@gmail.com";

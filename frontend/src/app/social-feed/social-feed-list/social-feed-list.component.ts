@@ -82,12 +82,6 @@ export class SocialFeedListComponent implements OnInit {
     let socialFeedList$: Observable<Array<SocialFeed>> = this.socialFeedService.getSocialfeedList();
     socialFeedList$.subscribe(socialFeedList => {
       this.socialFeedList = socialFeedList;
-      // this.url = socialFeedList[1].data['data'];
-      // let base64= btoa(String.fromCharCode(...new Uint8Array(socialFeedList[0].data['data'])))
-      let base64 = this.base64ArrayBuffer(socialFeedList[1].data['data']);
-      console.log('data:image/jpeg;base64,'+base64);
-      this.url = this.sanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' + base64);
-      // console.log(this.url);
     });
   }
 
@@ -106,7 +100,6 @@ export class SocialFeedListComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      // this.getTodo();
     })
   }
 }
