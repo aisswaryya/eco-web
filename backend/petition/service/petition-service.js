@@ -68,3 +68,13 @@ exports.delete = function (id) {
     const promise = Petition.findByIdAndRemove(id);
     return promise;
 };
+
+/**
+ * Returns Petition By Email ID
+ * 
+ * @returns {Promise|void|*}
+ */
+exports.findByEmailId = function (id) {
+    const promise = Petition.find({ email:  id})
+    return promise;
+};
