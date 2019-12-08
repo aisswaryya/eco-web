@@ -1,6 +1,14 @@
 <ul>
-    <li><a class="active" href="fundraiser-list">Browse Fundraisers</a></li>
-    <li><a href="fundraiser-create">Create Fundraiser</a></li>
-    <li><a href="my-fundraisers-list">My Fundraisers</a></li>
-    <li><a href="my-donations-list">My Donations</a></li>
+    <li><a class="active" routerLink="fundraiser-list">Browse Fundraisers</a></li>
+    <li><a routerLink="fundraiser-create" *ngIf="authService.isLoggedIn" routerLinkActive="active">Create Fundraiser</a></li>
+    <li><a routerLink="my-fundraisers-list" *ngIf="authService.isLoggedIn" routerLinkActive="active">My Fundraisers</a></li>
+    <li><a routerLink="my-donations-list" *ngIf="authService.isLoggedIn" routerLinkActive="active">My Donations</a></li>
+<ul class="nav navbar-nav navbar-right">
+    <li>
+        <a *ngIf="!authService.isLoggedIn" (click)="authService.login()">Log In</a>
+    </li>
+    <li>
+        <a (click)="authService.logout()" *ngIf="authService.isLoggedIn">Log Out</a>
+    </li>
+</ul>
 </ul>

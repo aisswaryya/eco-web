@@ -43,6 +43,9 @@ export class FundraiserCreateComponent implements OnInit {
           console.log(data);
           this.router.navigate(['/fundraiser-detail', data.id]);
       }, error => {
+          if (error.status === 401) {
+              alert('Not authenticated!! Please login to continue');
+          }
           console.log(error);
       });
   }
