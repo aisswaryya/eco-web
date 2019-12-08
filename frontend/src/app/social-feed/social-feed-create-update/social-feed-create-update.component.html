@@ -26,13 +26,13 @@
                 </mat-form-field>
             </div>
     
-            <!-- <div class="button" *ngIf="!data.create"> -->
+            <div class="button" *ngIf="!data.create">
                 <button class="add" mat-stroked-button (click)="uploadPost()">Upload</button>
-            <!-- </div> -->
+            </div>
     
-            <!-- <div class="button" *ngIf="data.create">
-                <button class="add" mat-stroked-button (click)="createTodo()">Add</button>
-            </div> -->
+            <div class="button" *ngIf="data.create">
+                <button class="add" mat-stroked-button (click)="updatePost()">Add</button>
+            </div>
     
         </div>
     </form>

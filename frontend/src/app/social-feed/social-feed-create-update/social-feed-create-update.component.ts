@@ -20,9 +20,9 @@ export class SocialFeedCreateUpdateComponent implements OnInit {
 
   ngOnInit() {
     this.socialFeedGroup = this._formBuilder.group({
-      // data: [null],
-      description: [null],
-      location: [null]
+      description: this.data.description,
+      location: this.data.location,
+      image: this.data.image
     });
   }
 
@@ -71,9 +71,9 @@ export class SocialFeedCreateUpdateComponent implements OnInit {
       //catch the error
       console.error("An error occurred, ", error);
    }); 
-   this.dialogRef.close();
   }
-  // onUpload() {
-  //   this.http.post('');
-  // }
+
+  updatePost() {
+    
+  }
 }

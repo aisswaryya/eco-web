@@ -46,7 +46,7 @@ createSocialfeed(socialFeed: SocialFeed = null): Observable<SocialFeed> {
  * @param  {SocialFeed} socialFeed: SocialFeed {new socialFeed object}
  * @return {Observable<Todo>} {Observable for saved todo object}
 */ 
-updateTodo(socialFeed: SocialFeed): Observable<SocialFeed> {
+updateSocialFeed(socialFeed: SocialFeed): Observable<SocialFeed> {
   let newSocialfeed: SocialFeed;
   let file: File;
   newSocialfeed = socialFeed ? socialFeed : new SocialFeed("","","","","",new Date(),new Date());
@@ -59,7 +59,7 @@ updateTodo(socialFeed: SocialFeed): Observable<SocialFeed> {
  * @param  {string} id: string {id of the socialFeed object}
  * @return {Observable<{}>} {Observable for deleted socialFeed object}
 */ 
-deleteTodo(id: string): Observable<{}> {
+deleteSocialFeed(id: string): Observable<{}> {
   let url = this.socialfeedURl+"/"+id;
   return this.http.delete(url);
 }
