@@ -10,10 +10,11 @@
  */
 module.exports = function (app) {
     const donationController = require('../controller/donation-controller');
-    // Donation Routes for search and create.
+    const auth = require('app/auth');
+    // Donation Routes for search  and create.
     app.route('/v1/eco/donations')
         .get(donationController.list)
-        .post(donationController.post);
+        .post(auth.jwtCheck, donationController.post);
 
     // donation Routes for get
     app.route('/v1/eco/donations/:donationId')
