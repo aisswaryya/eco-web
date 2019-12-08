@@ -7,12 +7,14 @@ import { UpdatePetitionComponent} from './update-petition/update-petition.compon
 import { CommonModule } from '@angular/common';
 import { PetitionRoutingModule } from './petition-routing/petition-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ManagePetitionComponent } from './manage-petition/manage-petition.component';
 
 @NgModule({
   declarations:[CreatePetitionComponent, 
     ViewPetitionComponent,
     ViewByIDPetitionComponent,
-    UpdatePetitionComponent],
+    UpdatePetitionComponent,
+    ManagePetitionComponent],
     
   imports: [
     CommonModule,

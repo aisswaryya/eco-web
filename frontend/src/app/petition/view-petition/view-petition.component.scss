@@ -4,3 +4,26 @@
     width: 1000px;
     margin: 0 auto;
 }
+
+.example-card {
+
+    justify-content: flex-end;
+    width: 800px;
+    margin: 0 auto;
+  }
+  #div-left{
+       margin-top: 10px;
+       margin: 10px, 5px,10px,5px; 
+  }
+  .test-card{
+    height: 80%;
+    width: 80%;   
+    margin: 0 auto;
+    background-repeat:no-repeat;
+    background-size:cover;
+  }
+
+  .mat-card-custom{
+    
+    margin-bottom: 15px;
+  }

@@ -5,13 +5,15 @@ import { CreatePetitionComponent} from '../create-petition/create-petition.compo
 import { ViewPetitionComponent} from '../view-petition/view-petition.component';
 import { ViewByIDPetitionComponent} from '../view-by-id-petition/view-by-id-petition.component';
 import { UpdatePetitionComponent} from '../update-petition/update-petition.component';
+import { ManagePetitionComponent} from '../manage-petition/manage-petition.component';
 
 
 const routes: Routes = [
   {path: 'list', component: ViewPetitionComponent},
   {path: 'create', component: CreatePetitionComponent},
   {path: 'update/:id', component: UpdatePetitionComponent},
-  {path: 'details/:id', component: ViewByIDPetitionComponent}
+  {path: 'details/:id', component: ViewByIDPetitionComponent},
+  {path: 'manage/:id', component: ManagePetitionComponent}
 ];
 
 

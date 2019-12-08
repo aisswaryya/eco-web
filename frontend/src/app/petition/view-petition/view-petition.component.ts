@@ -12,10 +12,11 @@ import { Router } from '@angular/router';
 })
 export class ViewPetitionComponent implements OnInit,AfterViewInit {
 
-  public displayedColumns = ['title', 'shortDescription', 'createdby','details'];//To display table header
+  public displayedColumns = ['title'];//To display table header
   public dataSource = new MatTableDataSource<Petition>(); 
   petitionList: Petition[];
-
+  filterList: Petition[];
+  localUrl: any[];
   @ViewChild(MatSort , {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
@@ -35,16 +36,18 @@ export class ViewPetitionComponent implements OnInit,AfterViewInit {
       .subscribe( data => {
         this.petitionList = data;
         this.dataSource.data = data as Petition[];
+        this.filterList = data;
       });
       console.log(this.petitionList);
   }
 
   public doFilter = (value: string) => {
     this.dataSource.filter = value.trim().toLocaleLowerCase();
+    this.filterList = this.petitionList.filter(elem => elem.title.includes(value) || elem.createdby.includes(value) || elem.briefDescription.includes(value)|| elem.shortDescription.includes(value));
   }
 
   public redirectToDetails = (id: string) => {
-    let url: string = `/petition/details/${id}`;
+    let url: string = `/petition/manage/${id}`;
     this.router.navigate([url]);
   }
 

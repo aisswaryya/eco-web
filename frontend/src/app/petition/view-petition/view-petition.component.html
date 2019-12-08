@@ -7,37 +7,43 @@
     </div>
   </div>
 
-  <table align="center"  width="1000" mat-table [dataSource]="dataSource" matSort>
+   <table align="center"  width="800" mat-table [dataSource]="dataSource" matSort>
 
     <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Petition Title </th>
-      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="shortDescription">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
-      <td mat-cell *matCellDef="let element"> {{element.shortDescription}} </td>
-    </ng-container>
-  
-        <ng-container matColumnDef="createdby">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Created by </th>
-        <td mat-cell *matCellDef="let element"> {{element.createdby}} </td>
-      </ng-container>
-     
-    <ng-container matColumnDef="details">
-      <th mat-header-cell *matHeaderCellDef> Read More</th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-icon-button color="primary" (click)="redirectToDetails(element._id)">
-            Read More...
-        </button>
-      </td>
-    </ng-container>
-  
+  <div *matCellDef="let element">
+        <mat-card class="example-card mat-card-custom" mat-icon-button>
+              <mat-card-header>
+                <mat-card-title>{{element.title}}</mat-card-title>
+                  <mat-card-subtitle>{{element.category}}</mat-card-subtitle>
+              </mat-card-header>
+             
+              <mat-card-content style="height:120px">
+                <div id="div-left" style="width: 25%; float:left">
+                  <img [src]="element.mediapath" mat-card-image class="test-card" alt="Photo of a Shiba Inu">
+               </div>
+               
+               <div  style="width: 75%; float:right">
+                {{element.shortDescription}}
+
+                <br>
+                {{element.createdby}}
+               </div>
+              </mat-card-content>
+              <mat-card-actions>
+                  <button mat-icon-button color="primary" (click)="redirectToDetails(element._id)">
+                    Read More...
+                </button>
+                </mat-card-actions>
+            </mat-card>
+          </div>
+    </ng-container>  
     
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
   </table>
   
-  <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20]">
+  <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 15, 20]">
   </mat-paginator>
+

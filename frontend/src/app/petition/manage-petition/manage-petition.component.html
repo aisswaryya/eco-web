@@ -24,12 +24,13 @@
                 </div>
 
               <div fxLayout="row wrap" fxFlex>
-                <div fxFlex><strong>Username:</strong></div>
-                <div fxFlex>{{petition?.username}}</div>
+                <div fxFlex><strong>Email:</strong></div>
+                <div fxFlex>{{petition?.email}}</div>
               </div>
 
               <mat-card-actions>
-                  <button mat-icon-button color="primary" (click)="signPetition()">Sign this petition</button>
+                  <button mat-icon-button color="primary" style="margin-right: 16px" (click)="redirectToUpdate()">Update</button>
+                  <button mat-icon-button color="primary" (click)="deletePetition()">Delete</button>
               </mat-card-actions>
                           
           </div>

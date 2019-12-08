@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'petition', loadChildren: "./petition/petition.module#PetitionModule" },
   { path: '404', component: NotFoundComponent },
   { path: '500', component: ServerErrorComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: '**', redirectTo: '/404', pathMatch: 'full' }
 ];
 

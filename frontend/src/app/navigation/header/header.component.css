@@ -22,3 +22,7 @@ mat-toolbar{
         border-radius: 0px;
     }
 }
+
+.mat-button{
+    font-size: 17px;
+}

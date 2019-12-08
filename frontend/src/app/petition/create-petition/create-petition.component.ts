@@ -22,7 +22,7 @@ export class CreatePetitionComponent implements OnInit {
         target: new FormControl('', [Validators.required, Validators.maxLength(60)]),
         shortdescription: new FormControl('', [Validators.required, Validators.maxLength(30)]),
         briefdescription: new FormControl('', [Validators.required, Validators.maxLength(400)]),
-        mediapath: new FormControl('', [Validators.maxLength(60)]),
+        mediapath: new FormControl('', [Validators.maxLength(150)]),
         email: new FormControl('', [Validators.required,Validators.maxLength(30)]),
         category:new FormControl('', [Validators.required,Validators.maxLength(30)]),
         createdby:new FormControl('', [Validators.required,Validators.maxLength(30)])
@@ -53,7 +53,8 @@ export class CreatePetitionComponent implements OnInit {
         mediapath: petitionFormValue.mediapath,
         email: petitionFormValue.email,
         category: petitionFormValue.category,
-        createdby:petitionFormValue.createdby
+        createdby:petitionFormValue.createdby,
+        victory: false
       }
       console.log(petition);
       console.log(JSON.stringify(petition));

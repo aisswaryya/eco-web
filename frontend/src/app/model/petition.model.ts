@@ -8,4 +8,5 @@ export class Petition{
  email: string;
  category: string;
  createdby: string;
+ victory: boolean;
  }
