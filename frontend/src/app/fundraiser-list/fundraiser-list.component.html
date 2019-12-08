@@ -16,6 +16,7 @@
         <td>{{fundraiser.targetAmount}}</td>
         <td>{{fundraiser.collectedAmount}}</td>
         <td>{{fundraiser.emailId}}</td>
+        <td><button [routerLink]="['/donate', fundraiser.id]">Donate</button></td>
     </tr>
     </tbody>
 </table>
