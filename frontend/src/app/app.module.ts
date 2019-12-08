@@ -19,7 +19,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import {CustomMaxDirective} from './helpers/custom-max.validator.directive';
 import {CustomMinDirective} from './helpers/custom-min-validator.directive';
 import {AngularRaveModule} from 'angular-rave';
-import {PBFPUBKEY_TOKEN} from 'angular-rave/lib/angular-rave-token';
+import { AuthService } from './auth/auth.service';
+import { CallbackComponent } from './callback.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {PBFPUBKEY_TOKEN} from 'angular-rave/lib/angular-rave-token';
     MyDonationsListComponent,
     NavBarComponent,
     CustomMaxDirective,
-    CustomMinDirective
+    CustomMinDirective,
+    CallbackComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +51,7 @@ import {PBFPUBKEY_TOKEN} from 'angular-rave/lib/angular-rave-token';
   providers: [
     DonationServicesService,
     FundraiserServicesService,
+      AuthService
   ],
   bootstrap: [AppComponent]
 })

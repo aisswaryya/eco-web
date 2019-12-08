@@ -7,21 +7,24 @@ import {MyFundraiserListComponent} from './my-fundraiser-list/my-fundraiser-list
 import {MyFundraiserDetailComponent} from './my-fundraiser-detail/my-fundraiser-detail.component';
 import {DonationCreateComponent} from './donation-create/donation-create.component';
 import {MyDonationsListComponent} from './my-donations-list/my-donations-list.component';
+import { AuthGuard } from './auth/auth.guard';
+import {CallbackComponent} from './callback.component';
 
 
 const routes: Routes = [
   { path: 'fundraiser-list', component: FundraiserListComponent },
   { path: 'fundraiser-detail/:id', component: FundraiserDetailComponent },
-  { path: 'fundraiser-create', component: FundraiserCreateComponent},
-  { path: 'my-fundraisers-list', component: MyFundraiserListComponent },
-  { path: 'my-fundraiser-detail/:id', component: MyFundraiserDetailComponent },
-  { path: 'donate/:id', component: DonationCreateComponent },
-  { path: 'my-donations-list', component: MyDonationsListComponent }
-
+  { path: 'fundraiser-create', component: FundraiserCreateComponent, canActivate: [ AuthGuard ]},
+  { path: 'my-fundraisers-list', component: MyFundraiserListComponent, canActivate: [ AuthGuard ] },
+  { path: 'my-fundraiser-detail/:id', component: MyFundraiserDetailComponent, canActivate: [ AuthGuard ] },
+  { path: 'donate/:id', component: DonationCreateComponent, canActivate: [ AuthGuard ] },
+  { path: 'my-donations-list', component: MyDonationsListComponent, canActivate: [ AuthGuard ] },
+  { path: 'callback', component: CallbackComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard],
 })
 export class AppRoutingModule { }
