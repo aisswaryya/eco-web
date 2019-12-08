@@ -1,5 +1,10 @@
 const Petition= require('../model/petition.model.js');
 
+/**
+ * Import petition services
+ */
+const petitionService = require('../service/petition-service');
+
 //create a petition error handling
 exports.create=(req,res)=>{
     if(!req.body.briefDescription){
@@ -19,20 +24,20 @@ const petition = new Petition({
     createdby:req.body.createdby
 });
 
-// Save Petition in the database
-petition.save()
-.then(data => {
-    res.send(data);
-}).catch(err => {
-    res.status(500).send({
-        message: err.message || "Some error occurred while creating Petition."
-    });
-});
+petitionService.save(petition)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while creating Petition."
+            });
+        });
 };
 
 // get all petition
 exports.findAll = (req, res) => {
-    Petition.find()
+    petitionService.findAll()
     .then(petitionList => {
         res.send(petitionList);
     }).catch(err => {
@@ -44,7 +49,7 @@ exports.findAll = (req, res) => {
 
 //get petition by ID 
 exports.findOne =(req,res) => {
-    Petition.findById(req.params.petitionId)
+    petitionService.findById(req.params.petitionId)
     .then(petition => {
         if(!petition) {
             return res.status(404).send({
@@ -74,16 +79,7 @@ exports.update = (req, res) => {
     }
 
     // Find petition by petitionID and update it with the request body
-Petition.findByIdAndUpdate(req.params.petitionId, {
-    title: req.body.title || "Untited petition",
-    target:req.body.target,
-    shortDescription: req.body.shortDescription,
-    briefDescription: req.body.briefDescription,
-    mediapath: req.body.mediapath,
-    email:req.body.email,
-    category:req.body.category,
-    createdby:req.body.createdby
-}, {new: true})
+petitionService.findByIdAndUpdate(req)
 .then(petition => {
     if(!petition) {
         return res.status(404).send({
@@ -105,7 +101,7 @@ Petition.findByIdAndUpdate(req.params.petitionId, {
 
 // Delete a petition by petitionId 
 exports.delete = (req, res) => {
-    Petition.findByIdAndRemove(req.params.petitionId)
+    petitionService.delete(req.params.petitionId)
     .then(petition => {
         if(!petition) {
             return res.status(404).send({

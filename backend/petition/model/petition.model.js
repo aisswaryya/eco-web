@@ -13,5 +13,5 @@ const PetitionSchema = mongoose.Schema({
 }, {
     timestamps: true
 });
-
+//to import mongoose in-built function im
 module.exports = mongoose.model('Petition', PetitionSchema);
