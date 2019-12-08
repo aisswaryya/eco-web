@@ -1,4 +1,5 @@
 <div class="container" *ngIf="fundraiser">
+    <button [routerLink]="['/donate', fundraiser.id]">Donate</button>
     <form>
         <fieldset disabled="disabled">
         <div class="row">
