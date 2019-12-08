@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 import {Fundraiser} from '../models/fundraiser';
@@ -31,7 +31,7 @@ export class FundraiserServicesService {
     return this.http.get<Fundraiser>(`${this.fundraiserResourceUrl}/${id}`);
   }
 
-  createFundraiser(fundraiser: Fundraiser = null): Observable<Fundraiser> {
+    createFundraiser(fundraiser: Fundraiser = null, accessToken: string): Observable<Fundraiser> {
     let newFundraiser: Fundraiser;
     newFundraiser = fundraiser ? fundraiser : new Fundraiser(
         'Untitled Fundraiser',
@@ -44,7 +44,10 @@ export class FundraiserServicesService {
         '',
         0,
         0);
-    return this.http.post<Fundraiser>(this.fundraiserResourceUrl, newFundraiser);
+    return this.http.post<Fundraiser>(this.fundraiserResourceUrl, newFundraiser,
+        {
+          headers: new HttpHeaders().set('Authorization', `Bearer ${accessToken}`)
+        });
   }
 
   updateFundraiser(id: string, data: Fundraiser): Observable<Fundraiser> {

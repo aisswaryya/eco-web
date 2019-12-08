@@ -1,6 +1,7 @@
 let express = require('express'),
     app = express(),
     port = process.env.PORT || 3000,
+    cors = require('cors'),
     mongoose = require('mongoose'), //created model loading here
     bodyParser = require('body-parser');
 
@@ -17,13 +18,14 @@ app.use(bodyParser.urlencoded({ //parse url encoded body
     //use is a method to configure the middleware used by the routes of the Express HTTP server object. The method is defined as part of Connect that Express is based upon.
     extended: true //use qs library; advanced than query string library
 }));
+// app.use(cors());
 app.use(bodyParser.json()); //body parser is an existing middleware function
 //middleware gives you access to req and res in the apps request
 //Enabling CORS
 app.use(function (req, res, next) { //next is a function that calls next middleware function;
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+    res.header("Access-Control-Allow-Headers", "*");
+    res.header("Access-Control-Allow-Methods", "*");
     next();
 });
 

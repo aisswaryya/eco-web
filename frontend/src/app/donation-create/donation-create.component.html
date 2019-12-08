@@ -16,7 +16,8 @@
             <label for="emailId">Email</label>
             <input type="email" class="form-control" id="emailId"
                    required
-                   [(ngModel)]="donation.emailId" name="emailId"
+                   [(ngModel)]="donation.emailId" name="emailId" [value]="donation.emailId"
+                   readonly
                    #emailId="ngModel">
             <div [hidden]="emailId.valid || emailId.pristine"
                  class="alert alert-danger">

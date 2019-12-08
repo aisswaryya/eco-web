@@ -3,6 +3,7 @@ import {Fundraiser} from '../models/fundraiser';
 import {FundraiserServicesService} from '../services/fundraiser-services.service';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
+import {AuthService} from '../auth/auth.service';
 
 @Component({
   selector: 'app-fundraiser-create',
@@ -30,24 +31,31 @@ export class FundraiserCreateComponent implements OnInit {
       0);
 
   constructor(private fundraiserService: FundraiserServicesService,
-              private router: Router) { }
+              private router: Router,
+              public authService: AuthService) {
+      console.log(this.authService.userProfile);
+  }
 
-  ngOnInit() {
+      ngOnInit() {
   }
 
 
   saveFundraiser(form: NgForm) {
-      form.value.emailId = 'thushu22@gmail.com';
-      this.fundraiserService.createFundraiser(form.value).subscribe(data => {
-          alert('Fundraiser Created');
-          console.log(data);
-          this.router.navigate(['/fundraiser-detail', data.id]);
-      }, error => {
-          if (error.status === 401) {
-              alert('Not authenticated!! Please login to continue');
-          }
-          console.log(error);
-      });
+      if (this.authService.isLoggedIn) {
+          form.value.emailId = this.authService.userProfile.email;
+          this.fundraiserService.createFundraiser(form.value, this.authService.accessToken).subscribe(data => {
+              alert('Fundraiser Created');
+              console.log(data);
+              this.router.navigate(['/fundraiser-detail', data.id]);
+          }, error => {
+              if (error.status === 401) {
+                  alert('Not authenticated!! Please login to continue');
+              }
+              console.log(error);
+          });
+      } else {
+          this.authService.login();
+      }
   }
 
 
