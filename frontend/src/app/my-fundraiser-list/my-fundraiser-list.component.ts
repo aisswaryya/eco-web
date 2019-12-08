@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FundraiserServicesService} from '../services/fundraiser-services.service';
+import {AuthService} from '../auth/auth.service';
 
 @Component({
   selector: 'app-my-fundraiser-list',
@@ -10,14 +11,15 @@ export class MyFundraiserListComponent implements OnInit {
 
   fundraisers: any = [];
 
-  constructor(private fundraiserService: FundraiserServicesService) { }
+  constructor(private fundraiserService: FundraiserServicesService,
+              public authService: AuthService ) { }
 
   ngOnInit() {
     this.getFundraisersByEmail();
   }
 
   getFundraisersByEmail() {
-    this.fundraiserService.getFundraisersByEmailId('thushu22@gmail.com').subscribe(data => {
+    this.fundraiserService.getFundraisersByEmailId(this.authService.userProfile.email).subscribe(data => {
       this.fundraisers = data;
     }, error => {
       console.log(error);

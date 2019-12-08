@@ -6,6 +6,7 @@ import {NgForm, Validators, FormBuilder, FormControl} from '@angular/forms';
 import {PaymentInstance} from 'angular-rave';
 import {Fundraiser} from '../models/fundraiser';
 import {FundraiserServicesService} from '../services/fundraiser-services.service';
+import {AuthService} from '../auth/auth.service';
 
 @Component({
   selector: 'app-donation-create',
@@ -22,9 +23,11 @@ export class DonationCreateComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private donationService: DonationServicesService,
-              private fundraiserService: FundraiserServicesService) {
+              private fundraiserService: FundraiserServicesService,
+              public authService: AuthService) {
     this.fundraiserId = route.snapshot.paramMap.get('id');
     this.donation.fundraiserId = this.fundraiserId;
+    this.donation.emailId = this.authService.userProfile.email;
   }
 
   ngOnInit() {
@@ -32,15 +35,19 @@ export class DonationCreateComponent implements OnInit {
   }
 
   saveDonation(form: NgForm) {
-    form.value.fundraiserId = this.fundraiserId;
-    this.donationService.createDonation(form.value).subscribe(data => {
-      this.fundraiser.collectedAmount += this.donation.amount;
-      this.updateTotalAmount();
-      this.router.navigate(['/my-donations-list']);
-    }, error => {
-      alert('Payment Failure');
-      console.log(error);
-    });
+    if (this.authService.isLoggedIn) {
+      form.value.fundraiserId = this.fundraiserId;
+      this.donationService.createDonation(form.value, this.authService.accessToken).subscribe(data => {
+        this.fundraiser.collectedAmount += this.donation.amount;
+        this.updateTotalAmount();
+        this.router.navigate(['/my-donations-list']);
+      }, error => {
+        alert('Payment Failure');
+        console.log(error);
+      });
+    } else {
+      this.authService.login();
+    }
   }
 
   updateTotalAmount() {

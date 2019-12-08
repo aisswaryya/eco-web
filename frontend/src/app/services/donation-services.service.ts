@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 import {Donation} from '../models/donation';
@@ -35,13 +35,15 @@ export class DonationServicesService {
     return this.http.get<Donation>(`${this.donationResourceUrl}/${id}`);
   }
 
-  createDonation(donation: Donation = null): Observable<Donation> {
+  createDonation(donation: Donation = null, accessToken: string): Observable<Donation> {
     let newDonation: Donation;
     newDonation = donation ? donation : new Donation(
         '',
         '',
         '',
         0);
-    return this.http.post<Donation>(this.donationResourceUrl, newDonation);
+    return this.http.post<Donation>(this.donationResourceUrl, newDonation, {
+      headers: new HttpHeaders().set('Authorization', `Bearer ${accessToken}`)
+    });
   }
 }
