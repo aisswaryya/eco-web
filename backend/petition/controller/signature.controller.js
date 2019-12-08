@@ -1,5 +1,10 @@
 const Signature= require('../model/signature.model.js');
 
+/**
+ * Import Signature services
+ */
+const signatureService = require('../service/signature-service');
+
 //create a signature error handling
 exports.create=(req,res)=>{
     if(!req.body.petitionId){
@@ -12,12 +17,11 @@ const signature = new Signature({
     name: req.body.name || "Untited signature",
     petitionId:req.body.petitionId,
     email:req.body.email,
-    signed:false
-    //signatureId:req.body.signatureId
-});
+    signed:req.body.signed
+    });
 
 // Save signature in the database
-signature.save()
+signatureService.save(signature)
 .then(data => {
     res.send(data);
 }).catch(err => {
@@ -29,7 +33,7 @@ signature.save()
 
 // get all signature
 exports.findAll = (req, res) => {
-    Signature.find()
+    signatureService.findAll()
     .then(signatureList => {
         res.send(signatureList);
     }).catch(err => {
@@ -41,7 +45,7 @@ exports.findAll = (req, res) => {
 
 //get signature by ID 
 exports.findOne =(req,res) => {
-    Signature.find({ petitionId: req.params.petitionId})
+    signatureService.findByPetitionId(req.params.petitionId)
     .then(signature => {
         if(!signature) {
             return res.status(404).send({
@@ -61,20 +65,25 @@ exports.findOne =(req,res) => {
     });
 };
 
+
 //count of signature wrt petitionId
 exports.getSignatureCount = (req, res) => {
-    Signature.countDocuments({ petitionId:  req.params.petitionId}, function (err, count) {
+    signatureService.getSignatureCount(req.params.petitionId)
+    .then(count => {
         console.log('there are %d signatures', count);
-       // res.sendStatus(count);
        return  res.status(200).send({
             count
         });
-      });
-} 
+    }).catch(err => {
+       return res.status(500).send({
+            message: "Error retrieving signature with id " + req.params.petitionId
+        });
+    });
+}; 
 
 // get all signature
 exports.getSignatureDocumentCount = (req, res) => {
-    Signature.find()
+    signatureService.findAll()
     .then(signatureList => {
         var count = signatureList.length;
         return res.status(200).send({
@@ -85,65 +94,26 @@ exports.getSignatureDocumentCount = (req, res) => {
             message: err.message || "Some error occurred while retrieving signature list."
         });
     });
-};
+};   
 
-    // Update a signature identified by Id error handling
-    exports.update = (req, res) => {
-    // Validate Request
-    if(!req.body.petitionId) {
-        return res.status(400).send({
-            message: "signature petitionID can not be empty"
-        });
-    }
-
-    // Find signature by petitionId and update it with the request body
-        Signature.findByIdAndUpdate(req.params.petitionId, {
-        name: req.body.name || "Untited signature",
-        petitionId:req.body.petitionId,
-        email:req.body.email,
-        signature:req.body.signature
-}, {new: true})
-.then(signature => {
-    if(!signature) {
-        return res.status(404).send({
-            message: "Signature not found with id " + req.params.petitionId
-        });
-    }
-    res.send(signature);
-}).catch(err => {
-    if(err.kind === 'ObjectId') {
-        return res.status(404).send({
-            message: "signature not found with id " + req.params.petitionId
-        });                
-    }
-    return res.status(500).send({
-        message: "Error updating signature with id " + req.params.petitionId
-    });
-});
-};
-
-// Delete a signature by petitionId 
-exports.delete = (req, res) => {
-    Signature.findByIdAndRemove(req.params.petitionId)
+//get signature, petition by emailId - signed petition
+exports.findByEmailId = (req,res) => {
+    signatureService.findByEmailId(req.params.email)
     .then(signature => {
         if(!signature) {
             return res.status(404).send({
-                message: "Signature not found with id " + req.params.petitionId
-            });
+                message: "Signature not found with id " + req.params.email
+            });            
         }
-        res.send({message: "signature deleted successfully!"});
+        res.send(signature);
     }).catch(err => {
-        if(err.kind === 'ObjectId' || err.name === 'NotFound') {
+        if(err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "signature not found with id " + req.params.petitionId
+                message: "Signature not found with id " + req.params.email
             });                
         }
         return res.status(500).send({
-            message: "Can not delete signature with the provided petitionId " + req.params.petitionId
+            message: "Error retrieving signature with id " + req.params.email
         });
     });
 };
-
-
-
-

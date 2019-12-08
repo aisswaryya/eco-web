@@ -21,7 +21,8 @@ const petition = new Petition({
     mediapath: req.body.mediapath,
     email:req.body.email,
     category:req.body.category,
-    createdby:req.body.createdby
+    createdby:req.body.createdby,
+    victory:false
 });
 
 petitionService.save(petition)
@@ -120,6 +121,29 @@ exports.delete = (req, res) => {
         });
     });
 };
+
+//get petition by emailID - petition started
+exports.findByEmailId =(req,res) => {
+    petitionService.findByEmailId(req.params.email)
+    .then(petition => {
+        if(!petition) {
+            return res.status(404).send({
+                message: "Petition not found with id " + req.params.email
+            });            
+        }
+        res.send(petition);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "Petition not found with id " + req.params.email
+            });                
+        }
+        return res.status(500).send({
+            message: "Error retrieving petition with id " + req.params.email
+        });
+    });
+};
+
 
 
 
