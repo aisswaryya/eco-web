@@ -14,7 +14,6 @@ import {HttpClientModule} from "@angular/common/http";
 import {MatBadgeModule} from '@angular/material/badge';
 import {SignatureService} from './service/signature.service';
 
-
 @NgModule({
   declarations: [
     AppComponent,
