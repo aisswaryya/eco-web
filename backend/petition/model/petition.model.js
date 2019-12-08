@@ -8,7 +8,8 @@ const PetitionSchema = mongoose.Schema({
     mediapath: String,
     email: String,
     category: String,
-    createdby: String
+    createdby: String,
+    victory:Boolean
     
 }, {
     timestamps: true
