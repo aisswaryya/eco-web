@@ -12,6 +12,9 @@ import { SocialFeedCreateUpdateComponent } from './social-feed/social-feed-creat
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from "@angular/material/dialog";
 import { SocialFeedService } from "./social-feed/social-feed.service";
+import { BlogComponent } from './blog/blog.component';
+import { BlogDetailComponent } from './blog-detail/blog-detail.component';
+import { BlogsListComponent } from './blogs-list/blogs-list.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { SocialFeedService } from "./social-feed/social-feed.service";
     HomePageComponent,
     SocialFeedListComponent,
     SocialFeedDetailComponent,
-    SocialFeedCreateUpdateComponent
+    SocialFeedCreateUpdateComponent,
+    BlogComponent,
+    BlogDetailComponent,
+    BlogsListComponent
   ],
   imports: [
     BrowserModule,
