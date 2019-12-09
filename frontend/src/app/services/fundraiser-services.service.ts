@@ -50,8 +50,10 @@ export class FundraiserServicesService {
         });
   }
 
-  updateFundraiser(id: string, data: Fundraiser): Observable<Fundraiser> {
-    return this.http.put<Fundraiser>(`${this.fundraiserResourceUrl}/${id}`, data);
+  updateFundraiser(id: string, data: Fundraiser, accessToken: string): Observable<Fundraiser> {
+    return this.http.put<Fundraiser>(`${this.fundraiserResourceUrl}/${id}`, data, {
+      headers: new HttpHeaders().set('Authorization', `Bearer ${accessToken}`)
+    });
   }
 
   deleteFundraiser(id: string) {

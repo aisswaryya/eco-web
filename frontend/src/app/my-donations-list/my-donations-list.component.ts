@@ -9,11 +9,12 @@ import {AuthService} from '../auth/auth.service';
 })
 export class MyDonationsListComponent implements OnInit {
 
-  donations: any =[];
+  donations: any = [];
   totalDonation = 0;
 
   constructor( private donationService: DonationServicesService,
-               public authService: AuthService ) { }
+               public authService: AuthService ) {
+  }
 
   ngOnInit() {
     this.getDonationsByEmail();
@@ -26,13 +27,6 @@ export class MyDonationsListComponent implements OnInit {
       console.log(error);
       alert('Error Fetching donations');
     });
-  }
-
-  getTotalDonationAmount() {
-    for ( const donation of this.donations) {
-      this.totalDonation += donation.amount;
-    }
-    return this.totalDonation;
   }
 
 }
