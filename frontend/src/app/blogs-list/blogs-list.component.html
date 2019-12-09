@@ -13,21 +13,21 @@
     </ol>
 
     <div class="carousel-inner">
-        <div class="carousel-item active">
+        <div class="carousel-item active blog-item" (click)="viewBlogDetail(activeBlog)">
             <img [src]="activeBlogImage" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-            <h5>{{activeBlogTitle}}</h5>
-            <p>{{activeBlogAuthor}}</p>
+                <h5>{{activeBlogTitle}}</h5>
+                <p>{{activeBlogAuthor}}</p>
+            </div>
         </div>
-    </div>
 
-    <div class="carousel-item" *ngFor="let blog of blogsList">
-        <img [src]="blog.urlToImage" class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-            <h5>{{blog.title}}</h5>
-            <p>{{blog.author}}</p>
+        <div class="carousel-item blog-item" *ngFor="let blog of blogsList" (click)="viewBlogDetail(blog)">
+            <img [src]="blog.urlToImage" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>{{blog.title}}</h5>
+                <p>{{blog.author}}</p>
+            </div>
         </div>
-    </div>
         
     </div>
 

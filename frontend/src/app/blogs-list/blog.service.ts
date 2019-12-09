@@ -8,6 +8,7 @@ import { Blog } from "./models/blog-model";
 })
 export class BlogService {
   private blogURl: string;
+  blog: Blog;
 
   constructor(private http: HttpClient) { 
     this.blogURl = "https://newsapi.org/v2/everything?q=pollution&from=2019-12-05&sortBy=popularity&apikey=d00b5f482c1e475bbfc210d3b695e643";

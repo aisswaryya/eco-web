@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BlogService } from "./blog.service";
 import { Observable } from "rxjs";
 import { Blog } from "./models/blog-model";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-blogs-list',
@@ -10,7 +11,7 @@ import { Blog } from "./models/blog-model";
 })
 export class BlogsListComponent implements OnInit {
 
-  constructor(private blogService:BlogService) { }
+  constructor(private blogService:BlogService, private router:Router) { }
 
   blogsList: Array<Blog>;
   
@@ -36,4 +37,8 @@ export class BlogsListComponent implements OnInit {
     });
   }
 
+  viewBlogDetail(blog: Blog) {
+    this.blogService.blog = blog;
+    this.router.navigate(['/blog-detail']);
+  }
 }
