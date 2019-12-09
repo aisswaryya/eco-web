@@ -1,2 +1,12 @@
-<p>blogs-list works!</p>
+<div *ngFor="let blog of blogsList">
+    <div class="blog-item">
+        <div>Title</div>
+        <div>{{blog.title}}</div>
+        <div>Author</div>
+        <div>{{blog.author}}</div>
+        <div>
+            <img [src]="blog.urlToImage" height="500" width="500">
+        </div>
+    </div>
+</div>
 
