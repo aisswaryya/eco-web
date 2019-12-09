@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { SharedModule} from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -21,6 +21,16 @@ import {CustomMinDirective} from './helpers/custom-min-validator.directive';
 import {AngularRaveModule} from 'angular-rave';
 import { AuthService } from './auth/auth.service';
 import { CallbackComponent } from './callback.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent} from './navigation/header/header.component';
+import { SidenavListComponent }from './navigation/sidenav-list/sidenav-list.component';
+import { LayoutComponent } from './layout/layout.component';
+import { NotFoundComponent} from './error-pages/not-found/not-found.component';
+import { ServerErrorComponent } from './error-pages/server-error/server-error.component';
+import {PetitionService} from './service/petition.service';
+import {HttpClientModule} from "@angular/common/http";
+import {MatBadgeModule} from '@angular/material/badge';
+import {SignatureService} from './service/signature.service';
 
 @NgModule({
   declarations: [
@@ -38,8 +48,19 @@ import { CallbackComponent } from './callback.component';
     CustomMinDirective,
     CallbackComponent
   ],
+    HeaderComponent,
+    SidenavListComponent,
+    LayoutComponent,
+    NotFoundComponent,
+    ServerErrorComponent
+    ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
+    SharedModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MatBadgeModule
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
@@ -48,6 +69,7 @@ import { CallbackComponent } from './callback.component';
       isTest: true,
     }),
   ],
+  providers: [PetitionService, SignatureService],
   providers: [
     DonationServicesService,
     FundraiserServicesService,
