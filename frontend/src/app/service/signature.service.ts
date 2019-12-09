@@ -19,25 +19,9 @@ export class SignatureService {
     return this.http.post<Signature>(this.signatureUrl, signature);
   }
 
-//   // Call update petition API
-//   public updatePetition(petition, id) {
-//     console.log("From petition Service Update - "+ id);
-//     return this.http.put<Petition>(this.petitionUrl + "/" + id, petition);
-//   }
-
-//   // Call delete petition API
-//   public deletePetition(id) {
-//     console.log(this.petitionUrl + "/"+ id);
-//     return this.http.delete(this.petitionUrl + "/"+ id);
-//   }
-//   // call get all petition API
-//   public getPetition() {
-//     return this.http.get<Petition[]>(this.petitionUrl);
-//   }
-
-//   // call get by ID petition API
-//   public getbyIDPetition(id) {
-//     console.log(this.petitionUrl + "/"+ id);
-//     return this.http.get<Petition>(this.petitionUrl + "/" + id);
-//   }
+  // call get by Email Signature API
+  public getbyIDSignature(email) {
+    console.log(this.signatureUrl + "/email/"+ email);
+    return this.http.get<Signature[]>(this.signatureUrl + "/email/" + email);
+  }
 }

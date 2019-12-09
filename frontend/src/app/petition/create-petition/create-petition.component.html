@@ -1,4 +1,4 @@
-<section fxLayout="row wrap" fxLayoutAlign="center center">
+<section fxLayout="row wrap" fxLayoutAlign="center center" color="accent">
     <mat-card fxFlex="500px" fxFlex.xs="100%">
       <mat-card-title>Create a new petition</mat-card-title>
       <form [formGroup]="createPetitionForm" autocomplete="off" novalidate (ngSubmit)="createPetition(createPetitionForm.value)" fxLayout="column wrap"
@@ -6,7 +6,7 @@
         <mat-card-content>
   
           <mat-form-field>
-            <input matInput type="text" placeholder="Petition Title" formControlName="title" id="title">
+            <input matInput type="text" placeholder="Petition Title" formControlName="title" id="title mat-input">
             <mat-hint align="end">Not more then 60 characters long.</mat-hint>
             <mat-error *ngIf="hasError('title', 'required')">Title is required</mat-error>
             <mat-error *ngIf="hasError('title', 'maxlength')">You have more than 60 characters</mat-error>
