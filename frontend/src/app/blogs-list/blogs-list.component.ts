@@ -13,6 +13,12 @@ export class BlogsListComponent implements OnInit {
   constructor(private blogService:BlogService) { }
 
   blogsList: Array<Blog>;
+  
+  activeBlog: Blog;
+  activeBlogImage: string;
+  activeBlogTitle: string;
+  activeBlogAuthor: string;
+
   ngOnInit() {
     this.getBlogs();
   }
@@ -21,6 +27,12 @@ export class BlogsListComponent implements OnInit {
     let blogsList$: Observable<Array<Blog>> = this.blogService.getBlogsList();
     blogsList$.subscribe(blogsList => {
       this.blogsList = blogsList['articles'];
+      this.blogsList = this.blogsList.slice(0,10);
+
+      this.activeBlog = this.blogsList.shift();
+      this.activeBlogImage = this.activeBlog.urlToImage;
+      this.activeBlogTitle = this.activeBlog.title;
+      this.activeBlogAuthor = this.activeBlog.author;
     });
   }
 
