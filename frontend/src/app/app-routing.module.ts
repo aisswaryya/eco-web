@@ -12,15 +12,6 @@ import {CallbackComponent} from './callback.component';
 import { NotFoundComponent} from './error-pages/not-found/not-found.component';
 import { ServerErrorComponent } from './error-pages/server-error/server-error.component';
 
-
-
-const routes: Routes = [
-  { path: 'petition', loadChildren: "./petition/petition.module#PetitionModule" },
-  { path: '404', component: NotFoundComponent },
-  { path: '500', component: ServerErrorComponent },
-  { path: '', redirectTo: '/', pathMatch: 'full' },
-  { path: '**', redirectTo: '/404', pathMatch: 'full' }
-];
 const routes: Routes = [
   { path: 'fundraiser-list', component: FundraiserListComponent },
   { path: 'fundraiser-detail/:id', component: FundraiserDetailComponent },
@@ -29,7 +20,12 @@ const routes: Routes = [
   { path: 'my-fundraiser-detail/:id', component: MyFundraiserDetailComponent, canActivate: [ AuthGuard ] },
   { path: 'donate/:id', component: DonationCreateComponent, canActivate: [ AuthGuard ] },
   { path: 'my-donations-list', component: MyDonationsListComponent, canActivate: [ AuthGuard ] },
-  { path: 'callback', component: CallbackComponent }
+  { path: 'callback', component: CallbackComponent },
+  { path: 'petition', loadChildren: './petition/petition.module#PetitionModule' },
+  { path: '404', component: NotFoundComponent },
+  { path: '500', component: ServerErrorComponent },
+  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: '**', redirectTo: '/404', pathMatch: 'full' }
 ];
 
 @NgModule({

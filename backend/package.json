@@ -10,12 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "app": "^0.1.0",
-    "body-parser": "latest",
-    "cors": "^2.8.5",
-    "express": "^4.16.2",
     "express-jwt": "^5.3.1",
     "jwks-rsa": "^1.6.0",
-    "mongoose": "^4.13.3"
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.3",
