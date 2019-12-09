@@ -4,35 +4,14 @@ let express = require('express'),
     cors = require('cors'),
     mongoose = require('mongoose'), //created model loading here
     bodyParser = require('body-parser');
-const express = require('express');
-const bodyParser = require('body-parser');
-var cors = require('cors');
-// create express app
-const app = express();
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }))
-
-// parse application/json
-app.use(bodyParser.json())
-
-app.use(cors());
-
-// Configuring the database
-const dbConfig = require('./config/database.config.js');
-const mongoose = require('mongoose');
-
-mongoose.Promise = global.Promise;
-
-// Connecting to the db
-mongoose.connect(dbConfig.url, {
-	useNewUrlParser: true
-}).then(() => {
-    console.log("Successfully connected to the database");
-}).catch(err => {
-    console.log('Could not connect to the database. Exiting now...', err);
-    process.exit();
+// mongoose instance connection url connection
+mongoose.connect('mongodb://localhost:27017/ecoweb', function(err, db){
+    useMongoClient: true
+    if (err) throw err;
+    console.log("Database created!");
 });
+mongoose.Promise = global.Promise; //If  we want to use mongoose in different position inside the codes it must be viewed as global mode, that's why we need to set mongoose like this
 
 //Adding body parser for handling request and response objects.
 app.use(bodyParser.urlencoded({ //parse url encoded body
@@ -48,20 +27,12 @@ app.use(function (req, res, next) { //next is a function that calls next middlew
     res.header("Access-Control-Allow-Headers", "*");
     res.header("Access-Control-Allow-Methods", "*");
     next();
-// define a simple route
-app.get('/', (req, res) => {
-    res.json({"message": "Ecoweb started."});
 });
 
-require('./route/eco.route.js')(app);
 // app.get('/',function(req,res){
 //     res.sendFile(__dirname+'/index.html');
 // })
 
-// listen for requests
-app.listen(3000, () => {
-    console.log("Server is listening on port 3000");
-});
 //Initialize app
 let initApp = require('./app/app');
 initApp(app);
