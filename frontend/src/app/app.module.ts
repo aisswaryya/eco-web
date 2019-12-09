@@ -30,6 +30,7 @@ import {PetitionService} from './service/petition.service';
 // @ts-ignore
 import {MatBadgeModule} from '@angular/material/badge';
 import {SignatureService} from './service/signature.service';
+import { MyProfileComponent } from './my-profile/my-profile.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import {SignatureService} from './service/signature.service';
     SidenavListComponent,
     LayoutComponent,
     NotFoundComponent,
-    ServerErrorComponent
+    ServerErrorComponent,
+    MyProfileComponent
     ],
   imports: [
     BrowserModule,

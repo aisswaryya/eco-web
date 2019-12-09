@@ -11,15 +11,17 @@ import { AuthGuard } from './auth/auth.guard';
 import {CallbackComponent} from './callback.component';
 import { NotFoundComponent} from './error-pages/not-found/not-found.component';
 import { ServerErrorComponent } from './error-pages/server-error/server-error.component';
+import {MyProfileComponent} from './my-profile/my-profile.component';
 
 const routes: Routes = [
   { path: 'fundraiser-list', component: FundraiserListComponent },
   { path: 'fundraiser-detail/:id', component: FundraiserDetailComponent },
   { path: 'fundraiser-create', component: FundraiserCreateComponent, canActivate: [ AuthGuard ]},
-  { path: 'my-fundraisers-list', component: MyFundraiserListComponent, canActivate: [ AuthGuard ] },
+  { path: 'my-fundraisers-list', component: MyFundraiserListComponent, canActivate: [AuthGuard]},
   { path: 'my-fundraiser-detail/:id', component: MyFundraiserDetailComponent, canActivate: [ AuthGuard ] },
   { path: 'donate/:id', component: DonationCreateComponent, canActivate: [ AuthGuard ] },
   { path: 'my-donations-list', component: MyDonationsListComponent, canActivate: [ AuthGuard ] },
+  { path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuard ]},
   { path: 'callback', component: CallbackComponent },
   { path: 'petition', loadChildren: './petition/petition.module#PetitionModule' },
   { path: '404', component: NotFoundComponent },
