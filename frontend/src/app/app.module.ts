@@ -1,20 +1,37 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { SharedModule} from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomePageComponent } from './home-page/home-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent} from './navigation/header/header.component';
+import { SidenavListComponent }from './navigation/sidenav-list/sidenav-list.component';
+import { LayoutComponent } from './layout/layout.component';
+import { NotFoundComponent} from './error-pages/not-found/not-found.component';
+import { ServerErrorComponent } from './error-pages/server-error/server-error.component';
+import {PetitionService} from './service/petition.service';
+import {HttpClientModule} from "@angular/common/http";
+import {MatBadgeModule} from '@angular/material/badge';
+import {SignatureService} from './service/signature.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent
-  ],
+    HeaderComponent,
+    SidenavListComponent,
+    LayoutComponent,
+    NotFoundComponent,
+    ServerErrorComponent
+    ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MatBadgeModule
   ],
-  providers: [],
+  providers: [PetitionService, SignatureService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
