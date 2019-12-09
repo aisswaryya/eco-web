@@ -12,13 +12,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   exports: [
     MaterialModule,
     FlexLayoutModule,
-    
+
   ],
   declarations: [
-    
+
   ],
   entryComponents: [
-    
+
   ]
 })
 export class SharedModule { }
