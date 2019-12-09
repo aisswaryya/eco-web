@@ -53,7 +53,8 @@ export class SocialFeedListComponent implements OnInit {
         create: false,
         location: feed.location,
         description: feed.description,
-        image: feed.image
+        image: feed.image,
+        id: feed.id
       }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -64,12 +65,7 @@ export class SocialFeedListComponent implements OnInit {
   deletePost(feed: SocialFeed) {
     this.socialFeedService.deleteSocialFeed(feed.id).subscribe((response) => {
       console.log("Deleted successfully");
+      this.getPosts();
     })
-    /**
-     * this.socialFeedService.createSocialfeed(socialfeed).subscribe((response) => {
-      //do something with the response
-      console.log("Response is: ", response);
-   }
-     */
   }
 }

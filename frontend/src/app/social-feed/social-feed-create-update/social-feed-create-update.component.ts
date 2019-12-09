@@ -20,6 +20,7 @@ export class SocialFeedCreateUpdateComponent implements OnInit {
 
   ngOnInit() {
     this.socialFeedGroup = this._formBuilder.group({
+      id: this.data.id,
       description: this.data.description,
       location: this.data.location,
       image: this.data.image
@@ -48,7 +49,6 @@ export class SocialFeedCreateUpdateComponent implements OnInit {
     reader.readAsDataURL(files[0]); 
     reader.onload = (_event) => { 
       this.imgURL = reader.result;
-      console.log("*******Inside preview**************"+this.imgURL);
     }
   }
 
@@ -57,15 +57,13 @@ export class SocialFeedCreateUpdateComponent implements OnInit {
     let socialfeed: SocialFeed = new SocialFeed("","","","","", new Date(), new Date());
     socialfeed.id = "";
     socialfeed.image= this.imgURL;
-    console.log("*******Inside object********"+socialfeed.image);
     socialfeed.description= this.socialFeedGroup.get('description').value;
     socialfeed.location= this.socialFeedGroup.get('location').value;
     socialfeed.emailId= "abc@gmail.com";
     socialfeed.createdDate = new Date();
     socialfeed.updatedDate = new Date();
     this.socialFeedService.createSocialfeed(socialfeed).subscribe((response) => {
-      //do something with the response
-      console.log("Response is: ", response);
+      this.dialogRef.close();
    },
    (error) => {
       //catch the error
@@ -74,6 +72,22 @@ export class SocialFeedCreateUpdateComponent implements OnInit {
   }
 
   updatePost() {
-    
+    let file: File = null;
+    let socialfeed: SocialFeed = new SocialFeed("","","","","", new Date(), new Date());
+    socialfeed.id = this.socialFeedGroup.get('id').value;
+    socialfeed.image= this.socialFeedGroup.get('image').value;
+    socialfeed.description= this.socialFeedGroup.get('description').value;
+    socialfeed.location= this.socialFeedGroup.get('location').value;
+    socialfeed.emailId= "abc@gmail.com";
+    socialfeed.createdDate = new Date();
+    socialfeed.updatedDate = new Date();
+    this.socialFeedService.updateSocialFeed(socialfeed).subscribe((response) => {
+      //do something with the response
+      this.dialogRef.close();
+   },
+   (error) => {
+      //catch the error
+      console.error("An error occurred, ", error);
+   }); 
   }
 }

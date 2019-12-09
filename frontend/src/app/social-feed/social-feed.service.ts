@@ -50,7 +50,7 @@ updateSocialFeed(socialFeed: SocialFeed): Observable<SocialFeed> {
   let newSocialfeed: SocialFeed;
   let file: File;
   newSocialfeed = socialFeed ? socialFeed : new SocialFeed("","","","","",new Date(),new Date());
-  return this.http.put<SocialFeed>(this.socialfeedURl+"/"+socialFeed.id, newSocialfeed);
+  return this.http.put<SocialFeed>(this.socialfeedURl+"/"+newSocialfeed.id, newSocialfeed);
 }
 
 /**

@@ -1,6 +1,6 @@
 <div class="detail-edit">
-    <!-- <div *ngIf="!data.create" class="header"> Update your feed</div> -->
-    <!-- <div *ngIf="data.create" class="header"> New Post </div> -->
+    <div *ngIf="!data.create" class="header"> Update your feed</div>
+    <div *ngIf="data.create" class="header"> New Post </div>
     <form [formGroup]="socialFeedGroup">
         <div class="fields">
             <div class="detail">
@@ -27,11 +27,11 @@
             </div>
     
             <div class="button" *ngIf="!data.create">
-                <button class="add" mat-stroked-button (click)="uploadPost()">Upload</button>
+                <button class="add" mat-stroked-button (click)="updatePost()">Update</button>
             </div>
     
             <div class="button" *ngIf="data.create">
-                <button class="add" mat-stroked-button (click)="updatePost()">Add</button>
+                <button class="add" mat-stroked-button (click)="uploadPost()">Upload</button>
             </div>
     
         </div>
