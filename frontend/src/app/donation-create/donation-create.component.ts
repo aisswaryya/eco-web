@@ -52,7 +52,7 @@ export class DonationCreateComponent implements OnInit {
 
   updateTotalAmount() {
     console.log('Updating fundraiser: ' + this.fundraiser.collectedAmount);
-    this.fundraiserService.updateFundraiser(this.fundraiserId, this.fundraiser).subscribe(data => {
+    this.fundraiserService.updateFundraiser(this.fundraiserId, this.fundraiser, this.authService.accessToken).subscribe(data => {
       console.log(data);
     }, error => {
       console.log(error);
