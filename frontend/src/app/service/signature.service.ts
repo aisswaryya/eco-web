@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Signature } from '../model/signature.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Petition } from '../model/petition.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -23,5 +24,11 @@ export class SignatureService {
   public getbyIDSignature(email) {
     console.log(this.signatureUrl + "/email/"+ email);
     return this.http.get<Signature[]>(this.signatureUrl + "/email/" + email);
+  }
+
+   // call get count by PetitionId Signature API
+   public getbyEmailIDSignatureCount(petitionId) {
+    console.log(this.signatureUrl + "/count/"+ petitionId);
+    return this.http.get<Signature[]>(this.signatureUrl + "/count/" + petitionId);
   }
 }

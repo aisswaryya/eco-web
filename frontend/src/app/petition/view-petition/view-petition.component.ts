@@ -4,6 +4,7 @@ import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { Petition } from '../../model/petition.model';
 import { ErrorHandlerService } from '../../shared/error-handler.service';
 import { Router } from '@angular/router';
+import { SignatureService } from 'src/app/service/signature.service';
 
 @Component({
   selector: 'app-view-petition',
@@ -16,11 +17,13 @@ export class ViewPetitionComponent implements OnInit,AfterViewInit {
   public dataSource = new MatTableDataSource<Petition>(); 
   petitionList: Petition[];
   filterList: Petition[];
-  
+  myArray = new Array();
+  result = '';
+
   @ViewChild(MatSort , {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
-  constructor(private petitionService: PetitionService, private errorService: ErrorHandlerService, private router: Router) { }
+  constructor(private petitionService: PetitionService, private signatureService: SignatureService, private errorService: ErrorHandlerService, private router: Router) { }
 
   ngOnInit() {
     this.getAllPetition();
@@ -37,6 +40,20 @@ export class ViewPetitionComponent implements OnInit,AfterViewInit {
         this.petitionList = data;
         this.dataSource.data = data as Petition[];
         this.filterList = data;
+
+        data.forEach((value) => {
+          console.log("ID"+value._id);
+          this.signatureService.getbyEmailIDSignatureCount(value._id)
+          .subscribe( data => {
+            console.log(data);
+            this.result = JSON.parse(JSON.stringify(data));
+            console.log(this.result["count"]);
+            
+            this.myArray.push(this.result["count"]);
+            console.log("Response - Count "+JSON.stringify(this.myArray));
+          });
+
+        });
       });
       console.log(this.petitionList);
   }

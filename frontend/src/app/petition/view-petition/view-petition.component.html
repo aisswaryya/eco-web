@@ -8,12 +8,14 @@
     </div>
   </div>
  <!-- <div class="bgimg"> -->
+   
    <table id="mat-table"   align="center"  width="800" mat-table [dataSource]="dataSource" matSort>
           <ng-container matColumnDef="title">
         
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Petition Title </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Petition Title </th>
       <td>
-  <div *matCellDef="let element">
+  <div *matCellDef="let element; let i = index">
+    
         <mat-card class=" mat-card-custom" mat-icon-button>
               <mat-card-header>
                 <mat-card-title>{{element.title}}</mat-card-title>
@@ -30,8 +32,12 @@
 
                 <br>
                 {{element.createdby}}
-               </div>
+               </div>            
+               {{myArray[i]}}
               </mat-card-content>
+
+              <mat-progress-bar style="width:400px; float:right" color="warn" mode="determinate" value={{myArray[i]}}></mat-progress-bar>
+
               <mat-card-actions>
                   <button mat-icon-button color="accent" (click)="redirectToDetails(element._id)">
                     Read More...
