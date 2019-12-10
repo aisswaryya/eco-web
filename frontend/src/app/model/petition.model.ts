@@ -1,5 +1,5 @@
-export class Petition{
- _id:string;
+export class Petition {
+ _id: string;
  title: string;
  target: string;
  shortDescription: string;

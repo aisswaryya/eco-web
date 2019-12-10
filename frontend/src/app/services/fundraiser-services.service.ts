@@ -23,7 +23,7 @@ export class FundraiserServicesService {
     return this.http.get<Array<Fundraiser>>(this.fundraiserResourceUrl);
   }
 
-  getFundraisersByEmailId(emailId: string): Observable<Array<Fundraiser>>{
+  getFundraisersByEmailId(emailId: string): Observable<Array<Fundraiser>> {
     return this.http.get<Array<Fundraiser>>(`${this.fundraiserResourceUrl}?emailId=${emailId}`);
   }
 

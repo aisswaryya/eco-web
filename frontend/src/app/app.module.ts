@@ -22,19 +22,16 @@ import { AuthService } from './auth/auth.service';
 import { CallbackComponent } from './callback.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent} from './navigation/header/header.component';
-import { SidenavListComponent }from './navigation/sidenav-list/sidenav-list.component';
+import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { LayoutComponent } from './layout/layout.component';
 import { NotFoundComponent} from './error-pages/not-found/not-found.component';
 import { ServerErrorComponent } from './error-pages/server-error/server-error.component';
 import {PetitionService} from './services/petition.service';
-// @ts-ignore
 import {MatBadgeModule} from '@angular/material/badge';
 import {SignatureService} from './services/signature.service';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { EditFundraiserComponent } from './edit-fundraiser/edit-fundraiser.component';
-import { ConfirmationDialogueComponent } from './confirmation-dialogue/confirmation-dialogue.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {ConfirmationDialogueService} from './services/confirmation-dialogue.service';
+import {ProgressBarModule} from 'angular-progress-bar';
 
 @NgModule({
   declarations: [
@@ -56,8 +53,7 @@ import {ConfirmationDialogueService} from './services/confirmation-dialogue.serv
     NotFoundComponent,
     ServerErrorComponent,
     MyProfileComponent,
-    EditFundraiserComponent,
-    ConfirmationDialogueComponent
+    EditFundraiserComponent
     ],
   imports: [
     BrowserModule,
@@ -73,17 +69,15 @@ import {ConfirmationDialogueService} from './services/confirmation-dialogue.serv
       key: 'FLWPUBK_TEST-15175d68b5f7a725f15d52f5c1d5316e-X',
       isTest: true,
     }),
-    NgbModule
+    ProgressBarModule
   ],
   providers: [
     DonationServicesService,
     FundraiserServicesService,
     AuthService,
     PetitionService,
-    SignatureService,
-    ConfirmationDialogueService
+    SignatureService
   ],
-  bootstrap: [AppComponent],
-  entryComponents: [ ConfirmationDialogueComponent ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

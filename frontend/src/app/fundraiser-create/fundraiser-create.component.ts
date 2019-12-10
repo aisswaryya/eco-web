@@ -17,7 +17,7 @@ export class FundraiserCreateComponent implements OnInit {
         'Community Garden',
         'Composting Program',
         'Earth Day Fundraiser',
-        'Other']
+        'Other'];
 
   fundraiser = new Fundraiser('',
       '',
@@ -41,21 +41,21 @@ export class FundraiserCreateComponent implements OnInit {
 
 
   saveFundraiser(form: NgForm) {
-      if (this.authService.isLoggedIn) {
-          form.value.emailId = this.authService.userProfile.email;
-          this.fundraiserService.createFundraiser(form.value, this.authService.accessToken).subscribe(data => {
-              alert('Fundraiser Created');
-              console.log(data);
-              this.router.navigate(['/fundraiser-detail', data.id]);
-          }, error => {
-              if (error.status === 401) {
-                  alert('Not authenticated!! Please login to continue');
-              }
-              console.log(error);
-          });
-      } else {
-          this.authService.login();
-      }
+    if (this.authService.isLoggedIn) {
+      form.value.emailId = this.authService.userProfile.email;
+      this.fundraiserService.createFundraiser(form.value, this.authService.accessToken).subscribe(data => {
+        alert('Fundraiser Created');
+        console.log(data);
+        this.router.navigate(['/my-fundraiser-detail', data.id]);
+      }, error => {
+        if (error.status === 401) {
+          alert('Not authenticated!! Please login to continue');
+        }
+        console.log(error);
+      });
+    } else {
+      this.authService.login();
+    }
   }
 
 

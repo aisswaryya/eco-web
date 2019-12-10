@@ -40,7 +40,7 @@ export class DonationCreateComponent implements OnInit {
       this.donationService.createDonation(form.value, this.authService.accessToken).subscribe(data => {
         this.fundraiser.collectedAmount += this.donation.amount;
         this.updateTotalAmount();
-        this.router.navigate(['/my-donations-list']);
+        this.router.navigate(['/fundraiser-detail', this.fundraiserId]);
       }, error => {
         alert('Payment Failure');
         console.log(error);

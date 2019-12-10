@@ -11,21 +11,21 @@ import { ManagePetitionComponent } from './manage-petition/manage-petition.compo
 import { UserPetitionComponent } from './user-petition/user-petition.component';
 
 @NgModule({
-  declarations:[CreatePetitionComponent, 
+  declarations: [CreatePetitionComponent,
     ViewPetitionComponent,
     ViewByIDPetitionComponent,
     UpdatePetitionComponent,
     ManagePetitionComponent,
     UserPetitionComponent],
-    
+
   imports: [
     CommonModule,
     PetitionRoutingModule,
     ReactiveFormsModule,
     SharedModule
-  ]  
+  ]
 })
-export class PetitionModule { 
+export class PetitionModule {
 
 
 }

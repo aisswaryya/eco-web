@@ -10,9 +10,9 @@ import { Router } from '@angular/router';
   templateUrl: './view-petition.component.html',
   styleUrls: ['./view-petition.component.scss']
 })
-export class ViewPetitionComponent implements OnInit,AfterViewInit {
+export class ViewPetitionComponent implements OnInit, AfterViewInit {
 
-  public displayedColumns = ['title'];//To display table header
+  public displayedColumns = ['title']; // To display table header
   public dataSource = new MatTableDataSource<Petition>();
   petitionList: Petition[];
   filterList: Petition[];
@@ -38,16 +38,16 @@ export class ViewPetitionComponent implements OnInit,AfterViewInit {
         this.dataSource.data = data as Petition[];
         this.filterList = data;
       });
-      console.log(this.petitionList);
+    console.log(this.petitionList);
   }
 
   public doFilter = (value: string) => {
     this.dataSource.filter = value.trim().toLocaleLowerCase();
-    this.filterList = this.petitionList.filter(elem => elem.title.includes(value) || elem.createdby.includes(value) || elem.briefDescription.includes(value)|| elem.shortDescription.includes(value));
+    this.filterList = this.petitionList.filter(elem => elem.title.includes(value) || elem.createdby.includes(value) || elem.briefDescription.includes(value) || elem.shortDescription.includes(value));
   }
 
   public redirectToDetails = (id: string) => {
-    let url: string = `/petition/manage/${id}`;
+    const url = `/petition/manage/${id}`;
     this.router.navigate([url]);
   }
 
