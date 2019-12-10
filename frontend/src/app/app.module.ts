@@ -41,6 +41,7 @@ import {SignatureService} from './services/signature.service';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { EditFundraiserComponent } from './edit-fundraiser/edit-fundraiser.component';
 import { DateAgoPipe } from './helpers/pipes/date-ago.pipe';
+import { MySocialFeedComponent } from "./social-feed/my-social-feed/my-social-feed.component";
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { DateAgoPipe } from './helpers/pipes/date-ago.pipe';
     ServerErrorComponent,
     MyProfileComponent,
     EditFundraiserComponent,
-    DateAgoPipe
+    DateAgoPipe,
+    MySocialFeedComponent
   ],
   imports: [
     BrowserModule,

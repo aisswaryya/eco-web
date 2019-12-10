@@ -16,6 +16,7 @@ import { NotFoundComponent} from './error-pages/not-found/not-found.component';
 import { ServerErrorComponent } from './error-pages/server-error/server-error.component';
 import {MyProfileComponent} from './my-profile/my-profile.component';
 import {EditFundraiserComponent} from './edit-fundraiser/edit-fundraiser.component';
+import { MySocialFeedComponent } from './social-feed/my-social-feed/my-social-feed.component';
 
 const routes: Routes = [
   { path: 'fundraiser-list', component: FundraiserListComponent },
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   // { path: '**', redirectTo: '/404', pathMatch: 'full' },
   { path: 'socialfeeds', canActivate: [AuthGuard ], component: SocialFeedListComponent },
+  { path: 'my-socialfeeds', canActivate: [AuthGuard ], component: MySocialFeedComponent },
   { path: 'home', component: HomePageComponent },
   { path: 'blog-detail', component: BlogDetailComponent },
 ];

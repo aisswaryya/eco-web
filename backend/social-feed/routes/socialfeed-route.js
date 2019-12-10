@@ -33,7 +33,6 @@ module.exports = function (app) {
 
     // Todo Routes for get, update and delete.
     app.route('/v1/eco/socialfeeds/:socialfeedId')
-        .get(socialfeedController.get)
         .put(jwtCheck, socialfeedController.put)
         .delete(jwtCheck, socialfeedController.delete);
 };

@@ -30,8 +30,11 @@ export class SocialFeedService {
     });
   }
 
-  getSocialFeedsByEmailId(emailId: string): Observable<Array<SocialFeed>>{
-    return this.http.get<Array<SocialFeed>>(`${this.socialfeedURl}?emailId=${emailId}`);
+  getSocialFeedsByEmailId(emailId: string, accessToken: string): Observable<Array<SocialFeed>>{
+    return this.http.get<Array<SocialFeed>>(`${this.socialfeedURl}?emailId=${emailId}`,
+    {
+      headers: new HttpHeaders().set('Authorization', `Bearer ${accessToken}`)
+    });
   }
 
   /**
