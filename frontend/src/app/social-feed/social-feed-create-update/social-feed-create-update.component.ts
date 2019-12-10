@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { SocialFeed } from "../models/social-feed-model";
-import { SocialFeedService } from "../social-feed.service";
-import { FormBuilder, FormControl, Validators, FormGroup, NG_VALUE_ACCESSOR } from "@angular/forms";
+import { SocialFeed } from '../models/social-feed-model';
+import { SocialFeedService } from '../social-feed.service';
+import { FormBuilder, FormControl, Validators, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-social-feed-create-update',
@@ -10,8 +10,16 @@ import { FormBuilder, FormControl, Validators, FormGroup, NG_VALUE_ACCESSOR } fr
   styleUrls: ['./social-feed-create-update.component.scss']
 })
 export class SocialFeedCreateUpdateComponent implements OnInit {
-
-  constructor(
+  
+/**
+ *Creates an instance of SocialFeedCreateUpdateComponent.
+ * @param {SocialFeed} data
+ * @param {FormBuilder} _formBuilder
+ * @param {SocialFeedService} socialFeedService
+ * @param {MatDialogRef<SocialFeedCreateUpdateComponent>} dialogRef
+ * @memberof SocialFeedCreateUpdateComponent
+ */
+constructor(
     @Inject(MAT_DIALOG_DATA) public data: SocialFeed,
     private _formBuilder: FormBuilder,
     private socialFeedService: SocialFeedService,
@@ -25,14 +33,21 @@ export class SocialFeedCreateUpdateComponent implements OnInit {
       location: this.data.location,
       image: this.data.image
     });
+    console.log(this.data);
   }
 
   selectedFile: any = null;
   public imagePath;
   imgURL: any;
   public message: string;
-
-  onFileSelected(event) {
+/**
+ *
+ *
+ * @param {*} event
+ * @returns
+ * @memberof SocialFeedCreateUpdateComponent
+ */
+onFileSelected(event) {
     let files = event.target.files;
     this.selectedFile = files[0];
     if (files.length === 0)
@@ -75,7 +90,7 @@ export class SocialFeedCreateUpdateComponent implements OnInit {
     let file: File = null;
     let socialfeed: SocialFeed = new SocialFeed("","","","","", new Date(), new Date());
     socialfeed.id = this.socialFeedGroup.get('id').value;
-    socialfeed.image= this.socialFeedGroup.get('image').value;
+    socialfeed.image= this.data.image;
     socialfeed.description= this.socialFeedGroup.get('description').value;
     socialfeed.location= this.socialFeedGroup.get('location').value;
     socialfeed.emailId= "abc@gmail.com";
@@ -84,6 +99,7 @@ export class SocialFeedCreateUpdateComponent implements OnInit {
     this.socialFeedService.updateSocialFeed(socialfeed).subscribe((response) => {
       //do something with the response
       this.dialogRef.close();
+      console.log(response);
    },
    (error) => {
       //catch the error

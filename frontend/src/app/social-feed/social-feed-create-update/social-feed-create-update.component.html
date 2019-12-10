@@ -4,12 +4,17 @@
     <form [formGroup]="socialFeedGroup">
         <div class="fields">
             <div class="detail">
-                <mat-form-field>
-                    <input type="file" (change)="onFileSelected($event)" >
-                    <div>
-                        <img [src]="imgURL" height="200" *ngIf="imgURL">
-                    </div>
-                </mat-form-field>
+                <div class="xyz" *ngIf="data.create">
+                    <mat-form-field >
+                        <input type="file" (change)="onFileSelected($event)" >
+                        <div>
+                            <img [src]="imgURL" height="200" *ngIf="imgURL">
+                        </div>
+                    </mat-form-field>
+                </div>
+                <div class="xyz" *ngIf="!data.create">
+                    <img [src]="data.image" height="200">
+                </div>    
             </div>
     
             <div class="detail">

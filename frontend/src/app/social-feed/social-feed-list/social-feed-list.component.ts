@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material';
 import { SocialFeedService } from '../social-feed.service';
 import { Observable } from "rxjs";
 import { SocialFeed } from "../models/social-feed-model";
-import { DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-social-feed-list',
@@ -28,6 +27,10 @@ export class SocialFeedListComponent implements OnInit {
     socialFeedList$.subscribe(socialFeedList => {
       this.socialFeedList = socialFeedList;
     });
+  }
+
+  openUploadSocialFeed() {
+    this.createPost();
   }
 
   createPost() {
