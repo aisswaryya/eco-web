@@ -10,9 +10,9 @@ const httpOptions = {
 @Injectable()
 export class SignatureService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
   private signatureUrl = 'http://localhost:3000/signature';
-  //All the common services go here
+  // All the common services go here
 
   // Call create signature API
   public createSignature(signature) {

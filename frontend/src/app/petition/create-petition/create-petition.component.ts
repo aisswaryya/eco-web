@@ -3,7 +3,7 @@ import { Petition } from '../../model/petition.model';
 import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PetitionService } from '../../service/petition.service';
+import { PetitionService } from '../../services/petition.service';
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
@@ -93,5 +93,11 @@ export class CreatePetitionComponent implements OnInit {
   }
 
 }
+
+
+    
+
+
+    
 
 
