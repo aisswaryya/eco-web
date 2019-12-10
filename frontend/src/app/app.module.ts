@@ -86,24 +86,20 @@ import { EventComponent } from './events/event/event.component';
     AngularRaveModule.forRoot({
       key: 'FLWPUBK_TEST-15175d68b5f7a725f15d52f5c1d5316e-X',
       isTest: true,
-    }),
-
-
-    
+    }),    
     GooglePlaceModule,
-  
     NgbModule,
     DlDateTimeDateModule,  // <--- Determines the data type of the model
     DlDateTimePickerModule,
     ReactiveFormsModule,
-    AgmCoreModule.forRoot({
+    AgmCoreModule.forRoot({ //maps API key
       apiKey: 'AIzaSyD4vSXcefSGKfJF9vqQdF_aLjC56JoS5sc'
-    }
-
+    })
   ],
   providers: [
     DonationServicesService,
     FundraiserServicesService,
+    EventService,
     AuthService,
     PetitionService,
     SignatureService

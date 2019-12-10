@@ -30,7 +30,7 @@ export class AttendeeService {
    */
   constructor(private http: HttpClient) {
     
-    this.attendeeResource = 'attendees';
+    this.attendeeResource = 'v1/eco/attendees';
     this.attendeeResourceURL = `${environment.serverBaseURL}/${this.attendeeResource}`;    
 
   }

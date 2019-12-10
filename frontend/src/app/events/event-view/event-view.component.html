@@ -1,62 +1,35 @@
-
 <h2>All Events</h2>
 
 <div class="eventList">
-    <div *ngFor="let event of events" id = "{{ event.id }}">
+    <div *ngFor="let event of events" id="{{ event.id }}">
         <app-event [event]="event"></app-event>
     </div>
 </div>
 
 
-<agm-map [latitude] ='latitude' [longitude] = 'longitude' 
-minZoom = 5 maxZOom = 10000 [zoom] = "13"
-id = "eventMap"
-(mapClick)="close_window($event)"
-> 
+<agm-map [latitude]='latitude' [longitude]='longitude' minZoom=5 maxZOom=10000 [zoom]="13" id="eventMap"
+    (mapClick)="close_window($event)">
 
-<!-- <agm-marker 
-    [latitude]="latitude"
-    [longitude]="longitude"
-    [markerDraggable]="false"
->
-
-    <agm-info-window>
-    <strong>InfoWindow content</strong>
-    </agm-info-window>
-
-</agm-marker> -->
-
-
-<agm-marker 
-*ngFor="let currentEvent of events; let i = index"
-[latitude]="currentEvent.lat"
-[longitude]="currentEvent.lng"
-(dragEnd)="markerDragEnd(currentEvent, $event)"
-
-[iconUrl] ="
+    <agm-marker *ngFor="let currentEvent of events; let i = index" [latitude]="currentEvent.lat"
+        [longitude]="currentEvent.lng" (dragEnd)="markerDragEnd(currentEvent, $event)" [iconUrl]="
 {
   url: './icons/marker-icon.ico',
   scaledSize: {
       width: 50,
       height: 50
   }
-}"
+}" (markerClick)=select_marker(infoWindow)>
 
-(markerClick)=select_marker(infoWindow)
-   
-   >
+        <agm-info-window #infoWindow>
+            <strong>
+                <p class="markerInfo">{{ currentEvent.name }}</p><br>
+                <button class="btn btn-primary btn-sm" (click)="clickedInfoMarker(currentEvent.id)">
+                    More Info
+                </button>
+            </strong>
+        </agm-info-window>
 
-<agm-info-window #infoWindow>
-<strong><p class = "markerInfo">{{ currentEvent.name }}</p><br>
-<button class="btn btn-primary btn-sm" 
-(click) = "clickedInfoMarker(currentEvent.id)" 
->
-More Info
-</button>
-</strong>
-</agm-info-window>
-
-</agm-marker>
+    </agm-marker>
 
 
 </agm-map>

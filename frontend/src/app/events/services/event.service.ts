@@ -38,7 +38,7 @@ export class EventService {
    * Constructor setting the values of the URLs
    */
   constructor(private http: HttpClient) {
-    this.eventResource = 'events';
+    this.eventResource = 'v1/eco/events';
     this.eventResourceURL = `${environment.serverBaseURL}/${this.eventResource}`;   
   }
 

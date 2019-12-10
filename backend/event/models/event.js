@@ -193,21 +193,6 @@ let Event = new Schema({
     maxAttendees: {
         type: Number
     }
-
-    // attendees: {
-    //     // ref: 'Attendee',
-    //     // type: mongoose.Schema.Types.ObjectId
-
-    //     name: {
-    //         type: String
-    //     },
-
-    //     email: {
-    //         type: String
-    //     }
-    // }
-
-
 }, {
     versionKey: false
 });

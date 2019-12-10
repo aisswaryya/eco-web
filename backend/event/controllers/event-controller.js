@@ -10,8 +10,6 @@ exports.post = function (request, response) {
         response.json(event);
     };
     
-    // console.log(newEvent);
-
     eventService.save(newEvent)
         .then(resolve)
         .catch(renderErrorResponse(response));
@@ -25,7 +23,8 @@ exports.list = function (request, response) {
         response.status(200);
         response.json(events);
     };
-    eventService.find({})
+
+    eventService.find()
         .then(resolve)
         .catch(renderErrorResponse(response));
 };

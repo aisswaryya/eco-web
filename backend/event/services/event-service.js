@@ -1,14 +1,15 @@
 'use strict';
 //mongoose for db
-const mongoose = require('mongoose'),
-Event = mongoose.model('event');
+const mongoose = require('mongoose');
+require('../models/event.js');
+const Event = mongoose.model('event');
 
 
 /**
  * Finding the Event based on id
  */
-exports.find = function (params) {
-    const promise = Event.find(params).exec();
+exports.find = function () {
+    const promise = Event.find().exec();
     return promise;
 };
 

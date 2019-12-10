@@ -12,11 +12,17 @@ import {CallbackComponent} from './callback.component';
 import { NotFoundComponent} from './error-pages/not-found/not-found.component';
 import { ServerErrorComponent } from './error-pages/server-error/server-error.component';
 import {MyProfileComponent} from './my-profile/my-profile.component';
+import { EventCreateComponent } from './events/event-create/event-create.component';
+import { EventViewComponent } from './events/event-view/event-view.component';
+
 
 const routes: Routes = [
   { path: 'fundraiser-list', component: FundraiserListComponent },
   { path: 'fundraiser-detail/:id', component: FundraiserDetailComponent },
   { path: 'fundraiser-create', component: FundraiserCreateComponent, canActivate: [ AuthGuard ]},
+  { path: 'event-create', component: EventCreateComponent, canActivate: [ AuthGuard ]},
+  { path: 'event-list', component: EventViewComponent, canActivate: [ AuthGuard ]},
+
   { path: 'my-fundraisers-list', component: MyFundraiserListComponent, canActivate: [AuthGuard]},
   { path: 'my-fundraiser-detail/:id', component: MyFundraiserDetailComponent, canActivate: [ AuthGuard ] },
   { path: 'donate/:id', component: DonationCreateComponent, canActivate: [ AuthGuard ] },
