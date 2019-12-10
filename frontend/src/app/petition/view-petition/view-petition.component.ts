@@ -1,4 +1,4 @@
-import { PetitionService } from './../../service/petition.service';
+import { PetitionService } from '../../services/petition.service';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { Petition } from '../../model/petition.model';
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class ViewPetitionComponent implements OnInit,AfterViewInit {
 
   public displayedColumns = ['title'];//To display table header
-  public dataSource = new MatTableDataSource<Petition>(); 
+  public dataSource = new MatTableDataSource<Petition>();
   petitionList: Petition[];
   filterList: Petition[];
   localUrl: any[];
@@ -51,9 +51,9 @@ export class ViewPetitionComponent implements OnInit,AfterViewInit {
     this.router.navigate([url]);
   }
 
-  
 
-  
+
+
 
 
 }
