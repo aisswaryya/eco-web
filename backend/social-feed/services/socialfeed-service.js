@@ -12,7 +12,7 @@ const mongoose = require('mongoose'),
  * @param {Object} params {Search parameters}
  */
 exports.search = function (params) {
-    const promise = Socialfeed.find(params).exec();
+    const promise = Socialfeed.find(params).sort({createdDate: 'descending'}).exec();
     return promise;
 };
 

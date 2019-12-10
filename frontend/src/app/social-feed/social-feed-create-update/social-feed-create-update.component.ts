@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { SocialFeed } from '../../models/social-feed-model';
 import { SocialFeedService } from '../../services/social-feed.service';
+import { AuthService } from "../../auth/auth.service";
 import { FormBuilder, FormControl, Validators, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -23,7 +24,8 @@ constructor(
     @Inject(MAT_DIALOG_DATA) public data: SocialFeed,
     private _formBuilder: FormBuilder,
     private socialFeedService: SocialFeedService,
-    public dialogRef: MatDialogRef<SocialFeedCreateUpdateComponent>) { }
+    public dialogRef: MatDialogRef<SocialFeedCreateUpdateComponent>,
+    private authService: AuthService) { }
     socialFeedGroup: FormGroup;
 
   ngOnInit() {
@@ -77,13 +79,20 @@ onFileSelected(event) {
     socialfeed.emailId= "abc@gmail.com";
     socialfeed.createdDate = new Date();
     socialfeed.updatedDate = new Date();
-    this.socialFeedService.createSocialfeed(socialfeed).subscribe((response) => {
-      this.dialogRef.close();
-   },
-   (error) => {
-      //catch the error
-      console.error("An error occurred, ", error);
-   }); 
+    if(this.authService.isLoggedIn) {
+        socialfeed.emailId = this.authService.userProfile.email;
+        this.socialFeedService.createSocialfeed(socialfeed, this.authService.accessToken).subscribe((response) => {
+          this.dialogRef.close();
+       },
+       (error) => {
+          //catch the error
+          console.error("An error occurred, ", error);
+       }); 
+    } 
+    else {
+        this.authService.login();
+    }
+    
   }
 
   updatePost() {
@@ -96,14 +105,21 @@ onFileSelected(event) {
     socialfeed.emailId= "abc@gmail.com";
     socialfeed.createdDate = new Date();
     socialfeed.updatedDate = new Date();
-    this.socialFeedService.updateSocialFeed(socialfeed).subscribe((response) => {
+    if(this.authService.isLoggedIn) {
+      socialfeed.emailId = this.authService.userProfile.email;
+      this.socialFeedService.updateSocialFeed(socialfeed, this.authService.accessToken).subscribe((response) => {
       //do something with the response
       this.dialogRef.close();
       console.log(response);
-   },
-   (error) => {
-      //catch the error
-      console.error("An error occurred, ", error);
-   }); 
+      },
+      (error) => {
+          //catch the error
+          console.error("An error occurred, ", error);
+      });
+    } 
+    else {
+      this.authService.login();
+    }
   }
+
 }

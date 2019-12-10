@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: '500', component: ServerErrorComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   // { path: '**', redirectTo: '/404', pathMatch: 'full' },
-  { path: 'socialfeeds', component: SocialFeedListComponent, canActivate: [AuthGuard] },
+  { path: 'socialfeeds', canActivate: [AuthGuard ], component: SocialFeedListComponent },
   { path: 'home', component: HomePageComponent },
   { path: 'blog-detail', component: BlogDetailComponent },
 ];

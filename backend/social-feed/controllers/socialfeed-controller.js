@@ -32,23 +32,6 @@ exports.list = function (request, response) {
  */
 exports.post = function (request, response) {
     console.log(request.body.image);
-    // request.body.data = fs.readFileSync('/Users/pavanrao/Desktop/Screen\ Shot\ 2019-10-08\ at\ 12.30.08\ PM.png');
-    //  console.log("***********Response:"+Buffer.from(request.body.data).toString('base64'));
-    // var buffer = new Buffer();
-    // fs.writeFile("testImage2.jpeg",request.body.data, function(err) {
-        // If an error occurred, show it and return
-        // if (err) throw err;
-        // console.log('The file has been saved!');
-        // Successfully wrote to the file!
-    //   });
-    // request.body.data = Buffer.from(request.body.data);
-    // const img = request.body.image;
-    // const data = img['$ngfDataUrl'];
-    // console.log(data);
-    // const split = img.split(','); // or whatever is appropriate here. this will work for the example given
-    // const base64string = split[1];
-    // const buffer = Buffer.from(base64string, 'base64');
-    // request.body.image = buffer;
     const newSocialfeed = Object.assign({}, request.body);
     const resolve = (socialfeed) => {
         response.status(200);

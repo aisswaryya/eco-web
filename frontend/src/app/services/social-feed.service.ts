@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { SocialFeed } from "../models/social-feed-model";
@@ -22,12 +22,13 @@ export class SocialFeedService {
    * Returns all social feed items.
    *
    * @return {Observable<Array<SocialFeed>>} {Observable sticky array of social feeds}
-  
-  */
- getSocialfeedList(): Observable<Array<SocialFeed>> {
-  return this.http.get<Array<SocialFeed>>(this.socialfeedURl);
-}
-
+   * */
+   getSocialfeedList(accessToken: string): Observable<Array<SocialFeed>> {
+    return this.http.get<Array<SocialFeed>>(this.socialfeedURl,
+    {
+      headers: new HttpHeaders().set('Authorization', `Bearer ${accessToken}`)
+    });
+  }
 
 /**
  * Creates new socialFeed.
@@ -35,11 +36,14 @@ export class SocialFeedService {
  * @param  {SocialFeed} socialFeed: Sticky {new todo object}
  * @return {Observable<SocialFeed>} {Observable for saved socialFeed object}
 */ 
-createSocialfeed(socialFeed: SocialFeed = null): Observable<SocialFeed> {
+createSocialfeed(socialFeed: SocialFeed = null, accessToken: string): Observable<SocialFeed> {
   let newSocialfeed: SocialFeed;
   let file: File;
   newSocialfeed = socialFeed ? socialFeed : new SocialFeed("","","","","",new Date(),new Date());
-  return this.http.post<SocialFeed>(this.socialfeedURl, newSocialfeed);
+  return this.http.post<SocialFeed>(this.socialfeedURl, newSocialfeed,
+    {
+      headers: new HttpHeaders().set('Authorization', `Bearer ${accessToken}`)
+    });
 }
 
 /**
@@ -48,11 +52,14 @@ createSocialfeed(socialFeed: SocialFeed = null): Observable<SocialFeed> {
  * @param  {SocialFeed} socialFeed: SocialFeed {new socialFeed object}
  * @return {Observable<Todo>} {Observable for saved todo object}
 */ 
-updateSocialFeed(socialFeed: SocialFeed): Observable<SocialFeed> {
+updateSocialFeed(socialFeed: SocialFeed, accessToken: string ): Observable<SocialFeed> {
   let newSocialfeed: SocialFeed;
   let file: File;
   newSocialfeed = socialFeed ? socialFeed : new SocialFeed("","","","","",new Date(),new Date());
-  return this.http.put<SocialFeed>(this.socialfeedURl+"/"+newSocialfeed.id, newSocialfeed);
+  return this.http.put<SocialFeed>(this.socialfeedURl+"/"+newSocialfeed.id, newSocialfeed,
+  {
+    headers: new HttpHeaders().set('Authorization', `Bearer ${accessToken}`)
+  });
 }
 
 /**
@@ -61,9 +68,12 @@ updateSocialFeed(socialFeed: SocialFeed): Observable<SocialFeed> {
  * @param  {string} id: string {id of the socialFeed object}
  * @return {Observable<{}>} {Observable for deleted socialFeed object}
 */ 
-deleteSocialFeed(id: string): Observable<{}> {
+deleteSocialFeed(id: string, accessToken: string ): Observable<{}> {
   let url = this.socialfeedURl+"/"+id;
-  return this.http.delete(url);
+  return this.http.delete(url,
+    {
+      headers: new HttpHeaders().set('Authorization', `Bearer ${accessToken}`)
+    });
 }
 
 }
