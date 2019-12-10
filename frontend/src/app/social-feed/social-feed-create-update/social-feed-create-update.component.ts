@@ -42,6 +42,7 @@ constructor(
   public imagePath;
   imgURL: any;
   public message: string;
+
 /**
  *
  *
@@ -69,6 +70,11 @@ onFileSelected(event) {
     }
   }
 
+  /**
+   *
+   * Upload the post created by user
+   * @memberof SocialFeedCreateUpdateComponent
+   */
   uploadPost() {
     let file: File = null;
     let socialfeed: SocialFeed = new SocialFeed("","","","","", new Date(), new Date());
@@ -95,6 +101,11 @@ onFileSelected(event) {
     
   }
 
+  /**
+   *
+   * Update a specific post
+   * @memberof SocialFeedCreateUpdateComponent
+   */
   updatePost() {
     let file: File = null;
     let socialfeed: SocialFeed = new SocialFeed("","","","","", new Date(), new Date());

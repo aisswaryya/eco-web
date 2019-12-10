@@ -10,6 +10,11 @@ export class BlogService {
   private blogURl: string;
   blog: Blog;
 
+  /**
+   *Creates an instance of BlogService.
+  * @param {HttpClient} http
+  * @memberof BlogService
+  */
   constructor(private http: HttpClient) { 
     this.blogURl = "https://newsapi.org/v2/everything?q=pollution&from=2019-12-05&sortBy=popularity&apikey=d00b5f482c1e475bbfc210d3b695e643";
   }
@@ -20,7 +25,7 @@ export class BlogService {
    * @return {Observable<Array<Blog>>} {Observable blog array of blogs}
   
   */
- getBlogsList(): Observable<Array<Blog>> {
-  return this.http.get<Array<Blog>>(this.blogURl);
- }
+  getBlogsList(): Observable<Array<Blog>> {
+    return this.http.get<Array<Blog>>(this.blogURl);
+  }
 }

@@ -11,6 +11,12 @@ import { Router } from '@angular/router';
 })
 export class BlogsListComponent implements OnInit {
 
+  /**
+   *Creates an instance of BlogsListComponent.
+  * @param {BlogService} blogService
+  * @param {Router} router
+  * @memberof BlogsListComponent
+  */
   constructor(private blogService:BlogService, private router:Router) { }
 
   blogsList: Array<Blog>;
@@ -24,6 +30,11 @@ export class BlogsListComponent implements OnInit {
     this.getBlogs();
   }
 
+  /**
+   *
+   * Get list of blogs
+   * @memberof BlogsListComponent
+   */
   getBlogs() {
     let blogsList$: Observable<Array<Blog>> = this.blogService.getBlogsList();
     blogsList$.subscribe(blogsList => {
@@ -37,6 +48,12 @@ export class BlogsListComponent implements OnInit {
     });
   }
 
+  /**
+   *
+   * View a specific blog
+   * @param {Blog} blog
+   * @memberof BlogsListComponent
+   */
   viewBlogDetail(blog: Blog) {
     this.blogService.blog = blog;
     this.router.navigate(['/blog-detail']);

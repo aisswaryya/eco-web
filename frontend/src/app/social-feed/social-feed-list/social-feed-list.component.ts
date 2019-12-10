@@ -13,7 +13,14 @@ import { AuthService } from "../../auth/auth.service";
 })
 export class SocialFeedListComponent implements OnInit {
 
-  constructor(
+/**
+ *Creates an instance of SocialFeedListComponent.
+ * @param {MatDialog} dialog
+ * @param {SocialFeedService} socialFeedService
+ * @param {AuthService} authService
+ * @memberof SocialFeedListComponent
+ */
+constructor(
     public dialog: MatDialog, private socialFeedService: SocialFeedService, private authService: AuthService
   ) { }
 
@@ -34,29 +41,33 @@ export class SocialFeedListComponent implements OnInit {
     }
   }
 
+  /**
+   *
+   * Retrieve the list of social feeds
+   * @memberof SocialFeedListComponent
+   */
   getPosts() {
-    if(this.authService.isLoggedIn) {
-      // socialfeed.emailId = this.authService.userProfile.email;
-      let socialFeedList$: Observable<Array<SocialFeed>> = this.socialFeedService.getSocialfeedList(this.authService.accessToken);
-      socialFeedList$.subscribe(socialFeedList => {
-        this.socialFeedList = socialFeedList;
-      },
-      (error) => {
-          //catch the error
-          console.error("An error occurred, ", error);
-      }); 
-    } 
-    else {
-      this.authService.login();
-    } 
-  }
+      if(this.authService.isLoggedIn) {
+        // socialfeed.emailId = this.authService.userProfile.email;
+        let socialFeedList$: Observable<Array<SocialFeed>> = this.socialFeedService.getSocialfeedList(this.authService.accessToken);
+        socialFeedList$.subscribe(socialFeedList => {
+          this.socialFeedList = socialFeedList;
+        },
+        (error) => {
+            //catch the error
+            console.error("An error occurred, ", error);
+        }); 
+      } 
+      else {
+        this.authService.login();
+      } 
+    }
 
-  
-
-  openUploadSocialFeed() {
-    this.createPost();
-  }
-
+  /**
+   *
+   * Invoke create component in a material dialog 
+   * @memberof SocialFeedListComponent
+   */
   createPost() {
     let dialogRef = this.dialog.open(SocialFeedCreateUpdateComponent, {
       height: '600px',
@@ -72,6 +83,12 @@ export class SocialFeedListComponent implements OnInit {
     })
   }
 
+  /**
+   *
+   * Invoke update component in a material dialog 
+   * @param {SocialFeed} feed
+   * @memberof SocialFeedListComponent
+   */
   updatePost(feed: SocialFeed) {
     let dialogRef = this.dialog.open(SocialFeedCreateUpdateComponent, {
       height: '600px',
@@ -89,6 +106,12 @@ export class SocialFeedListComponent implements OnInit {
     })
   }
 
+  /**
+   *
+   * Delete a feed from the list
+   * @param {SocialFeed} feed
+   * @memberof SocialFeedListComponent
+   */
   deletePost(feed: SocialFeed) {
 
     if(this.authService.isLoggedIn) {
