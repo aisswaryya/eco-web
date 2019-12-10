@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: 'update/:id', component: UpdatePetitionComponent},
   {path: 'details/:id', component: ViewByIDPetitionComponent},
   {path: 'manage/:id', component: ManagePetitionComponent},
-  {path: 'profile/:email', component: UserPetitionComponent}
+  {path: 'profile', component: UserPetitionComponent}
 ];
 
 
