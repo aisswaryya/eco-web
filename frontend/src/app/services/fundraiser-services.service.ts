@@ -56,8 +56,10 @@ export class FundraiserServicesService {
     });
   }
 
-  deleteFundraiser(id: string) {
-    return this.http.delete(`${this.fundraiserResourceUrl}/${id}`);
+  deleteFundraiser(id: string, accessToken: string) {
+    return this.http.delete(`${this.fundraiserResourceUrl}/${id}`, {
+      headers: new HttpHeaders().set('Authorization', `Bearer ${accessToken}`)
+    });
   }
 
 }

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Fundraiser} from '../models/fundraiser';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FundraiserServicesService} from '../services/fundraiser-services.service';
 import {DonationServicesService} from '../services/donation-services.service';
+import {AuthService} from '../auth/auth.service';
+import {ConfirmationDialogueService} from '../services/confirmation-dialogue.service';
 
 @Component({
   selector: 'app-my-fundraiser-detail',
@@ -16,7 +18,10 @@ export class MyFundraiserDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private fundraiserService: FundraiserServicesService,
-              private donationService: DonationServicesService) {
+              private donationService: DonationServicesService,
+              private router: Router,
+              public authService: AuthService,
+              private confirmationDialogService: ConfirmationDialogueService) {
     this.fundraiserId = route.snapshot.paramMap.get('id');
   }
 
@@ -43,4 +48,20 @@ export class MyFundraiserDetailComponent implements OnInit {
     });
   }
 
+  deleteFundraiser() {
+    this.fundraiserService.deleteFundraiser(this.fundraiserId, this.authService.accessToken).subscribe(data => {
+      console.log(data);
+      this.router.navigate(['/my-fundraisers-list']);
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  openConfirmationDialog() {
+    this.confirmationDialogService.confirm('Delete Fundraiser!', 'Are you sure  ?')
+      .then((confirmed) => this.deleteFundraiser())
+      .catch(() => console.log('User Cancelled'));
+  }
+
 }
+

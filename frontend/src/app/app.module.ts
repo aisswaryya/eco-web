@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { FundraiserListComponent } from './fundraiser-list/fundraiser-list.component';
 import { FundraiserDetailComponent } from './fundraiser-detail/fundraiser-detail.component';
 import { MyFundraiserListComponent } from './my-fundraiser-list/my-fundraiser-list.component';
-import { MyFundraiserDetailComponent } from './my-fundraiser-detail/my-fundraiser-detail.component';
+import { MyFundraiserDetailComponent} from './my-fundraiser-detail/my-fundraiser-detail.component';
 import { FundraiserCreateComponent } from './fundraiser-create/fundraiser-create.component';
 import { DonationCreateComponent } from './donation-create/donation-create.component';
 import { MyDonationsListComponent } from './my-donations-list/my-donations-list.component';
@@ -32,6 +32,9 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {SignatureService} from './services/signature.service';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { EditFundraiserComponent } from './edit-fundraiser/edit-fundraiser.component';
+import { ConfirmationDialogueComponent } from './confirmation-dialogue/confirmation-dialogue.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {ConfirmationDialogueService} from './services/confirmation-dialogue.service';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,8 @@ import { EditFundraiserComponent } from './edit-fundraiser/edit-fundraiser.compo
     NotFoundComponent,
     ServerErrorComponent,
     MyProfileComponent,
-    EditFundraiserComponent
+    EditFundraiserComponent,
+    ConfirmationDialogueComponent
     ],
   imports: [
     BrowserModule,
@@ -69,14 +73,17 @@ import { EditFundraiserComponent } from './edit-fundraiser/edit-fundraiser.compo
       key: 'FLWPUBK_TEST-15175d68b5f7a725f15d52f5c1d5316e-X',
       isTest: true,
     }),
+    NgbModule
   ],
   providers: [
     DonationServicesService,
     FundraiserServicesService,
     AuthService,
     PetitionService,
-    SignatureService
+    SignatureService,
+    ConfirmationDialogueService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ ConfirmationDialogueComponent ]
 })
 export class AppModule { }

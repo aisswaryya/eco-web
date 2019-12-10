@@ -1,4 +1,6 @@
 <app-nav-bar></app-nav-bar>
+<button [routerLink]="['/edit-fundraiser', this.fundraiser.id]">Edit</button>
+<button mat-button (click)="openConfirmationDialog()">Delete</button>
 <div class="container" *ngIf="fundraiser">
     <form>
         <fieldset disabled="disabled">
@@ -69,9 +71,6 @@
         </fieldset>
     </form>
 </div>
-
-<button [routerLink]="['/edit-fundraiser', fundraiser.id]">Edit</button>
-<button>Delete</button>
 
 <h1>Donors List</h1>
 <table>
