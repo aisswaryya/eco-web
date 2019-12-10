@@ -9,7 +9,11 @@ export class MyEventsComponent implements OnInit {
 
   isMyEvents: string = "myEvents";
 
-  constructor() { }
+  constructor() { 
+
+    console.log("My event component:"+this.isMyEvents);
+
+  }
 
   ngOnInit() {
   }

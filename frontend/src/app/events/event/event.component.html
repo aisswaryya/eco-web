@@ -7,14 +7,17 @@
 
 <h4>Address: {{ event.venue}}</h4>
 
-<div *ngIf = "isMyEvents === 'undefined'">
+<h4>Hosted by: {{ event.hostName}}</h4>
+
+
+<div *ngIf = "isMyEvents === undefined">
 
 <!--Button adding an attendee-->
 <button (click) = "addAttendee(event)">Attend this event!</button>
 
 </div>
 
-<div *ngIf = "isMyEvents !== 'undefined'">
+<div *ngIf = "isMyEvents !== undefined">
 
     <!--Button adding an attendee-->
     <button (click) = "addAttendee(event)">Cancel event!</button>

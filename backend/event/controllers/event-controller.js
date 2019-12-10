@@ -26,6 +26,8 @@ exports.list = function (request, response) {
 
     if(request.query.attendeeEmailId !== undefined){    
 
+        console.log(request.query.attendeeEmailId);
+
         //search based on eventId
         console.log('Searching Events by Attendee Email Id');
         eventService.findByAttendeeEmail(request.query.attendeeEmailId)

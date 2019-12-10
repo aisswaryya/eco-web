@@ -23,7 +23,9 @@ const routes: Routes = [
   { path: 'fundraiser-detail/:id', component: FundraiserDetailComponent },
   { path: 'fundraiser-create', component: FundraiserCreateComponent, canActivate: [ AuthGuard ]},
   { path: 'event-create', component: EventCreateComponent, canActivate: [ AuthGuard ]},
-  { path: 'event-list', component: EventViewComponent, canActivate: [ AuthGuard ]},
+  { path: 'event-list', component: EventViewComponent
+  // , canActivate: [ AuthGuard ]
+},
   { path: 'my-event-list', component: MyEventsComponent, canActivate: [ AuthGuard ]},
 
   { path: 'my-fundraisers-list', component: MyFundraiserListComponent, canActivate: [AuthGuard]},

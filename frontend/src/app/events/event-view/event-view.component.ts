@@ -41,32 +41,37 @@ export class EventViewComponent implements OnInit {
     //Injecting the event service
     this.eventService = eventService;
 
+    console.log("The parameter passed::" + this.isMyEvents);
+
+    console.log(this.events);
+  }
+
+  ngOnInit() {
     console.log(this.isMyEvents);
 
-    if(this.isMyEvents !== 'undefined'){
+    if(this.isMyEvents !== undefined){
     
+      console.log("Fetching Events by created EmailId");
+
       //Getting all events based on emailId
       let eventsObs$: Observable<Array<Event>> = 
-        eventService.getEventByAttendeeEmailId(authService.userProfile.email);
+        this.eventService.getEventByAttendeeEmailId(this.authService.userProfile.email);
       eventsObs$.subscribe(events => {
         this.events = events;
       });
 
     } else {
 
+      console.log("Fetching all Events");
+
       //Getting all events
-      let eventsObs$: Observable<Array<Event>> = eventService.getEvents();
+      let eventsObs$: Observable<Array<Event>> = this.eventService.getEvents();
       eventsObs$.subscribe(events => {
         this.events = events;
       });
 
     }
 
-    console.log(this.events);
-  }
-
-  ngOnInit() {
-    console.log(this.eventService.getEvents());
   }
 
   /**

@@ -109,15 +109,7 @@ let Event = new Schema({
         type: Date,
         default: Date.now
     },
-
-
-    /**
-     * Wheelchair accessible
-     */
-    isWheelchair: {
-        type: Boolean,
-        default: false
-    },
+    
 
     /**
      * Name of the host who initialized the event

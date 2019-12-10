@@ -5,35 +5,41 @@ import { LatLng } from 'ngx-google-places-autocomplete/objects/latLng';
  */
 export class Event {
 
+    //Id used to add into the attendee
     _id: string;
+
+    //name of the event
     name: string;
+
+    //cause of the event
     cause: string;
+
+    //venue of the event passed by google maps api
     venue: string;
+
+    //lat provided by google maps api
     lat: Number;
+
+    //lng provided by google maps api
     lng: Number;
-    city: string;
-    state: string;
-    country: string;
-    zip: string;
+
+    //description of the event
     description: string;
+
+    //status of the event
     status: string;
 
+    //email id of the creator
+    creatorEmailId: string;
+
+    // of the creator
     hostName: string;
-
-    creatorEmail: string;
-
 
     //The date object holding the event date information
     dateOfEvent: Date;
+
+    //max number of attendees for this event
     maxAttendees: Number;
-
-    /**
-     * Attendees array storing all the attendees for this event
-     */
-    attendees: [];
-
-    isWheelchair: Boolean;
-    isPrivate: Boolean;
     
     /**
      * The default hour and minutes

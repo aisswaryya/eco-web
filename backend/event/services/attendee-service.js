@@ -2,7 +2,7 @@
 //mongoose for db
 const mongoose = require('mongoose');
 require('../models/attendee.js');
-let Attendee = mongoose.model('attendee');
+const Attendee = mongoose.model('attendee');
 
 
 // /**

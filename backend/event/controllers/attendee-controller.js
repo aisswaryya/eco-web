@@ -10,11 +10,7 @@ exports.post = function (request, response) {
         response.status(200);
         response.json(attendee);
     };
-
-    // //Updating the attendee count in the event Object
-    // addAttendeeCount(request.body.eventId);
     
-
     attendeeService.save(newAttendee)
         .then(resolve)
         .catch(renderErrorResponse(response));

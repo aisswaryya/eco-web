@@ -50,9 +50,11 @@ export class EventCreateComponent implements OnInit {
    */
   postData(){
 
-    console.log(this.eventModel.time);
+    this.eventModel.creatorEmailId = this.authService.userProfile.email;
 
-    this.eventModel.creatorEmail = this.authService.userProfile.email;
+    this.eventModel.hostName = this.authService.userProfile.name;
+
+    console.log(this.authService.userProfile);
 
     let newEvent$: Observable<Event> = this.eventService.createEvent(this.eventModel);
     newEvent$.subscribe(newEvent => {

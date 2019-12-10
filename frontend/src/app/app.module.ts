@@ -38,7 +38,6 @@ import {NgbModule , NgbDateAdapter, NgbDateNativeAdapter} from '@ng-bootstrap/ng
 import { AgmCoreModule } from '@agm/core';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { DlDateTimeDateModule, DlDateTimePickerModule } from 'angular-bootstrap-datetimepicker';
-import { EventHomeComponent } from './events/event-home/event-home.component';
 import { EventCreateComponent } from './events/event-create/event-create.component';
 import { EventService } from './events/services/event.service';
 import { EventViewComponent } from './events/event-view/event-view.component';
@@ -46,6 +45,7 @@ import { EventComponent } from './events/event/event.component';
 import { AttendeeService } from './events/services/attendee.service';
 import { MyeventsComponent } from './event/myevents/myevents.component';
 import { MyEventsComponent } from './events/my-events/my-events.component';
+import { AttendeeComponent } from './events/attendee/attendee.component';
 
 
 
@@ -69,15 +69,12 @@ import { MyEventsComponent } from './events/my-events/my-events.component';
     NotFoundComponent,
     ServerErrorComponent,
     MyProfileComponent,
-    
-    
-    EventHomeComponent,
     EventCreateComponent,
     EventViewComponent,
     EventComponent,
-    MyEventsComponent
-
-    EditFundraiserComponent
+    MyEventsComponent,
+    EditFundraiserComponent,
+    AttendeeComponent
     ],
   imports: [
     BrowserModule,
