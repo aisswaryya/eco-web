@@ -1,3 +1,67 @@
+//background color
+
+.bgimg {
+  background-image: url('../../../assets/nathan-anderson-PdPKIkd1L9g-unsplash.jpg');
+
+  /* Half height */
+  height: 100%;
+
+  /* Center and scale the image */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+
+  
+  //progressbar 
+  .progressbar-custom{
+    width:400px;
+     float:right;
+  }
+
+ 
+
+  
+
+
+//filter customization
+::ng-deep .mat-focused .mat-form-field-label{
+  /*change color of label*/
+  color:white !important;
+ }
+
+ ::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: white !important;
+} 
+
+::ng-deep.mat-drawer-container {
+  background-color: white !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+ /*change color of underline when focused*/
+ background-color:white !important;
+}
+
+
+::ng-deep.mat-table  {
+  background-color: transparent !important;
+
+}
+
+::ng-deep.mat-table tbody {
+  background-color: transparent !important;
+ opacity:none !important;
+}
+
+
+
+mat-label {
+  color: white;
+}
+
+
 .mat-paginator {
     display: flex;
     justify-content: flex-end;
@@ -30,24 +94,6 @@
     background-size:cover;
   }
 
-  
-//testing background image
-  .testclass {
-    float: right;
- }
- 
- .bgimg {
-  //float: right;
-    // background: url('../../../assets/foxDead.jpg') no-repeat center center fixed;
-
-     /* The image used */
-  background-image: url('../../../assets/foxDead.jpg');
-
-  /* Half height */
-  height: 100%;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  th, input{
+    color: white;
   }

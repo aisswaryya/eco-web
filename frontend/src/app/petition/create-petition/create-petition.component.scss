@@ -9,3 +9,15 @@ mat-card-title{
 .mat-input{
     text-decoration-color: whitesmoke;
 }
+
+.bgimg {
+    background: url('../../../assets//michael-benz--IZ2sgQKIhM-unsplash.jpg') ;
+    // background: url('../../../assets//michael-benz--IZ2sgQKIhM-unsplash.jpg') no-repeat center center fixed;
+    /* Half height */
+  height: 100%;
+
+  /* Center and scale the image */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+ }

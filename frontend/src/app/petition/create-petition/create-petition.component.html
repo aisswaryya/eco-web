@@ -1,5 +1,6 @@
-<section fxLayout="row wrap" fxLayoutAlign="center center" >
+<section  class="bgimg" fxLayout="row wrap" fxLayoutAlign="center center" >
     <mat-card fxFlex="500px" fxFlex.xs="100%">
+      
       <mat-card-title>Create a new petition</mat-card-title>
       <form [formGroup]="createPetitionForm" autocomplete="off" novalidate (ngSubmit)="createPetition(createPetitionForm.value)" fxLayout="column wrap"
         fxLayoutAlign="center center" fxLayoutGap="10px">
@@ -12,72 +13,77 @@
   
           <mat-form-field>
             <input matInput type="text" placeholder="Petition Title" formControlName="title" id="title mat-input">
-            <!-- <mat-hint align="end">Not more then 60 characters long.</mat-hint> -->
             <mat-error *ngIf="hasError('title', 'required')">Title is required</mat-error>
-            <mat-error *ngIf="hasError('title', 'maxlength')">You have more than 60 characters</mat-error>
+            <mat-error *ngIf="hasError('title', 'maxlength')">Not more than 200 characters</mat-error>
           </mat-form-field>
 
           <mat-form-field>
             <input matInput type="text" placeholder="Target" formControlName="target" id="target">
-            <mat-hint align="end">Not more then 60 characters long.</mat-hint>
             <mat-error *ngIf="hasError('target', 'required')">Target is required</mat-error>
-            <mat-error *ngIf="hasError('target', 'maxlength')">You have more than 60 characters</mat-error>
+            <mat-error *ngIf="hasError('target', 'maxlength')">You have more than 200 characters</mat-error>
           </mat-form-field>
   
   
           <mat-form-field>
             <input matInput type="text" placeholder="Short Description" formControlName="shortdescription" id="shortdescription">
-            <mat-hint align="end">Not more then 30 characters long.</mat-hint>
             <mat-error *ngIf="hasError('shortdescription', 'required')">Description is required</mat-error>
+            <mat-error *ngIf="hasError('shortdescription', 'maxlength')">You have more than 200 characters</mat-error>
           </mat-form-field>
   
           <mat-form-field>
             <input matInput type="text" placeholder="Brief Description" formControlName="briefdescription" id="briefdescription">
-            <mat-hint align="end">Not more then 400 characters long.</mat-hint>
             <mat-error *ngIf="hasError('briefdescription', 'required')">Description is required</mat-error>
+            <mat-error *ngIf="hasError('briefdescription', 'maxlength')">You have more than 1000 characters</mat-error>
           </mat-form-field>
 
           <mat-form-field>
             <input matInput type="text" placeholder="Email" formControlName="email" id="email">
-            <mat-hint align="end">Not more then 30 characters long.</mat-hint>
             <mat-error *ngIf="hasError('email', 'required')">Email is required</mat-error>
+            <mat-error *ngIf="hasError('email', 'maxlength')">You have more than 200 characters</mat-error>
           </mat-form-field>
 
           <mat-form-field>
             <input matInput type="text" placeholder="Mediapath" formControlName="mediapath" id="mediapath">
-            <mat-hint align="end">Not more then 60 characters long.</mat-hint>
-            <!-- <mat-error *ngIf="hasError('mediapath', 'required')">Mediapath is required</mat-error>  -->
-         </mat-form-field>
+            <mat-error *ngIf="hasError('mediapath', 'maxlength')">You have more than 200 characters</mat-error>
+                     </mat-form-field>
 
          <mat-form-field>
             <mat-select placeholder="Category" formControlName="category" id="category">
                <mat-option>None</mat-option>
                <mat-option value="Deforestation">Deforestation</mat-option>
-               <mat-option value="GlobalWarming">Global Warming</mat-option>
-               <mat-option value="MarineEcosystem">Marine Ecosystem</mat-option>
-               <mat-option value="PublicHealthIssue">Public Health Issue</mat-option>
-               <mat-option value="HouseholdWaste">Household Waste</mat-option>
+               <mat-option value="Global Warming">Global Warming</mat-option>
+               <mat-option value="Marine Ecosystem">Marine Ecosystem</mat-option>
+               <mat-option value="Public Health Issue">Public Health Issue</mat-option>
+               <mat-option value="Household Waste">Household Waste</mat-option>
                <mat-option value="Industrial Waste">Industrial Waste</mat-option>
-               <mat-option value="NuclearIssue">Nuclear Issue</mat-option>
-               <mat-option value="MedicalWaste">Medical Waste</mat-option>
-               <mat-option value="FoodSafety">Food Safety</mat-option>
+               <mat-option value="Nuclear Waste">Nuclear Issue</mat-option>
+               <mat-option value="Medical Waste">Medical Waste</mat-option>
+               <mat-option value="Food Safety">Food Safety</mat-option>
                <mat-option value="Land Use">Land Use</mat-option>
                <mat-option value="Mining">Mining</mat-option>
                <mat-option value="Wildlife">Wildlife</mat-option>
-               <mat-option value="GeneticModification">Genetic Modification</mat-option>
+               <mat-option value="Genetic Modification">Genetic Modification</mat-option>
                <mat-option value="Landfill">Landfill</mat-option>
-               <mat-option value="Other">Other</mat-option>
+               <mat-option value="Others">Others</mat-option>
              </mat-select>
              <mat-error *ngIf="hasError('category', 'required')">Category is required</mat-error>
            </mat-form-field> 
 
          <mat-form-field>
           <input matInput type="text" placeholder="Created by" formControlName="createdby" id="createdBy">
-          <mat-hint align="end">Not more then 30 characters long.</mat-hint>
           <mat-error *ngIf="hasError('createdby', 'required')">Created by is required</mat-error> 
+          <mat-error *ngIf="hasError('mediapath', 'createdBy')">You have more than 200 characters</mat-error>
        </mat-form-field> 
-
-       
+    
+       <!-- <mat-form-field>
+        <input matInput value="Disco party!" placeholder="Message" #message>
+      </mat-form-field> -->
+      
+      <!-- <mat-form-field>
+        <input matInput value="Dance" placeholder="Action" #action>
+      </mat-form-field> -->
+      
+      <!-- <button mat-button (click)="openSnackBar(message.value, action.value)">Show snack-bar</button> -->
 
         </mat-card-content>
         <mat-card-actions align="center">
@@ -85,5 +91,7 @@
           <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
         </mat-card-actions>
       </form>
+    
     </mat-card>
+  
   </section>

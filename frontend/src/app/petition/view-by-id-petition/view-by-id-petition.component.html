@@ -1,4 +1,4 @@
-<section id="mat-card" fxLayout="row wrap" fxLayoutAlign="center center">
+<section  class="bgimg" id="mat-card" fxLayout="row wrap" fxLayoutAlign="center center">
     <mat-card fxFlex="1000px" fxFlex.xs="100%">
 
        
@@ -22,10 +22,12 @@
             </iframe> -->
            </div>
           </mat-card-content>
-          <mat-card-actions>
-              <button mat-flat-button color="accent" (click)="signPetition()">Sign this petition</button>
-            </mat-card-actions>
+   
+            <div>
+              <button mat-flat-button class="button-custom" color="primary" (click)="signPetition()">Sign this petition</button>
+            </div>
         </mat-card>
+        
 
         
 
