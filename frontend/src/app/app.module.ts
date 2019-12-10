@@ -7,7 +7,6 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SocialFeedListComponent } from './social-feed/social-feed-list/social-feed-list.component';
-import { SocialFeedDetailComponent } from './social-feed/social-feed-detail/social-feed-detail.component';
 import { SocialFeedCreateUpdateComponent } from './social-feed/social-feed-create-update/social-feed-create-update.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from "@angular/material/dialog";
@@ -41,13 +40,13 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {SignatureService} from './services/signature.service';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { EditFundraiserComponent } from './edit-fundraiser/edit-fundraiser.component';
+import { DateAgoPipe } from './helpers/pipes/date-ago.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     SocialFeedListComponent,
-    SocialFeedDetailComponent,
     SocialFeedCreateUpdateComponent,
     BlogDetailComponent,
     BlogsListComponent,
@@ -68,7 +67,8 @@ import { EditFundraiserComponent } from './edit-fundraiser/edit-fundraiser.compo
     NotFoundComponent,
     ServerErrorComponent,
     MyProfileComponent,
-    EditFundraiserComponent
+    EditFundraiserComponent,
+    DateAgoPipe
   ],
   imports: [
     BrowserModule,
