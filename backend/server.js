@@ -1,6 +1,7 @@
 let express = require('express'),
     app = express(),
     port = process.env.PORT || 3000,
+    cors = require('cors'),
     mongoose = require('mongoose'), //created model loading here
     bodyParser = require('body-parser');
 
@@ -25,17 +26,17 @@ app.use(bodyParser.json({
 //Enabling CORS
 app.use(function (req, res, next) { //next is a function that calls next middleware function;
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+    res.header("Access-Control-Allow-Headers", "*");
+    res.header("Access-Control-Allow-Methods", "*");
     next();
 });
 
-app.get('/',function(req,res){
-    res.sendFile(__dirname+'/index.html');
-})
+// app.get('/',function(req,res){
+//     res.sendFile(__dirname+'/index.html');
+// })
 
 //Initialize app
-let initApp = require('./social-feed/app');
+let initApp = require('./app/app');
 initApp(app);
 
 app.listen(port);
