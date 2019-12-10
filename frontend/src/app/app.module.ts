@@ -11,7 +11,7 @@ import { SocialFeedDetailComponent } from './social-feed/social-feed-detail/soci
 import { SocialFeedCreateUpdateComponent } from './social-feed/social-feed-create-update/social-feed-create-update.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from "@angular/material/dialog";
-import { SocialFeedService } from "./social-feed/social-feed.service";
+import { SocialFeedService } from "./services/social-feed.service";
 import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 import { BlogsListComponent } from './blogs-list/blogs-list.component';
 import { SharedModule} from './shared/shared.module';

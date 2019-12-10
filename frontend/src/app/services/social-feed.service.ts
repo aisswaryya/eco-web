@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from './../../environments/environment';
+import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
-import { SocialFeed } from "../social-feed/models/social-feed-model";
+import { SocialFeed } from "../models/social-feed-model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SocialFeedService {
 
-  private socialfeed: string;
   private socialfeedURl: string;
+  private baseUrl: string;
+  private socialfeedResource: string;
 
   constructor(private http: HttpClient) { 
-    this.socialfeed = 'socialfeed';
-    this.socialfeedURl = `${environment.serverBaseURL}/${this.socialfeed}`;
+    this.baseUrl = 'v1/eco';
+    this.socialfeedResource = 'socialfeeds';
+    this.socialfeedURl = `${environment.serverBaseURL}/${this.baseUrl}/${this.socialfeedResource}`;
   }
   /**
    * Returns all social feed items.

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { SocialFeedCreateUpdateComponent } from "../social-feed-create-update/social-feed-create-update.component";
 import { MatDialog } from '@angular/material';
-import { SocialFeedService } from '../social-feed.service';
+import { SocialFeedService } from '../../services/social-feed.service';
 import { Observable } from "rxjs";
-import { SocialFeed } from "../models/social-feed-model";
+import { SocialFeed } from "../../models/social-feed-model";
 
 @Component({
   selector: 'app-social-feed-list',

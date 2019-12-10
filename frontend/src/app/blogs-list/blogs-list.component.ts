@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BlogService } from "./blog.service";
+import { BlogService } from "../services/blog.service";
 import { Observable } from "rxjs";
-import { Blog } from "./models/blog-model";
+import { Blog } from "../models/blog-model";
 import { Router } from '@angular/router';
 
 @Component({

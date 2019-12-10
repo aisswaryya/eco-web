@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { SocialFeed } from '../models/social-feed-model';
-import { SocialFeedService } from '../social-feed.service';
+import { SocialFeed } from '../../models/social-feed-model';
+import { SocialFeedService } from '../../services/social-feed.service';
 import { FormBuilder, FormControl, Validators, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -10,7 +10,7 @@ import { FormBuilder, FormControl, Validators, FormGroup, NG_VALUE_ACCESSOR } fr
   styleUrls: ['./social-feed-create-update.component.scss']
 })
 export class SocialFeedCreateUpdateComponent implements OnInit {
-  
+
 /**
  *Creates an instance of SocialFeedCreateUpdateComponent.
  * @param {SocialFeed} data
