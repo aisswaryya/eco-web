@@ -3,7 +3,7 @@ import { Petition } from '../../model/petition.model';
 import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PetitionService } from '../../service/petition.service';
+import { PetitionService } from '../../services/petition.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -14,10 +14,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class UpdatePetitionComponent implements OnInit {
   public updatePetitionForm: FormGroup;
   public petition: Petition = new Petition  ();
-  public petitionId: string 
-  
+  public petitionId: string
+
     constructor(private location: Location,private petitionService: PetitionService,private  router: Router, private dialog: MatDialog,private activeRoute: ActivatedRoute) { }
-  
+
     ngOnInit() {
       this.updatePetitionForm = new FormGroup({
         title: new FormControl('', [Validators.required, Validators.maxLength(60)]),
@@ -30,21 +30,21 @@ export class UpdatePetitionComponent implements OnInit {
         createdby:new FormControl('', [Validators.required,Validators.maxLength(30)])
 
       });
-       
-      
+
+
      this.getPetitionById();
     }
-  
+
     public hasError = (controlName: string, errorName: string) => {
       return this.updatePetitionForm.controls[controlName].hasError(errorName);
     }
-  
+
     public onCancel = () => {
       this.location.back();
     }
-  
-      
-    
+
+
+
     public updatePetition = (updatePetitionFormValue) => {
       if (this.updatePetitionForm.valid) {
         this.executePetitionUpdation(updatePetitionFormValue);
@@ -60,8 +60,8 @@ export class UpdatePetitionComponent implements OnInit {
         this.updatePetitionForm.patchValue(this.petition);
       });
     }
-         
-    
+
+
     private executePetitionUpdation = (updatePetitionFormValue) => {
       console.log("Petition Title - "+ updatePetitionFormValue.title);
       this.petition.title = updatePetitionFormValue.title;
@@ -72,8 +72,8 @@ export class UpdatePetitionComponent implements OnInit {
       this.petition.email = updatePetitionFormValue.email;
       this.petition.category = updatePetitionFormValue.category;
       this.petition.createdby = updatePetitionFormValue.createdby;
-    
-      
+
+
       console.log(this.petition);
       console.log(this.petitionId);
       console.log(JSON.stringify(this.petition));
@@ -85,4 +85,3 @@ export class UpdatePetitionComponent implements OnInit {
 
     }
   }
-  

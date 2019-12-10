@@ -3,7 +3,7 @@ import { Petition } from '../../model/petition.model';
 import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PetitionService } from '../../service/petition.service';
+import { PetitionService } from '../../services/petition.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class CreatePetitionComponent implements OnInit {
     public createPetitionForm: FormGroup;
-  
+
     constructor(private  router: Router,private location: Location, private petitionService: PetitionService, private dialog: MatDialog) { }
     // initialize form group
     ngOnInit() {
@@ -28,11 +28,11 @@ export class CreatePetitionComponent implements OnInit {
         createdby:new FormControl('', [Validators.required,Validators.maxLength(30)])
       });
     }
-  
+
     public hasError = (controlName: string, errorName: string) => {
       return this.createPetitionForm.controls[controlName].hasError(errorName);
     }
-  
+
     public onCancel = () => {
       this.location.back();
     }
@@ -42,7 +42,7 @@ export class CreatePetitionComponent implements OnInit {
         this.executePetitionCreation(petitionFormValue);
       }
     }
-      
+
     private executePetitionCreation = (petitionFormValue) => {
       let petition: Petition = {
         _id:'',
@@ -64,9 +64,9 @@ export class CreatePetitionComponent implements OnInit {
           this.router.navigate(["petition/list"]);
         });
 
-  
+
       }
-  
+
   }
-   
- 
+
+
