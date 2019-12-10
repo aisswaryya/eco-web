@@ -18,9 +18,17 @@ exports.list = function (request, response) {
         response.status(200);
         response.json(socialfeeds);
     };
-    socialfeedService.search({})
+    
+    if( request.query.emailId !== undefined ) {
+        console.log('Search by Email Id');
+        socialfeedService.search('emailId', request.query.emailId)
+            .then(resolve)
+            .catch(renderErrorResponse(response));
+    } else {
+        socialfeedService.search({})
         .then(resolve)
         .catch(renderErrorResponse(response));
+    };
 };
 
 /**

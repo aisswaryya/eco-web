@@ -7,13 +7,20 @@ const mongoose = require('mongoose'),
     Socialfeed = mongoose.model('socialfeeds'); 
 
 /**
- * Returns an array of socialfeed object matching the search parameters.
- *
- * @param {Object} params {Search parameters}
+ * 
+ * @param {Object} searchBy {Search parameters}
+ * @param {String} value {Search parameters}
+ * 
  */
-exports.search = function (params) {
-    const promise = Socialfeed.find(params).sort({createdDate: 'descending'}).exec();
-    return promise;
+exports.search = function (searchBy, value) {
+    if(searchBy === 'emailId') {
+        const promise = Socialfeed.find({emailId: value}).sort({createdDate: 'descending'}).exec();
+        return promise;
+    }
+    else {
+        const promise = Socialfeed.find().sort({createdDate: 'descending'}).exec();
+        return promise;
+    }
 };
 
 /**
