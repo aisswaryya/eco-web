@@ -1,5 +1,5 @@
-import { PetitionService } from './../../service/petition.service';
-import { SignatureService } from './../../service/signature.service';
+import { PetitionService } from './../../services/petition.service';
+import { SignatureService } from './../../services/signature.service';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { Petition } from '../../model/petition.model';

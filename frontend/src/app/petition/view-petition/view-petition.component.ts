@@ -4,7 +4,7 @@ import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { Petition } from '../../model/petition.model';
 import { ErrorHandlerService } from '../../shared/error-handler.service';
 import { Router } from '@angular/router';
-import { SignatureService } from 'src/app/service/signature.service';
+import { SignatureService } from 'src/app/services/signature.service';
 
 @Component({
   selector: 'app-view-petition',

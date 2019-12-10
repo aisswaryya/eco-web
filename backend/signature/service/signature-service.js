@@ -7,7 +7,7 @@
  *
  * @type {Mongoose}
  */
-const Signature= require('../../signature/model/signature.model.js/index.js');
+const Signature= require('../../signature/model/signature.model');
 /**
  * Saves and returns the new signature object.
  *

@@ -1,4 +1,4 @@
-const Signature= require('../model/signature.model.js/index.js');
+const Signature= require('../model/signature.model');
 
 /**
  * Import Signature services
