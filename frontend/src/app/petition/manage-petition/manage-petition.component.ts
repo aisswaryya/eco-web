@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';// to fetch the pathparameter ID
-import { Petition } from '../../model/petition.model';// traversing petition obj 
-import { PetitionService } from '../../service/petition.service'; // to call HTTP Client
+import { Petition } from '../../model/petition.model';// traversing petition obj
+import { PetitionService } from '../../services/petition.service'; // to call HTTP Client
 import { Router } from '@angular/router';// to navigate between various component
 import { Signature } from 'src/app/model/signature.model';
-import { SignatureService } from 'src/app/service/signature.service';
+import { SignatureService } from 'src/app/services/signature.service';
 
 
 @Component({
@@ -15,7 +15,7 @@ import { SignatureService } from 'src/app/service/signature.service';
 export class ManagePetitionComponent implements OnInit {
   public petition: Petition;
   public signature: Signature =new Signature();
-  
+
   public petitionId: String;
   //for dependency injection from other class
    constructor( private signatureService:SignatureService,private router: Router,private petitionService:PetitionService,private activateRoute:ActivatedRoute) { }
@@ -46,4 +46,4 @@ public redirectToUpdate = () => {
   this.router.navigate([url]);
 }
 
- } 
+ }

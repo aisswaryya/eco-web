@@ -26,11 +26,12 @@ import { SidenavListComponent }from './navigation/sidenav-list/sidenav-list.comp
 import { LayoutComponent } from './layout/layout.component';
 import { NotFoundComponent} from './error-pages/not-found/not-found.component';
 import { ServerErrorComponent } from './error-pages/server-error/server-error.component';
-import {PetitionService} from './service/petition.service';
+import {PetitionService} from './services/petition.service';
 // @ts-ignore
 import {MatBadgeModule} from '@angular/material/badge';
-import {SignatureService} from './service/signature.service';
+import {SignatureService} from './services/signature.service';
 import { MyProfileComponent } from './my-profile/my-profile.component';
+import { EditFundraiserComponent } from './edit-fundraiser/edit-fundraiser.component';
 
 
 import {NgbModule , NgbDateAdapter, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
@@ -76,6 +77,7 @@ import { MyEventsComponent } from './events/my-events/my-events.component';
     EventComponent,
     MyEventsComponent
 
+    EditFundraiserComponent
     ],
   imports: [
     BrowserModule,

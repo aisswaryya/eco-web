@@ -16,6 +16,7 @@ import { EventCreateComponent } from './events/event-create/event-create.compone
 import { EventViewComponent } from './events/event-view/event-view.component';
 import { MyEventsComponent } from './events/my-events/my-events.component';
 
+import {EditFundraiserComponent} from './edit-fundraiser/edit-fundraiser.component';
 
 const routes: Routes = [
   { path: 'fundraiser-list', component: FundraiserListComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
 
   { path: 'my-fundraisers-list', component: MyFundraiserListComponent, canActivate: [AuthGuard]},
   { path: 'my-fundraiser-detail/:id', component: MyFundraiserDetailComponent, canActivate: [ AuthGuard ] },
+  { path: 'edit-fundraiser/:id', component: EditFundraiserComponent, canActivate: [AuthGuard]},
   { path: 'donate/:id', component: DonationCreateComponent, canActivate: [ AuthGuard ] },
   { path: 'my-donations-list', component: MyDonationsListComponent, canActivate: [ AuthGuard ] },
   { path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuard ]},
