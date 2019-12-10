@@ -32,8 +32,8 @@ const routes: Routes = [
   { path: '404', component: NotFoundComponent },
   { path: '500', component: ServerErrorComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', redirectTo: '/404', pathMatch: 'full' },
-  { path: 'socialfeeds', component: SocialFeedListComponent },
+  // { path: '**', redirectTo: '/404', pathMatch: 'full' },
+  { path: 'socialfeeds', component: SocialFeedListComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomePageComponent },
   { path: 'blog-detail', component: BlogDetailComponent },
 ];

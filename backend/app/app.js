@@ -8,12 +8,12 @@ module.exports = function (app) {
     //Initialize models
     let fundraiserModels = require('../fundraisers/models/fundraiser-models');
     let donationModels = require('../donation/models/donation-models');
-    let socialfeedModel = require('./models/socialfeed');
+    let socialfeedModel = require('../social-feed/models/socialfeed');
 
     //Initialize routes
     let fundraiserRoutes = require('../fundraisers/routes/fundraiser-routes');
     let donationRoutes = require('../donation/routes/donation-routes');
-    let socialfeedRoutes = require('./routes/socialfeed-route');
+    let socialfeedRoutes = require('../social-feed/routes/socialfeed-route');
 
     fundraiserRoutes(app);
     donationRoutes(app);
