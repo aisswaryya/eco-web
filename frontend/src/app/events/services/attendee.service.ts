@@ -3,8 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 
 import { Attendee } from '../models/attendee';
-import { Event } from '../models/event';
-
 
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
@@ -43,6 +41,7 @@ export class AttendeeService {
    */
   createAttendee(attendee: Attendee = null): Observable<Attendee> {
     console.log(this.attendeeResourceURL);
+    console.log(attendee);
     return this.http.post<Attendee>(this.attendeeResourceURL, attendee);
   }
 
@@ -64,5 +63,4 @@ export class AttendeeService {
   getAttendeesByEmailId(emailId : string): Observable<Array<Attendee>> {
     return this.http.get<Array<Attendee>>(`${this.attendeeResourceURL}/?emailId=${emailId}`);
   }
-
 }

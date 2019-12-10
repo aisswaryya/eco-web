@@ -24,9 +24,21 @@ exports.list = function (request, response) {
         response.json(events);
     };
 
-    eventService.find()
+    if(request.query.attendeeEmailId !== undefined){    
+
+        //search based on eventId
+        console.log('Searching Events by Attendee Email Id');
+        eventService.findByAttendeeEmail(request.query.attendeeEmailId)
+            .then(resolve)
+            .catch(renderErrorResponse(response));
+
+    } else {
+        eventService.find()
         .then(resolve)
         .catch(renderErrorResponse(response));
+    }
+
+
 };
 
 

@@ -42,6 +42,9 @@ import { EventCreateComponent } from './events/event-create/event-create.compone
 import { EventService } from './events/services/event.service';
 import { EventViewComponent } from './events/event-view/event-view.component';
 import { EventComponent } from './events/event/event.component';
+import { AttendeeService } from './events/services/attendee.service';
+import { MyeventsComponent } from './event/myevents/myevents.component';
+import { MyEventsComponent } from './events/my-events/my-events.component';
 
 
 

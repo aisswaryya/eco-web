@@ -74,17 +74,27 @@ export class EventService {
 
   //--------------------------------------------------------------------------
 
+  
+  /**
+   * Returns all the Events based on attendee Email Id.
+   *
+   * @return {Observable<Array<Attendee>>} {Observable attendee array of single event}
+   */
+  getEventByAttendeeEmailId(emailId : string): Observable<Array<Event>> {
+    return this.http.get<Array<Event>>(`${this.eventResourceURL}/?attendeeEmailId=${emailId}`);
+  }
+
   /**
    * 
    * @param event : Removes this particular Event object
    */
   completeEvent(event : Event) : Observable<Event> {
 
-    console.log(this.eventResourceURL+"/"+event.id);
+    console.log(this.eventResourceURL+"/"+event._id);
 
     event.status = EventStatus.COMPLETED;
 
-    return this.http.put<Event>(this.eventResourceURL+"/"+event.id,event);
+    return this.http.put<Event>(this.eventResourceURL+"/"+event._id,event);
   }
 
   /**
@@ -93,8 +103,8 @@ export class EventService {
    */
   editEvent(event : Event) : Observable<Event> {
 
-    console.log(this.eventResourceURL+"/"+event.id);
+    console.log(this.eventResourceURL+"/"+event._id);
 
-    return this.http.put<Event>(this.eventResourceURL+"/"+event.id , event);
+    return this.http.put<Event>(this.eventResourceURL+"/"+event._id , event);
   }
 }

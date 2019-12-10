@@ -3,12 +3,24 @@
  */
 export class Attendee {
 
-    id: Number;
-    name: string;
-    email: string;
+    /**
+     * The event id which the attendee will be attending
+     */
+    eventId: string;
 
-    constructor(name: string,email: string) {    
+    /**
+     * The email id of the attendee
+     */
+    emailId: string;
+
+    /**
+     * The name of the attendee
+     */
+    name: string;
+
+    constructor(eventId:string, name: string,emailId: string) {    
+        this.eventId = eventId;
         this.name = name;
-        this.email = email;
+        this.emailId = emailId;
     }
 }

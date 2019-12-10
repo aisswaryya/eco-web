@@ -5,7 +5,7 @@ import { LatLng } from 'ngx-google-places-autocomplete/objects/latLng';
  */
 export class Event {
 
-    id: Number;
+    _id: string;
     name: string;
     cause: string;
     venue: string;

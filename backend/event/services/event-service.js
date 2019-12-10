@@ -1,8 +1,15 @@
 'use strict';
 //mongoose for db
+<<<<<<< Updated upstream:backend/event/services/event-service.js
 const mongoose = require('mongoose');
 require('../models/event.js');
 const Event = mongoose.model('event');
+=======
+const mongoose = require('mongoose'),
+Event = mongoose.model('event'),
+Attendee = mongoose.model('attendee');
+
+>>>>>>> Stashed changes:backend/api/event/services/event-service.js
 
 
 /**
@@ -54,10 +61,20 @@ exports.delete = function (eventId) {
 
 
 
+// /**
+//  * Increasing the count of Attendees in Event object
+//  */
+// exports.addAttendeeCount = function (eventId) {
+//     const promise = Event.find(eventId).exec();
+//     return promise;
+// };
+
+
 /**
- * Increasing the count of Attendees in Event object
+ * Finding the Events based on the attendees Emaild
  */
-exports.addAttendeeCount = function (eventId) {
-    const promise = Event.find(eventId).exec();
+exports.findByAttendeeEmail = function (value) {
+    console.log("reached here");
+    const promise = Event.findById(Attendee.find({emailId: value}).eventId).exec();
     return promise;
 };

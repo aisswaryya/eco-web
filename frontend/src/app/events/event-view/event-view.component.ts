@@ -10,6 +10,9 @@ import { Event } from '../models/event'
 })
 export class EventViewComponent implements OnInit {
 
+  @Input() 
+  myEmail : string;
+
   /**
    * Holds all the events that need to be displayed on the screen
    */
@@ -32,18 +35,30 @@ export class EventViewComponent implements OnInit {
   latitude = 42.33611930000001;
   longitude = -71.07718549999998;
 
+
   constructor(eventService: EventService) {
     //Injecting the event service
     this.eventService = eventService;
 
-    //Getting all events
-    let eventsObs$: Observable<Array<Event>> = eventService.getEvents();
-    eventsObs$.subscribe(events => {
-      this.events = events;
-    });
+    if(this.myEmail === 'undefined'){
+    
+      //Getting all events
+      let eventsObs$: Observable<Array<Event>> = eventService.getEventByAttendeeEmailId(this.myEmail);
+      eventsObs$.subscribe(events => {
+        this.events = events;
+      });
+
+    } else {
+
+      //Getting all events
+      let eventsObs$: Observable<Array<Event>> = eventService.getEvents();
+      eventsObs$.subscribe(events => {
+        this.events = events;
+      });
+
+    }
 
     console.log(this.events);
-
   }
 
   ngOnInit() {
