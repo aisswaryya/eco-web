@@ -9,21 +9,23 @@
             <!--profile section-->
             <div class="col-md-3">
                 <div class="card">
-                    <div class="card-body">
-                        <div class="h5">{{loggedInUserEmailId}}</div>
-                        <div class="h7 text-muted">Fullname : {{loggedInUserName}}</div>
-                        <img class="rounded-circle" width="200" [src]="loggedInUserDP" alt="">
-                    </div>
-                    <ul class="list-group list-group-flush">
+                        <div class="card-body">
+                                <div class="h5">{{loggedInUserName}}</div>
+                                <div class="h7 text-muted">User Id : {{loggedInUserEmailId}}</div>
+                                <img class="rounded-circle" width="200" [src]="loggedInUserDP" alt="">
+                        </div>
+                        <ul class="list-group list-group-flush">
                             <li class="list-group-item">
-                                <div class="h6 text-muted">Followers</div>
-                                <div class="h5">5.2342</div>
+                                <div class="h6 text-muted">Number of good deeds done by you: </div>
                             </li>
                             <li class="list-group-item">
-                                <div class="h6 text-muted">Following</div>
-                                <div class="h5">6758</div>
+                                <div class="h5">In this week</div>
+                                <div class="h5">{{postsCount}}</div>
                             </li>
-                            <li class="list-group-item">Vestibulum at eros</li>
+                            <li class="list-group-item">
+                                <div class="h5">In this month</div>
+                                <div class="h5">{{postsCount}}</div>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -35,7 +37,7 @@
                     <div class="card-body">
                         <div class="btn-toolbar justify-content-between">
                             <div class="btn-group">
-                                <button type="submit" (click)="createPost()" class="btn btn-primary eco-button create-feed">WHAT ARE YOU THINKING?</button>
+                                <button type="submit" (click)="createPost()" class="btn btn-success">HOW ECO-FRIENDLY WERE YOU TODAY?</button>
                             </div>
                         </div>
                     </div>
@@ -49,11 +51,11 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="mr-2">
-                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                    <img class="rounded-circle" width="45" [src]="loggedInUserDP" alt="">
                                 </div>
                                 <div class="ml-2">
-                                    <div class="h5 m-0">{{socialFeed.emailId}}</div>
-                                    <div class="h7 text-muted">Miracles Lee Cross</div>
+                                    <div class="h5 m-0">{{loggedInUserName}}</div>
+                                    <div class="h7 text-muted">{{loggedInUserEmailId}}</div>
                                 </div>
                             </div>
                         </div>

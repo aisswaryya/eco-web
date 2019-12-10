@@ -70,7 +70,7 @@ constructor(
    */
   createPost() {
     let dialogRef = this.dialog.open(SocialFeedCreateUpdateComponent, {
-      height: '600px',
+      height: '650px',
       width: '500px',
       data: { 
         create: true,

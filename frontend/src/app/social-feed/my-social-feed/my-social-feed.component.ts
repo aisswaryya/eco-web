@@ -17,6 +17,7 @@ export class MySocialFeedComponent implements OnInit {
   loggedInUserEmailId: string;
   loggedInUserName: string;
   loggedInUserDP: string;
+  postsCount: number;
 
   ngOnInit() {
     this.getSocialFeedsByEmail();
@@ -34,6 +35,7 @@ export class MySocialFeedComponent implements OnInit {
     if(this.authService.isLoggedIn) {
       this.socialFeedService.getSocialFeedsByEmailId(this.authService.userProfile.email, this.authService.accessToken).subscribe(data => {
         this.socialFeedList = data;
+        this.postsCount = this.socialFeedList.length;
       }, 
       error => {
         console.log(error);

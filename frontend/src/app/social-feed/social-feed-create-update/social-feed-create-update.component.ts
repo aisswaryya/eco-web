@@ -133,4 +133,7 @@ onFileSelected(event) {
     }
   }
 
+  cancelPost() {
+    this.dialogRef.close();
+  }
 }

@@ -1,44 +1,36 @@
-<div class="detail-edit">
-    <div *ngIf="!data.create" class="header"> Update your feed</div>
-    <div *ngIf="data.create" class="header"> New Post </div>
+<div class="container">
+    <h3><div class="post-header" *ngIf="!data.create"> Update your feed</div></h3>
+    <h3><div class="post-header" *ngIf="data.create"> New Post </div></h3>
     <form [formGroup]="socialFeedGroup">
-        <div class="fields">
-            <div class="detail">
+            <div class="form-group">
                 <div class="xyz" *ngIf="data.create">
-                    <mat-form-field >
-                        <input type="file" (change)="onFileSelected($event)" >
+                    <div>
+                        <input id="image" type="file" btn-success (change)="onFileSelected($event)">
                         <div>
-                            <img [src]="imgURL" height="200" *ngIf="imgURL">
+                            <img [src]="imgURL" class="image-preview" *ngIf="imgURL">
                         </div>
-                    </mat-form-field>
+                    </div>
                 </div>
                 <div class="xyz" *ngIf="!data.create">
-                    <img [src]="data.image" height="200">
+                    <img [src]="data.image" class="image-preview">
                 </div>    
             </div>
     
-            <div class="detail">
-                <mat-form-field>
-                    <span class="key">Description:</span>
-                    <span class="value value-2"><input class="input" matInput formControlName="description"></span>
-                </mat-form-field>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text-area" class="form-control" id="description" formControlName="description">                
             </div>
     
-            <div class="detail">
-                <mat-form-field>
-                    <span class="key"> Location:</span>
-                    <span class="value value-2"><input class="input" matInput formControlName="location" ></span>
-                </mat-form-field>
+            <div class="form-group">
+                <label for="location"> Location:</label>
+                <input id="location" type="text" class="form-control" matInput formControlName="location">
             </div>
     
-            <div class="button" *ngIf="!data.create">
-                <button class="add" mat-stroked-button (click)="updatePost()">Update</button>
-            </div>
-    
-            <div class="button" *ngIf="data.create">
-                <button class="add" mat-stroked-button (click)="uploadPost()">Upload</button>
-            </div>
-    
-        </div>
+            <button *ngIf="!data.create" class="btn btn-success" (click)="updatePost()">SAVE</button>
+
+            <button *ngIf="data.create" class="btn btn-success"  (click)="uploadPost()">UPLOAD</button> 
+            
+            <button class="btn btn-success btn-cancel"  (click)="cancelPost()">CANCEL</button> 
+
     </form>
-    </div>
+</div>
