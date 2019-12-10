@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { EventService } from '../services/event.service';
 import { Observable } from 'rxjs';
 import { Event } from '../models/event'
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-event-view',
@@ -11,7 +12,7 @@ import { Event } from '../models/event'
 export class EventViewComponent implements OnInit {
 
   @Input() 
-  myEmail : string;
+  isMyEvents : string;
 
   /**
    * Holds all the events that need to be displayed on the screen
@@ -36,14 +37,17 @@ export class EventViewComponent implements OnInit {
   longitude = -71.07718549999998;
 
 
-  constructor(eventService: EventService) {
+  constructor(eventService: EventService, public authService: AuthService) {
     //Injecting the event service
     this.eventService = eventService;
 
-    if(this.myEmail === 'undefined'){
+    console.log(this.isMyEvents);
+
+    if(this.isMyEvents !== 'undefined'){
     
-      //Getting all events
-      let eventsObs$: Observable<Array<Event>> = eventService.getEventByAttendeeEmailId(this.myEmail);
+      //Getting all events based on emailId
+      let eventsObs$: Observable<Array<Event>> = 
+        eventService.getEventByAttendeeEmailId(authService.userProfile.email);
       eventsObs$.subscribe(events => {
         this.events = events;
       });

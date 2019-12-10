@@ -139,7 +139,7 @@ let Event = new Schema({
     /**
      * Private/Public event
      */
-    creator: {
+    creatorEmailId: {
         type: String
     },
 

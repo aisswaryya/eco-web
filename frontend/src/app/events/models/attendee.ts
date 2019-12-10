@@ -16,11 +16,15 @@ export class Attendee {
     /**
      * The name of the attendee
      */
-    name: string;
+    eventName: string;
 
-    constructor(eventId:string, name: string,emailId: string) {    
+    //The date object holding the event date information
+    dateOfEvent: Date;
+
+    constructor(eventId : string, eventName : string,emailId : string,dateOfEvent : Date) {    
         this.eventId = eventId;
-        this.name = name;
+        this.eventName = eventName;
         this.emailId = emailId;
+        this.dateOfEvent = dateOfEvent;
     }
 }

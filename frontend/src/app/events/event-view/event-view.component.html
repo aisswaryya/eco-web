@@ -3,34 +3,39 @@
 <!--Populating all events-->
 <div class="eventList">
     <div *ngFor="let event of events" id="{{ event._id }}">
-        <app-event [event]="event" [myEmail]></app-event>
+        <app-event [event]="event" [isMyEvents]></app-event>
     </div>
 </div>
 
 
-<!--Map marking each events location-->
-<agm-map [latitude]='latitude' [longitude]='longitude' minZoom=5 maxZOom=10000 [zoom]="13" id="eventMap"
-    (mapClick)="close_window($event)">
+<div *ngIf = "isMyEvents === 'undefined'">
 
-    <!--Adding markers to each of the event-->
-    <agm-marker *ngFor="let currentEvent of events; let i = index" [latitude]="currentEvent.lat"
-        [longitude]="currentEvent.lng" (dragEnd)="markerDragEnd(currentEvent, $event)" [iconUrl]="
-        {
-        url: './icons/marker-icon.ico',
-        scaledSize: {
-            width: 50,
-            height: 50
-        }
-        }" (markerClick)=select_marker(infoWindow)>
+    <!--Map marking each events location-->
+    <agm-map [latitude]='latitude' [longitude]='longitude' minZoom=5 maxZOom=10000 [zoom]="13" id="eventMap"
+        (mapClick)="close_window($event)">
 
-        <!--The event Info which pops up with the info-->
-        <agm-info-window #infoWindow>
-            <strong>
-                <p class="markerInfo">{{ currentEvent.name }}</p><br>
-                <button class="btn btn-primary btn-sm" (click)="clickedInfoMarker(currentEvent.id)">
-                    More Info
-                </button>
-            </strong>
-        </agm-info-window>
-    </agm-marker>
-</agm-map>
+        <!--Adding markers to each of the event-->
+        <agm-marker *ngFor="let currentEvent of events; let i = index" [latitude]="currentEvent.lat"
+            [longitude]="currentEvent.lng" (dragEnd)="markerDragEnd(currentEvent, $event)" [iconUrl]="
+            {
+            url: './icons/marker-icon.ico',
+            scaledSize: {
+                width: 50,
+                height: 50
+            }
+            }" (markerClick)=select_marker(infoWindow)>
+
+            <!--The event Info which pops up with the info-->
+            <agm-info-window #infoWindow>
+                <strong>
+                    <p class="markerInfo">{{ currentEvent.name }}</p><br>
+                    <button class="btn btn-primary btn-sm" (click)="clickedInfoMarker(currentEvent.id)">
+                        More Info
+                    </button>
+                </strong>
+            </agm-info-window>
+        </agm-marker>
+    </agm-map>
+
+</div>
+

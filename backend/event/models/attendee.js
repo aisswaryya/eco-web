@@ -24,10 +24,29 @@ let Attendee = new Schema({
 
 
     /**
-     * The origin user id of the attendee
+     * The event name this attendee will attend
      */
-    userId: {
+    eventName: {
         type: String
+    },
+
+    /**
+     * The event date this attendee will attend
+     */
+    dateOfEvent:
+    {
+        year: {
+            type: Number
+        }
+        ,
+
+        month: {
+            type: Number
+        }
+        ,
+        day: {
+            type: Number
+        }
     }
     
 }, {

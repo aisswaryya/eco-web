@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import {NgbDateStruct, NgbCalendar, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import { GooglePlaceDirective, GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-event-create',
@@ -19,9 +20,12 @@ export class EventCreateComponent implements OnInit {
    * Event service instance
    */
   eventService : EventService;
+
+  public formControl: FormControl = new FormControl(null);
   
 
-  constructor(eventService: EventService, config: NgbDatepickerConfig) {
+  constructor(eventService: EventService, config: NgbDatepickerConfig
+          ,public authService: AuthService) {
 
     //Injected Event service
     this.eventService = eventService;
@@ -47,6 +51,8 @@ export class EventCreateComponent implements OnInit {
   postData(){
 
     console.log(this.eventModel.time);
+
+    this.eventModel.creatorEmail = this.authService.userProfile.email;
 
     let newEvent$: Observable<Event> = this.eventService.createEvent(this.eventModel);
     newEvent$.subscribe(newEvent => {

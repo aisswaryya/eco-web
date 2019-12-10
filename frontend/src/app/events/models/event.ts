@@ -20,6 +20,8 @@ export class Event {
 
     hostName: string;
 
+    creatorEmail: string;
+
 
     //The date object holding the event date information
     dateOfEvent: Date;
@@ -32,7 +34,6 @@ export class Event {
 
     isWheelchair: Boolean;
     isPrivate: Boolean;
-    creator: string;
     
     /**
      * The default hour and minutes

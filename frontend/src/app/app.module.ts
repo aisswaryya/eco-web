@@ -73,7 +73,8 @@ import { MyEventsComponent } from './events/my-events/my-events.component';
     EventHomeComponent,
     EventCreateComponent,
     EventViewComponent,
-    EventComponent
+    EventComponent,
+    MyEventsComponent
 
     ],
   imports: [
@@ -103,6 +104,7 @@ import { MyEventsComponent } from './events/my-events/my-events.component';
     DonationServicesService,
     FundraiserServicesService,
     EventService,
+    AttendeeService,
     AuthService,
     PetitionService,
     SignatureService

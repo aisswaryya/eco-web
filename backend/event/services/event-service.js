@@ -1,15 +1,8 @@
 'use strict';
 //mongoose for db
-<<<<<<< Updated upstream:backend/event/services/event-service.js
 const mongoose = require('mongoose');
 require('../models/event.js');
 const Event = mongoose.model('event');
-=======
-const mongoose = require('mongoose'),
-Event = mongoose.model('event'),
-Attendee = mongoose.model('attendee');
-
->>>>>>> Stashed changes:backend/api/event/services/event-service.js
 
 
 /**

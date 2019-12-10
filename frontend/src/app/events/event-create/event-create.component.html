@@ -1,9 +1,9 @@
 <p>Enter details for the event!</p>
 
-<div class="formDiv">
+<div class="container">
     <form #eventForm="ngForm" class="needs-validation">
 
-        {{ eventForm.value | json }}
+        <!-- {{ eventForm.value | json }} -->
 
         <p>Please enter the details for the events!</p>
 
@@ -68,17 +68,28 @@
 
             <div class="input-group">
 
-                <input class="form-control" placeholder="yyyy-mm-dd" 
+                <input class="form-control"
+                [formControl]="formControl"
+                [class.is-invalid]="formControl.invalid"
+                placeholder="yyyy-mm-dd" 
                     name="dateOfEvent" [(ngModel)]="eventModel.dateOfEvent"
                     ngbDatepicker #d="ngbDatepicker">
 
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
-                </div>
+                    <!-- <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                    </div> -->
+                    
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary calendar fa fa-calendar" (click)="d.toggle()" type="button"></button>
+                    </div>
 
-                <div class="invalid-tooltip">{{ d.invalid ? "Date is invalid" : undefined }}</div>
-
+                    <br>
             </div>
+
+            <div class="text-danger">
+                    {{ formControl.invalid ? "Date is invalid" : undefined }}
+            </div>
+
         </div>
 
 
@@ -90,7 +101,7 @@
 
             <div class="input-group">
 
-                <ngb-timepicker  [(ngModel)]="eventModel.time" name="time"></ngb-timepicker>
+                <ngb-timepicker  [(ngModel)]="eventModel.time" name="time" readonlyInputs= "true" ></ngb-timepicker>
 
             </div>
         </div>
@@ -113,7 +124,8 @@
 
         <div class="form-group">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                <input class="form-check-input" 
+                    type="checkbox" value="" id="invalidCheck" required>
                 <label class="form-check-label" for="invalidCheck">
                     Agree to terms and conditions
                 </label>
@@ -125,7 +137,9 @@
 
 
         <div class="text-center">
-            <input class="margin-x-xl" type="submit" (click)="postData()">
+            <input  class="btn btn-success" type="submit"
+                [disabled]="!eventForm.form.valid"
+                (click)="postData()">
         </div>
 
     </form>
