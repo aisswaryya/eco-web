@@ -1,0 +1,23 @@
+<app-nav-bar></app-nav-bar>
+<h1>My Fundraisers List</h1>
+<table>
+    <thead>
+    <th scope="col">Title</th>
+    <th scope="col">Category</th>
+    <th scope="col">Short Description</th>
+    <th scope="col">Target Amount</th>
+    <th scope="col">Collected Amount</th>
+    <th scope="col">Email Id</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let fundraiser of fundraisers" [routerLink]="['/my-fundraiser-detail',fundraiser.id]">
+        <td>{{fundraiser.title}}</td>
+        <td>{{fundraiser.category}}</td>
+        <td>{{fundraiser.shortDescription}}</td>
+        <td>{{fundraiser.targetAmount}}</td>
+        <td>{{fundraiser.collectedAmount}}</td>
+        <td>{{fundraiser.emailId}}</td>
+    </tr>
+    </tbody>
+</table>
+
