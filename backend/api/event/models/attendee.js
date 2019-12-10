@@ -8,13 +8,25 @@ const Schema = mongoose.Schema;
 let Attendee = new Schema({
 
     /**
-     * Attendee title.
+     * Attendee name.
      */
-    name: {
+    eventId: {
         type: String
     },
 
-    email: {
+
+    /**
+     * Attendee email storing the origin user email 
+     */
+    emailId: {
+        type: String
+    },
+
+
+    /**
+     * The origin user id of the attendee
+     */
+    userId: {
         type: String
     }
     

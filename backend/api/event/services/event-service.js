@@ -50,3 +50,13 @@ exports.delete = function (eventId) {
     const promise = Event.remove({_id: eventId});
     return promise;
 };
+
+
+
+/**
+ * Increasing the count of Attendees in Event object
+ */
+exports.addAttendeeCount = function (eventId) {
+    const promise = Event.find(eventId).exec();
+    return promise;
+};

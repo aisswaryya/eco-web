@@ -1,12 +1,12 @@
 module.exports = function (app) {
     const attendeeController = require('../controllers/attendee-controller');
     // Attendee Routes for search and create.
-    app.route('/attendee') //all paths with /Attendee
-        .get(attendeeController.list) //listing the information
-        .post(attendeeController.post); //Creating a new Attendee list
+    app.route('/attendees') //all paths with /Attendee
+        .get(attendeeController.list) //listing the Attendee information based on Event Id
+        .post(attendeeController.post); //Creating a new Attendee
 
     // based on id 
-    app.route('/attendee/:attendeeId') //all paths for /Attendee along with id
+    app.route('/attendees/:attendeeId') //all paths for /Attendee along with id
         .get(attendeeController.get) //getting based on id
         .put(attendeeController.put) //modifying based on id
         .delete(attendeeController.delete); //deleting based on id

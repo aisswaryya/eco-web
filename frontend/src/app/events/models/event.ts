@@ -24,10 +24,19 @@ export class Event {
     //The date object holding the event date information
     dateOfEvent: Date;
     maxAttendees: Number;
+
+    /**
+     * Attendees array storing all the attendees for this event
+     */
+    attendees: [];
+
     isWheelchair: Boolean;
     isPrivate: Boolean;
     creator: string;
     
+    /**
+     * The default hour and minutes
+     */
     time = {hour: 12, minute: 0};
 
     // constructor(

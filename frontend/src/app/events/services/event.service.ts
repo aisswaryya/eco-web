@@ -38,15 +38,11 @@ export class EventService {
    * Constructor setting the values of the URLs
    */
   constructor(private http: HttpClient) {
-    
     this.eventResource = 'events';
-    this.eventResourceURL = `${environment.serverBaseURL}/${this.eventResource}`;
-
-    this.attendeeResource = 'attendees';
-    this.attendeeResourceURL = `${environment.serverBaseURL}/${this.attendeeResource}`;    
-
+    this.eventResourceURL = `${environment.serverBaseURL}/${this.eventResource}`;   
   }
 
+  //--------------------------------------------------------------------------
   /**
    * Returns all Events.
    *
@@ -75,6 +71,8 @@ export class EventService {
     console.log(this.eventResourceURL);
     return this.http.post<Event>(this.eventResourceURL, event);
   }
+
+  //--------------------------------------------------------------------------
 
   /**
    * 

@@ -113,14 +113,6 @@ let Event = new Schema({
 
 
     /**
-     * Max attendees
-     */
-    maxAttendees: {
-        type: Number
-    },
-
-
-    /**
      * Wheelchair accessible
      */
     isWheelchair: {
@@ -185,13 +177,22 @@ let Event = new Schema({
             type: Number
         }
     },
+    
 
     /**
-     * The Attendees list holding all the attendees
+     * The number of users attending the event
      */
-    attendees: [
-        
-    ]
+    attendeeCount: {
+        type: Number
+    },
+    
+
+    /**
+     * Max attendees
+     */
+    maxAttendees: {
+        type: Number
+    }
 
     // attendees: {
     //     // ref: 'Attendee',
