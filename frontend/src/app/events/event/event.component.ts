@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
 import { EventStatus } from '../EventStatus';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-event',
@@ -32,7 +33,8 @@ export class EventComponent implements OnInit {
   authService: AuthService
 
   constructor(attendeeService: AttendeeService, authService: AuthService,
-    public eventService: EventService, private _router: Router) {
+    public eventService: EventService, private _router: Router, 
+    private snackBar: MatSnackBar) {
 
     this.attendeeService = attendeeService;
     this.authService = authService;
@@ -47,17 +49,22 @@ export class EventComponent implements OnInit {
 
     console.log(e);
 
-    let attendee = new Attendee(e._id,this.event.name
-      ,this.authService.userProfile.email,this.event.dateOfEvent);
-
+    let attendee = new Attendee(e._id,this.event.name,this.authService.userProfile.email,this.event.dateOfEvent);
 
     let newAttendee$: Observable<Attendee> = this.attendeeService.createAttendee(attendee);
     newAttendee$.subscribe(newAttendee => {
       console.log(newAttendee);
+      this.openSnackBar("Registered to "+ this.event.name +" successfully.", "okay");
     });
 
   }
 
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 10000,
+    });
+  }    
 
   cancelEvent(e : Event){
 
@@ -70,7 +77,7 @@ export class EventComponent implements OnInit {
     modifiedEvent$.subscribe(newEvent => {
       console.log(newEvent);
       this.router.navigate(['/my-event-list']);
-
+      this.openSnackBar("The event "+ this.event.name +" cancelled successfully.", "okay");
     });
 
   }

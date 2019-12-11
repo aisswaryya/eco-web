@@ -10,6 +10,7 @@ import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
 import { EventStatus } from '../EventStatus';
+import { MatSnackBar } from '@angular/material/snack-bar';
  
 @Component({
   selector: 'app-event-create',
@@ -27,7 +28,7 @@ export class EventCreateComponent implements OnInit {
   
 
   constructor(eventService: EventService, config: NgbDatepickerConfig
-          ,public authService: AuthService , private router: Router) {
+          ,public authService: AuthService , private router: Router, private snackBar: MatSnackBar) {
 
     //Injected Event service
     this.eventService = eventService;
@@ -63,6 +64,7 @@ export class EventCreateComponent implements OnInit {
     let newEvent$: Observable<Event> = this.eventService.createEvent(this.eventModel);
     newEvent$.subscribe(newEvent => {
       console.log(newEvent);
+      this.openSnackBar("Event created successfully.", "okay");
       this.router.navigate(['/event-list']);
     });
   }
@@ -89,6 +91,12 @@ export class EventCreateComponent implements OnInit {
           console.log(this.eventModel);
 
     }
+
+    openSnackBar(message: string, action: string) {
+      this.snackBar.open(message, action, {
+        duration: 10000,
+      });
+    }    
 
 
 }

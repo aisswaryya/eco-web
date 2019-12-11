@@ -1,4 +1,5 @@
 const eventService = require('../services/event-service');
+const attendeeService = require('../services/attendee-service');
 
 /**
  * Creating a new Event 
@@ -81,9 +82,29 @@ exports.put = function (request, response) {
         response.json(event);
     };
 
-    eventService.update(event)
-        .then(resolve)
-        .catch(renderErrorResponse(response));
+    //Deleting all attendee along with cancelling the event 
+    if( event.status === 'CANCELLED' ){
+
+        console.log(event);
+
+        var promises = [
+            eventService.update(event),
+            attendeeService.deleteBasedOnEventId(request.params.eventId)
+        ];
+    
+        Promise.all(promises)
+            .then(resolve)
+            .catch(renderErrorResponse(response));
+
+    } else {
+
+        eventService.update(event)
+            .then(resolve)
+            .catch(renderErrorResponse(response));
+
+    }
+
+
 };
 
 /**
@@ -96,8 +117,11 @@ exports.delete = function (request, response) {
             message: 'Event Successfully deleted'
         });
     };
+
     eventService.delete(request.params.eventId)
         .then(resolve)
         .catch(renderErrorResponse(response));
+
+
 };
 
