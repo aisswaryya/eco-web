@@ -2,25 +2,28 @@ import { PetitionService } from '../../services/petition.service';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { Petition } from '../../model/petition.model';
-import { ErrorHandlerService } from '../../helpers/shared/error-handler.service';
+import { ErrorHandlerService } from '../../shared/error-handler.service';
 import { Router } from '@angular/router';
+import { SignatureService } from 'src/app/services/signature.service';
 
 @Component({
   selector: 'app-view-petition',
   templateUrl: './view-petition.component.html',
   styleUrls: ['./view-petition.component.scss']
 })
-export class ViewPetitionComponent implements OnInit, AfterViewInit {
+export class ViewPetitionComponent implements OnInit,AfterViewInit {
 
-  public displayedColumns = ['title']; // To display table header
+  public displayedColumns = ['title'];//To display table header
   public dataSource = new MatTableDataSource<Petition>();
   petitionList: Petition[];
   filterList: Petition[];
-  localUrl: any[];
+  myArray = new Array();
+  result = '';
+
   @ViewChild(MatSort , {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
-  constructor(private petitionService: PetitionService, private errorService: ErrorHandlerService, private router: Router) { }
+  constructor(private petitionService: PetitionService, private signatureService: SignatureService, private errorService: ErrorHandlerService, private router: Router) { }
 
   ngOnInit() {
     this.getAllPetition();
@@ -37,17 +40,31 @@ export class ViewPetitionComponent implements OnInit, AfterViewInit {
         this.petitionList = data;
         this.dataSource.data = data as Petition[];
         this.filterList = data;
+
+        data.forEach((value) => {
+          console.log("ID"+value._id);
+          this.signatureService.getbyEmailIDSignatureCount(value._id)
+          .subscribe( data => {
+            console.log(data);
+            this.result = JSON.parse(JSON.stringify(data));
+            console.log(this.result["count"]);
+            
+            this.myArray.push(this.result["count"]);
+            console.log("Response - Count "+JSON.stringify(this.myArray));
+          });
+
+        });
       });
-    console.log(this.petitionList);
+      console.log(this.petitionList);
   }
 
   public doFilter = (value: string) => {
     this.dataSource.filter = value.trim().toLocaleLowerCase();
-    this.filterList = this.petitionList.filter(elem => elem.title.includes(value) || elem.createdby.includes(value) || elem.briefDescription.includes(value) || elem.shortDescription.includes(value));
+    this.filterList = this.petitionList.filter(elem =>  elem.category.includes(value));
   }
 
   public redirectToDetails = (id: string) => {
-    const url = `/petition/manage/${id}`;
+    let url: string = `/petition/details/${id}`;
     this.router.navigate([url]);
   }
 
