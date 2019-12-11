@@ -1,38 +1,36 @@
-<section fxLayout="row wrap" fxLayoutAlign="center center">
-    <mat-card fxFlex="500px" fxFlex.xs="100%">
-        <mat-card-title>Brief description</mat-card-title>
-        <mat-card-content>
-          <div fxLayout="column wrap" fxLayoutGap="40px">
-            <div fxLayout="row wrap" fxFlex>
-              <div fxFlex><strong>Petition Title:</strong></div>
-              <div fxFlex>{{petition?.title}}</div>
+<section  class="bgimg" id="mat-card" fxLayout="row wrap" fxLayoutAlign="center center">
+    <mat-card fxFlex="1000px" fxFlex.xs="100%">
+
+       
+          <mat-card-header>
+            <mat-card-title>{{petition?.title}}</mat-card-title>
+              <mat-card-subtitle>{{petition?.category}}</mat-card-subtitle>
+          </mat-card-header>
+         
+          <mat-card-content style="height:200px">
+            <div id="div-left" style="width: 50%; float:left">
+              <img [src]="petition?.mediapath" mat-card-image class="test-card" alt="Photo of a Shiba Inu">
+           </div>
+           
+           <div  style="width: 50%; float:right">
+            {{petition?.shortDescription}}
+
+            <br>
+            {{petition?.createdby}}
+
+            <!-- <iframe width="380" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY">
+            </iframe> -->
+           </div>
+          </mat-card-content>
+   
+            <div>
+              <button mat-flat-button class="button-custom" color="primary" (click)="signPetition()">Sign this petition</button>
             </div>
-      
-            <div fxLayout="row wrap" fxFlex>
-              <div fxFlex><strong>Description:</strong></div>
-              <div fxFlex>{{petition?.briefDescription}}</div>
-            </div>
-      
-            <div fxLayout="row wrap" fxFlex>
-                <div fxFlex><strong>Created by</strong></div>
-                <div fxFlex>{{petition?.createdby}}</div>
-              </div>
+        </mat-card>
+        
 
-              <div fxLayout="row wrap" fxFlex>
-                  <div fxFlex><strong>Mediapath:</strong></div>
-                  <div fxFlex>{{petition?.mediapath}}</div>
-                </div>
+        
 
-              <div fxLayout="row wrap" fxFlex>
-                <div fxFlex><strong>Username:</strong></div>
-                <div fxFlex>{{petition?.username}}</div>
-              </div>
 
-              <mat-card-actions>
-                  <button mat-icon-button color="primary" (click)="signPetition()">Sign this petition</button>
-              </mat-card-actions>
-                          
-          </div>
-        </mat-card-content>
-      </mat-card>
 </section>
+

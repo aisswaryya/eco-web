@@ -1,0 +1,103 @@
+<div class="firmalar">
+  <div class="container">
+    <h1 class="mainTitle">Create Fundraiser</h1>
+    <hr>
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div class="firma-card row">
+        <div class="col-md-12">
+          <div class="firma-aciklama card-body">
+            <form #fundraiserForm="ngForm" (ngSubmit)="saveFundraiser(fundraiserForm)">
+                      <div class="form-group">
+                          <label for="title">Title</label>
+                          <input type="text" class="form-control" id="title"
+                                 required
+                                 [(ngModel)]="fundraiser.title" name="title"
+                                 #title="ngModel">
+                          <div [hidden]="title.valid || title.pristine"
+                               class="alert alert-danger">
+                              Title is required
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="category">Category</label>
+                          <select class="form-control" id="category"
+                                  required
+                                  [(ngModel)]="fundraiser.category" name="category"
+                                  #category="ngModel">
+                              <option *ngFor="let category of fundraiserCategory" [value]="category">{{category}}</option>
+                          </select>
+                          <div [hidden]="category.valid || category.pristine"
+                               class="alert alert-danger">
+                              Category is required
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="shortDescription">Short Description</label>
+                          <textarea class="form-control" id="shortDescription"
+                                 [(ngModel)]="fundraiser.shortDescription" name="shortDescription"
+                                 required
+                                    #shortDescription="ngModel"> </textarea>
+                          <div [hidden]="shortDescription.valid || shortDescription.pristine"
+                               class="alert alert-danger">
+                              Short Description is required and should not be 0
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="longDescription">Description</label>
+                          <textarea class="form-control" id="longDescription"
+                                    [(ngModel)]="fundraiser.longDescription" name="longDescription"
+                                    #longDescription="ngModel"></textarea>
+                          <div [hidden]="longDescription.valid || longDescription.pristine"
+                               class="alert alert-danger">
+                              Description is required
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="accountNo">Bank Account Number</label>
+                          <input type="text" class="form-control" id="accountNo"
+                                 required
+                                 minlength="4"
+                                 maxlength="20"
+                                 [(ngModel)]="fundraiser.accountNo" name="accountNo"
+                                 #accountNo="ngModel">
+                          <div [hidden]="accountNo.valid || accountNo.pristine"
+                               class="alert alert-danger">
+                              Account Number is required and should be 4 to 20 characters
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="routingNo">Bank Routing Number</label>
+                          <input type="text" class="form-control" id="routingNo"
+                                 required
+                                 minlength="4"
+                                 maxlength="20"
+                                 [(ngModel)]="fundraiser.routingNo" name="routingNo"
+                                 #routingNo="ngModel">
+                          <div [hidden]="routingNo.valid || routingNo.pristine"
+                               class="alert alert-danger">
+                              Bank Routing Number is required and should be 4 to 20 characters
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="targetAmount">Target Amount($)</label>
+                          <input type="number" class="form-control" id="targetAmount"
+                                 [(ngModel)]="fundraiser.targetAmount" name="targetAmount"
+                                 customMin="1"
+                                 #targetAmount="ngModel">
+                          <div [hidden]="targetAmount.valid || targetAmount.pristine"
+                               class="alert alert-danger">
+                              Target Amount is required and should not be 0
+                          </div>
+                      </div>
+                      <button type="submit" class="btn btn-success" [disabled]="!fundraiserForm.form.valid">Create Fundraiser</button>
+                  </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

@@ -21,8 +21,8 @@ export class PetitionService {
 
   // Call update petition API
   public updatePetition(petition, id) {
-    console.log('From petition Service Update - '+ id);
-    return this.http.put<Petition>(this.petitionUrl + "/" + id, petition);
+    console.log('From petition Service Update - ' + id);
+    return this.http.put<Petition>(this.petitionUrl + '/' + id, petition);
   }
 
   // Call delete petition API
@@ -39,5 +39,11 @@ export class PetitionService {
   public getbyIDPetition(id) {
     console.log(this.petitionUrl + '/' + id);
     return this.http.get<Petition>(this.petitionUrl + '/' + id);
+  }
+
+  // call get by ID petition API
+  public getbyEmailPetition(email) {
+    console.log(this.petitionUrl + "/email/"+ email);
+    return this.http.get<Petition[]>(this.petitionUrl + "/email/" + email);
   }
 }

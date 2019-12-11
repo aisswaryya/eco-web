@@ -13,37 +13,37 @@ import { SignatureService } from 'src/app/services/signature.service';
 })
 export class ViewByIDPetitionComponent implements OnInit {
  public petition: Petition;
- public signature: Signature =new Signature();
+ public signature: Signature = new Signature();
 
  public petitionId: String;
- //for dependency injection from other class
-  constructor( private signatureService:SignatureService,private router: Router,private petitionService:PetitionService,private activateRoute:ActivatedRoute) { }
+ // for dependency injection from other class
+  constructor( private signatureService: SignatureService, private router: Router, private petitionService: PetitionService, private activateRoute: ActivatedRoute) { }
   // Initialize petition and retrieve petition object from Service
   ngOnInit() {
     this.getPetitionByID();
   }
- public getPetitionByID=()=>{
-this.petitionId = this.activateRoute.snapshot.params['id'];
+ public getPetitionByID = () => {
+this.petitionId = this.activateRoute.snapshot.params.id;
 this.petitionService.getbyIDPetition(this.petitionId)
 .subscribe(
-  data=>{
-    this.petition=data as Petition;
+  data => {
+    this.petition = data as Petition;
   }
 );
 }
 // Call create petition API
 
-public signPetition=()=>{
+public signPetition = () => {
   this.signature.name = this.petition.createdby;
   this.signature.petitionId = this.petition._id;
-  this.signature.email=this.petition.email;
-  this.signature.signed=true;
+  this.signature.email = this.petition.email;
+  this.signature.signed = true;
   console.log(this.signature);
-      console.log(JSON.stringify(this.signature));
-      this.signatureService.createSignature(this.signature)
+  console.log(JSON.stringify(this.signature));
+  this.signatureService.createSignature(this.signature)
         .subscribe( data => {
-          alert("petition signed successfully.");
-          this.router.navigate(["/"]);
+          alert('petition signed successfully.');
+          this.router.navigate(['/']);
         });
 
 }
