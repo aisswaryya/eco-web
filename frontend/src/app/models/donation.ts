@@ -1,3 +1,6 @@
+/**
+ * Donation model
+ */
 export class Donation {
 id: string;
 fundraiserId: string;

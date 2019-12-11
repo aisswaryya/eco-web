@@ -1,3 +1,6 @@
+/**
+ * Blog details component
+ */
 import { Component, OnInit } from '@angular/core';
 import { BlogService } from "../services/blog.service";
 import { Blog } from '../models/blog-model';
@@ -10,8 +13,9 @@ import { Blog } from '../models/blog-model';
 export class BlogDetailComponent implements OnInit {
 
   constructor(private blogService: BlogService) { }
-
   blogData: Blog;
+
+
   ngOnInit() {
     this.blogData = this.blogService.blog;
   }

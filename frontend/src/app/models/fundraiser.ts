@@ -1,3 +1,6 @@
+/**
+ * Fundraiser Model
+ */
 export class Fundraiser {
 id: string;
 title: string;

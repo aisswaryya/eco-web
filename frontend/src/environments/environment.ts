@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   serverBaseURL: 'http://localhost:3000',
+  // auth token needed for authentication
   auth: {
     clientID: 'TInCDwC3RcjhIwTtDgdTGuQCuPD3qple',
     domain: 'dev-vgga-ftr.auth0.com',

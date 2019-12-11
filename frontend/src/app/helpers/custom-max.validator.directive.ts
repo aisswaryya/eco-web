@@ -1,3 +1,6 @@
+/**
+ * Custom max numerical value validator
+ */
 import { Directive, Input } from '@angular/core';
 import { NG_VALIDATORS, Validator, FormControl } from '@angular/forms';
 

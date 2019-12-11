@@ -1,7 +1,12 @@
-//Authentication Tokens
+// Authentication Tokens
+// Not used currently
 let jwt = require('express-jwt'),
     jwks = require('jwks-rsa');
 
+/**
+ * Jwt check for authentication token
+ * @type {jwt.RequestHandler}
+ */
  export let jwtCheck = jwt({
     secret: jwks.expressJwtSecret({
         cache: true,
