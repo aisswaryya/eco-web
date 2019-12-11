@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { CreatePetitionComponent } from '../create-petition/create-petition.component';
-import { ViewPetitionComponent } from '../view-petition/view-petition.component';
-import { ViewByIDPetitionComponent } from '../view-by-id-petition/view-by-id-petition.component';
-import { UpdatePetitionComponent } from '../update-petition/update-petition.component';
-import { ManagePetitionComponent } from '../manage-petition/manage-petition.component';
-import { UserPetitionComponent } from "../user-petition/user-petition.component";
+import { CreatePetitionComponent} from '../create-petition/create-petition.component';
+import { ViewPetitionComponent} from '../view-petition/view-petition.component';
+import { ViewByIDPetitionComponent} from '../view-by-id-petition/view-by-id-petition.component';
+import { UpdatePetitionComponent} from '../update-petition/update-petition.component';
+import { ManagePetitionComponent} from '../manage-petition/manage-petition.component';
+import {UserPetitionComponent } from '../user-petition/user-petition.component';
 
 
 const routes: Routes = [
