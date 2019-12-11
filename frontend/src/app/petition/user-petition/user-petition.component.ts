@@ -4,7 +4,7 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { Petition } from '../../model/petition.model';
 import { Signature } from '../../model/signature.model';
-import { ErrorHandlerService } from '../../shared/error-handler.service';
+import { ErrorHandlerService } from '../../helpers/shared/error-handler.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,16 +15,16 @@ import { Router } from '@angular/router';
 export class UserPetitionComponent implements OnInit {
 
   public displayedColumns = ['title'];//To display table header
-  public dataSource = new MatTableDataSource<Petition>(); 
-  public signedSource = new MatTableDataSource<Petition>(); 
-  petitionList: any[] = []; 
+  public dataSource = new MatTableDataSource<Petition>();
+  public signedSource = new MatTableDataSource<Petition>();
+  petitionList: any[] = [];
   signatureList: Signature[] = [];
   myArray: Signature[] = new Array<Signature>();
   signedPetitionList: Petition[] = new Array<Petition>();
   petition: Petition;
 
   email: String = "dfg";
-  
+
   @ViewChild(MatSort , {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
@@ -56,7 +56,7 @@ export class UserPetitionComponent implements OnInit {
   public getByEmailSignature = () => {
     this.signatureService.getbyIDSignature(this.email)
       .subscribe( data => {
-      
+
         data.forEach((value) => {
           console.log(value);
           this.myArray.push(value);
@@ -79,8 +79,8 @@ export class UserPetitionComponent implements OnInit {
          });
          this.getSignedPetitions();
       });
-      
-      
+
+
   }
 
 
@@ -94,5 +94,5 @@ export class UserPetitionComponent implements OnInit {
     let url: string = `/petition/manage/${id}`;
     this.router.navigate([url]);
   }
-  
+
 }
