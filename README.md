@@ -5,6 +5,7 @@ This application is a single place for creating Events, Fundraisers, Starting Pe
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.3.
 
 ##Motivation
+
 While it can seem like a hippy-dippy thing to say, protecting the environment is of the utmost importance. We all need to work together to make protecting our planet a priority within society and within our individual lives
 
 We are trying to achieve this by building this application. Be proud of the things you do to protect the environment at the same time, create awareness.
