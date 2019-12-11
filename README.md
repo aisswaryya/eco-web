@@ -68,6 +68,20 @@ Social Feeds:
 4. PUT: v1/eco/socialfeeds/:id
 5. DELETE: v1/eco/socialfeeds/:id
 
+Petitions:
+1. GET: /petitions
+2. POST: /petitions
+3. PUT: /petitions/:id
+4. DELETE: /petitions/:id
+5. GET: /petitions/:id
+6. GET: /petitions/:emailId
+
+Signature:
+1. GET: /signature
+2. POST: /signature
+3. GET: /signature/:petitionId
+4. GET: /signature/:emailId
+5. GET: /signature/count/:emailId
 
 ## Running the app
 Prerequisites:
