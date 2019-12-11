@@ -35,7 +35,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   // { path: '**', redirectTo: '/404', pathMatch: 'full' },
   { path: 'socialfeeds', component: SocialFeedListComponent },
-  { path: 'my-socialfeeds', component: MySocialFeedComponent },
+  { path: 'my-socialfeeds', canActivate: [AuthGuard ], component: MySocialFeedComponent },
   { path: 'home', component: HomePageComponent },
   { path: 'blog-detail', component: BlogDetailComponent },
 ];
