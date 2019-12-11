@@ -122,8 +122,11 @@ exports.delete = function (request, response) {
             message: 'Event Successfully deleted'
         });
     };
+
     eventService.delete(request.params.eventId)
         .then(resolve)
         .catch(renderErrorResponse(response));
+
+
 };
 

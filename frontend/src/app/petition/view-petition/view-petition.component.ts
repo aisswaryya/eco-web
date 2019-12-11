@@ -48,7 +48,7 @@ export class ViewPetitionComponent implements OnInit,AfterViewInit {
             console.log(data);
             this.result = JSON.parse(JSON.stringify(data));
             console.log(this.result["count"]);
-            
+
             this.myArray.push(this.result["count"]);
             console.log("Response - Count "+JSON.stringify(this.myArray));
           });

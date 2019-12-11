@@ -11,7 +11,6 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
 import { EventStatus } from '../EventStatus';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
 @Component({
   selector: 'app-event-create',
   templateUrl: './event-create.component.html',

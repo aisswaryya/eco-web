@@ -19,11 +19,7 @@
      float:right;
   }
 
- 
-
   
-
-
 //filter customization
 ::ng-deep .mat-focused .mat-form-field-label{
   /*change color of label*/
@@ -65,7 +61,7 @@ mat-label {
 .mat-paginator {
     display: flex;
     justify-content: flex-end;
-    width: 832px;
+    width: 800px;
     margin: 0 auto;
 }
 
@@ -82,10 +78,12 @@ mat-label {
     opacity: 1;
   }
 
-  #div-left{
+  .div-left{
        margin-top: 10px;
        margin: 10px, 5px,10px,5px; 
+       
   }
+  
   .test-card{
     height: 80%;
     width: 80%;   

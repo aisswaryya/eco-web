@@ -18,13 +18,16 @@ const mongoose = require('mongoose'),
  * @param value
  */
 exports.search = function (searchkey, value) {
+    // Search by email Id
     if(searchkey === 'emailId') {
         const promise = Donation.find({emailId: value}).exec();
         return promise;
     } else if(searchkey === 'fundraiserId') {
+        //search by fundraiserId
         const promise = Donation.find({fundraiserId: value}).exec();
         return promise;
     } else {
+        // regular search
         const promise = Donation.find({fundraiserId: value}).exec();
         return promise;
     }
