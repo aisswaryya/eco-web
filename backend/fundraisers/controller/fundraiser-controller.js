@@ -22,11 +22,12 @@ exports.list = function (request, response) {
         response.json(fundraisers);
     };
     if( request.query.emailId !== undefined ) {
-        console.log('Search by Email Id');
+        // search by email id
         fundraiserService.search('emailId', request.query.emailId)
             .then(resolve)
             .catch(renderErrorResponse(response));
     } else {
+        // regular filterless search
         fundraiserService.search(null, null)
             .then(resolve)
             .catch(renderErrorResponse(response));

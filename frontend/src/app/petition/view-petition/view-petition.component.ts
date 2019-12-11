@@ -2,7 +2,7 @@ import { PetitionService } from '../../services/petition.service';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { Petition } from '../../model/petition.model';
-import { ErrorHandlerService } from '../../shared/error-handler.service';
+import { ErrorHandlerService } from '../../helpers/shared/error-handler.service';
 import { Router } from '@angular/router';
 import { SignatureService } from 'src/app/services/signature.service';
 
@@ -48,7 +48,7 @@ export class ViewPetitionComponent implements OnInit,AfterViewInit {
             console.log(data);
             this.result = JSON.parse(JSON.stringify(data));
             console.log(this.result["count"]);
-            
+
             this.myArray.push(this.result["count"]);
             console.log("Response - Count "+JSON.stringify(this.myArray));
           });
