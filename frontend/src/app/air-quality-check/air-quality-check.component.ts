@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CityCoordinates } from "../models/city-coordinates";
+import { AirQualityService } from "../services/air-quality.service";
+import { CityQualityIdex } from "../models/city-quality-index";
 
 @Component({
   selector: 'app-air-quality-check',
@@ -8,11 +10,12 @@ import { CityCoordinates } from "../models/city-coordinates";
 })
 export class AirQualityCheckComponent implements OnInit {
 
-  constructor() { }
+  constructor(private airQualityService:AirQualityService) { }
 
   citylist: Array<CityCoordinates> = [];
   latitude: number = 42.360081;
   longitude: number = -71.058884;
+  cityQualityIndex: any;
   ngOnInit() {
 
     this.initializeCitiesOnMap();
@@ -41,11 +44,15 @@ export class AirQualityCheckComponent implements OnInit {
    * Scrolls smoothly the window to the div that is selected
    * @param eventId the id of the div to which the scroll has to go to
    */
-  clickedInfoMarker(eventId) {
-    //code to scroll smoothly
-    document.getElementById(eventId).scrollIntoView(
-      { behavior: "smooth", block: "start", inline: "nearest" }
-    );
+  clickedInfoMarker(cityName: string) {
+    this.citylist.forEach(city => {
+        if(city.cityName === cityName) {
+          this.airQualityService.getAQIStats(city.latitude,city.longitude).subscribe((response)=>{
+              this.cityQualityIndex = response.data;
+              console.log(this.cityQualityIndex);
+          });
+        }
+    });
   }
 
   /**

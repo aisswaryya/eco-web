@@ -1,9 +1,9 @@
 export class CityCoordinates {
-    city: string;
+    cityName: string;
     latitude: number;
     longitude: number;
-    constructor(city: string, latitude: number, longitude: number) {
-        this.city = city;
+    constructor(cityName: string, latitude: number, longitude: number) {
+        this.cityName = cityName;
         this.latitude = latitude;
         this.longitude = longitude;
     }

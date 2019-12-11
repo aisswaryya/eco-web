@@ -15,12 +15,12 @@ Inside air quality check
         }" 
         (markerClick)=select_marker(infoWindow)>
 
-    <!-- he event Info which pops up with the info -->
+    <!-- The event Info which pops up with the info -->
     <agm-info-window #infoWindow>
         <strong>
-            <!-- <p class="markerInfo">{{ currentEvent.name }}</p><br> -->
-            <button class="btn btn-primary btn-sm" (click)="clickedInfoMarker(currentEvent.id)">
-                More Info
+            <p class="markerInfo">{{city.cityName}}</p><br>
+            <button class="btn btn-primary btn-sm" (click)="clickedInfoMarker(city.cityName)">
+                View Air Quality Statistics
             </button>
         </strong>
     </agm-info-window>
