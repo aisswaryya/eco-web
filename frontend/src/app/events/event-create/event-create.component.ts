@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { FormControl } from '@angular/forms';
 import { Event } from '../../models/event';
-import { EventService } from '../services/event.service';
+import { EventService } from '../../services/event.service';
 import { Observable } from 'rxjs';
 import {NgbDateStruct, NgbCalendar, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import { GooglePlaceDirective, GooglePlaceModule } from 'ngx-google-places-autocomplete';
@@ -10,6 +10,7 @@ import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
 import { EventStatus } from '../EventStatus';
+import { MatSnackBar } from '@angular/material/snack-bar';
  
 @Component({
   selector: 'app-event-create',
@@ -27,7 +28,8 @@ export class EventCreateComponent implements OnInit {
   
 
   constructor(eventService: EventService, config: NgbDatepickerConfig
-          ,public authService: AuthService , private router: Router) {
+          ,public authService: AuthService , private router: Router
+          ,private snackBar: MatSnackBar) {
 
     //Injected Event service
     this.eventService = eventService;
@@ -60,9 +62,10 @@ export class EventCreateComponent implements OnInit {
 
     console.log(this.authService.userProfile);
 
-    let newEvent$: Observable<Event> = this.eventService.createEvent(this.eventModel);
+    let newEvent$: Observable<Event> = this.eventService.createEvent(this.eventModel,this.authService.accessToken);
     newEvent$.subscribe(newEvent => {
       console.log(newEvent);
+      this.openSnackBar("The Event "+this.eventModel.name +" Registered successfully!", "okay");
       this.router.navigate(['/event-list']);
     });
   }
@@ -90,6 +93,12 @@ export class EventCreateComponent implements OnInit {
 
     }
 
+
+    openSnackBar(message: string, action: string) {
+      this.snackBar.open(message, action, {
+        duration: 2000,
+      });
+    }
 
 }
 

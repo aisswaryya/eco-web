@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Attendee } from '../../models/attendee';
-import { AttendeeService } from '../services/attendee.service';
+import { AttendeeService } from '../../services/attendee.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-attendee',
@@ -11,26 +13,52 @@ import { Observable } from 'rxjs';
 })
 export class AttendeeComponent implements OnInit {
 
-  @Input() 
-  attendee : Attendee;
+  /**
+   *
+   *  The attendee object to be displayed
+   * @type {Attendee}
+   * @memberof AttendeeComponent
+   */
+  @Input()
+  attendee: Attendee;
 
-  constructor(public attendeeService: AttendeeService,private router: Router) { }
+  /**
+   *Creates an instance of AttendeeComponent.
+   * @param {AttendeeService} attendeeService
+   * @param {Router} router
+   * @memberof AttendeeComponent
+   */
+  constructor(public attendeeService: AttendeeService, private router: Router,
+    public authService: AuthService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    
+
   }
 
-  cancelRegistration(attendee : Attendee){
+  /**
+   *
+   *  Called to cancel the current registration
+   * @param {Attendee} attendee
+   * @memberof AttendeeComponent
+   */
+  cancelRegistration(attendee: Attendee) {
 
     console.log(attendee);
 
-    let removedAttendee$: Observable<Array<Attendee>> = this.attendeeService.deleteAttendeeById(attendee.id);
+    let removedAttendee$: Observable<Array<Attendee>> = this.attendeeService.deleteAttendeeById(attendee.id, this.authService.accessToken);
     removedAttendee$.subscribe(removedEvent => {
       console.log(removedEvent);
+      this.openSnackBar("Cancelled the registration of the event Successfully!","okay");
+      //navigating to my attendee list
       this.router.navigate(['/my-event-list']);
-
     });
+  }
 
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 4000,
+    });
   }
 
 }

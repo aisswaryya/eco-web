@@ -2,12 +2,13 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { Event } from '../../models/event';
 import { Attendee } from '../../models/attendee';
-import { AttendeeService } from '../services/attendee.service';
-import { EventService } from '../services/event.service';
+import { AttendeeService } from '../../services/attendee.service';
+import { EventService } from '../../services/event.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
 import { EventStatus } from '../EventStatus';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-event',
@@ -32,7 +33,7 @@ export class EventComponent implements OnInit {
   authService: AuthService
 
   constructor(attendeeService: AttendeeService, authService: AuthService,
-    public eventService: EventService, private _router: Router) {
+    public eventService: EventService, private _router: Router , private snackBar: MatSnackBar) {
 
     this.attendeeService = attendeeService;
     this.authService = authService;
@@ -51,7 +52,7 @@ export class EventComponent implements OnInit {
       
       let attendee = new Attendee(e._id,this.event.name,this.authService.userProfile.email,this.event.dateOfEvent);
 
-      let newAttendee$: Observable<Attendee> = this.attendeeService.createAttendee(attendee);
+      let newAttendee$: Observable<Attendee> = this.attendeeService.createAttendee(attendee,this.authService.accessToken);
       newAttendee$.subscribe(newAttendee => {
         console.log(newAttendee);
         this.openSnackBar("Registered to "+ this.event.name +" successfully.", "okay");
@@ -71,13 +72,20 @@ export class EventComponent implements OnInit {
 
     console.log(e);
 
-    let modifiedEvent$: Observable<Event> = this.eventService.modifyEvent(e);
+    let modifiedEvent$: Observable<Event> = this.eventService.modifyEvent(e,this.authService.accessToken);
     modifiedEvent$.subscribe(newEvent => {
       console.log(newEvent);
       this.router.navigate(['/my-event-list']);
 
     });
 
+  }
+
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 4000,
+    });
   }
 
 

@@ -1,4 +1,5 @@
 const eventService = require('../services/event-service');
+const attendeeService = require('../services/attendee-service');
 
 /**
  * Creating a new Event 
@@ -92,7 +93,7 @@ exports.put = function (request, response) {
         //Running two queries and returning the same promise
         var promises = [
             eventService.update(event),
-            attendeeService.deleteBasedOnEventId(request.params.eventId)
+            attendeeService.deleteBasedOnEventId(event._id)
         ];
     
         Promise.all(promises)
