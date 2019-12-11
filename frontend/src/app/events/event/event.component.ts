@@ -64,8 +64,7 @@ constructor(private attendeeService: AttendeeService, private authService: AuthS
     private eventService: EventService, private _router: Router, private snackBar: MatSnackBar) {
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   addAttendee(e: Event) {
 
@@ -80,7 +79,12 @@ constructor(private attendeeService: AttendeeService, private authService: AuthS
       //calling the event service to create the event
       let newAttendee$: Observable<Attendee> = this.attendeeService.createAttendee(attendee, this.authService.accessToken);
       newAttendee$.subscribe(newAttendee => {
+        
         this.openSnackBar("Registered to " + this.event.name + " successfully.", "okay");
+           
+        //hiding button
+        this.event.amIAttending = true;
+
       });
 
     } else {

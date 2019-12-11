@@ -5,6 +5,8 @@ import { Event } from '../../models/event'
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
 import { EventStatus } from '../EventStatus';
+import { AttendeeService } from 'src/app/services/attendee.service';
+import { Attendee } from 'src/app/models/attendee';
 
 @Component({
   selector: 'app-event-view',
@@ -19,8 +21,8 @@ export class EventViewComponent implements OnInit {
    * @type {string}
    * @memberof EventViewComponent
    */
-  @Input() 
-  isMyEvents : string;
+  @Input()
+  isMyEvents: string;
 
   /**
    * Holds all the events that need to be displayed on the screen
@@ -45,8 +47,9 @@ export class EventViewComponent implements OnInit {
   longitude = -71.07718549999998;
 
 
-  constructor(private eventService: EventService, public authService: AuthService,
-        private router: Router) {
+  constructor(private eventService: EventService, private attendeeService: AttendeeService
+    , public authService: AuthService,
+    private router: Router) {
 
     console.log("The parameter passed::" + this.isMyEvents);
 
@@ -56,12 +59,12 @@ export class EventViewComponent implements OnInit {
   ngOnInit() {
     console.log(this.isMyEvents);
 
-    if(this.isMyEvents !== undefined){
-    
+    if (this.isMyEvents !== undefined) {
+
       console.log("Fetching Events by creator EmailId");
 
       //Getting all events based on emailId
-      let eventsObs$: Observable<Array<Event>> = 
+      let eventsObs$: Observable<Array<Event>> =
         this.eventService.getEventByCreatorEmailId(this.authService.userProfile.email);
       eventsObs$.subscribe(events => {
         this.events = events;
@@ -71,17 +74,49 @@ export class EventViewComponent implements OnInit {
 
       console.log("Fetching all Events");
 
-      //Getting all events
-      let eventsObs$: Observable<Array<Event>> = this.eventService.getEvents();
-      eventsObs$.subscribe(events => {
+      if (this.authService.isLoggedIn) {
 
-        this.events = events;
+        let eventsObs$: Observable<Array<Event>> = this.eventService.getEvents();
+        eventsObs$.subscribe(events => {
 
-        
-        this.events = this.events.filter(
-          event => event.status === EventStatus.UPCOMING);
+          this.events = events;
 
-      });
+          this.events = this.events.filter(
+            event => event.status === EventStatus.UPCOMING);
+
+          let myEventsObs$: Observable<Array<Attendee>> =
+            this.attendeeService.getAttendeesByEmailId(this.authService.userProfile.email);
+
+
+          myEventsObs$.subscribe(myAttendees => {
+
+            for (let i = 0; i < events.length; i++) {
+              for (let j = 0; j < myAttendees.length; j++) {
+                if (this.events[i]._id === myAttendees[j].eventId) {
+                  this.events[i].amIAttending = true;
+                  break;
+                }
+              }
+            }
+          });
+
+
+
+        });
+
+      } else {
+
+        let eventsObs$: Observable<Array<Event>> = this.eventService.getEvents();
+        eventsObs$.subscribe(events => {
+
+          this.events = events;
+
+          this.events = this.events.filter(
+            event => event.status === EventStatus.UPCOMING);
+
+        });
+
+      }
 
     }
 

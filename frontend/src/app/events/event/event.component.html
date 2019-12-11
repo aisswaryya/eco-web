@@ -12,13 +12,22 @@
     <h4>Status: {{ event.status}}</h4>
 
     <div *ngIf="event.status === 'UPCOMING'">
-        <div *ngIf="isMyEvents === undefined">
-            <!--Button adding an attendee-->
-            <button (click)="addAttendee(event)">Attend this event!</button>
+        <div *ngIf="isMyEvents === undefined;else not_defined">
+
+            <div *ngIf="event.amIAttending === true;else other_content">
+                <h4>You are attending this event!</h4>
+            </div>
+
+            <ng-template #other_content>
+                <!--Button adding an attendee-->
+                <button (click)="addAttendee(event)">Attend this event!</button>
+            </ng-template>
         </div>
-        <div *ngIf="isMyEvents !== undefined">
-            <!--Button cancelling the attendee-->
-            <button (click)="cancelEvent(event)">Cancel event!</button>
-        </div>
+        <ng-template #not_defined>
+            <div *ngIf="isMyEvents !== undefined">
+                <!--Button cancelling the attendee-->
+                <button (click)="cancelEvent(event)">Cancel event!</button>
+            </div>
+        </ng-template>
     </div>
 </div>

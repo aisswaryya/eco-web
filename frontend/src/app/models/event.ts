@@ -50,5 +50,5 @@ export class Event {
      * Am i attending this event
      * boolean to display if i am attending
      */
-    amIAttending = false;
+    amIAttending : boolean = false;
 }
