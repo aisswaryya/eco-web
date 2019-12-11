@@ -1,6 +1,9 @@
+/**
+ * Fundraiser list component
+ */
 import { Component, OnInit } from '@angular/core';
-import {FundraiserServicesService} from '../../services/fundraiser-services.service';
 import {MatSnackBar} from '@angular/material';
+import {FundraiserServicesService} from '../../services/fundraiser-services.service';
 
 @Component({
   selector: 'app-fundraiser-list',
@@ -24,6 +27,9 @@ export class FundraiserListComponent implements OnInit {
     });
   }
 
+  /**
+   * Function to get a list of all fundraisers
+   */
   getFundraisers() {
     this.fundraiserService.getFundraisers().subscribe(data => {
       this.fundraisers = data;

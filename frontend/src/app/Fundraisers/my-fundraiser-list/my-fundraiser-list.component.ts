@@ -1,7 +1,11 @@
+/**
+ * Component to show all fundraisers created by a user
+ */
 import { Component, OnInit } from '@angular/core';
+import {MatSnackBar} from '@angular/material';
+
 import {FundraiserServicesService} from '../../services/fundraiser-services.service';
 import {AuthService} from '../../auth/auth.service';
-import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-my-fundraiser-list',
@@ -26,6 +30,9 @@ export class MyFundraiserListComponent implements OnInit {
     });
   }
 
+  /**
+   * Function to get all fundraisers by email
+   */
   getFundraisersByEmail() {
     this.fundraiserService.getFundraisersByEmailId(this.authService.userProfile.email).subscribe(data => {
       this.fundraisers = data;

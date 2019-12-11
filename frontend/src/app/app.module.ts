@@ -120,7 +120,7 @@ import { MyAttendeeComponent } from './events/my-attendee/my-attendee.component'
     AngularRaveModule.forRoot({
       key: 'FLWPUBK_TEST-15175d68b5f7a725f15d52f5c1d5316e-X',
       isTest: true,
-    }),    
+    }),
     GooglePlaceModule,
     NgbModule,
     DlDateTimeDateModule,  // <--- Determines the data type of the model
@@ -131,7 +131,7 @@ import { MyAttendeeComponent } from './events/my-attendee/my-attendee.component'
     }),
     ProgressBarModule
   ],
-  providers: [ 
+  providers: [
     SocialFeedService,
     DonationServicesService,
     FundraiserServicesService,

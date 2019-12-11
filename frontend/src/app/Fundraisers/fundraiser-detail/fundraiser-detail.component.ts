@@ -1,9 +1,14 @@
+/**
+ * Component to display fundraiser details
+ */
 import { Component, OnInit } from '@angular/core';
-import {Fundraiser} from '../../models/fundraiser';
+import {MatSnackBar} from '@angular/material';
 import {ActivatedRoute} from '@angular/router';
+
 import {FundraiserServicesService} from '../../services/fundraiser-services.service';
 import {DonationServicesService} from '../../services/donation-services.service';
-import {MatSnackBar} from '@angular/material';
+import {Fundraiser} from '../../models/fundraiser';
+
 
 @Component({
   selector: 'app-fundraiser-detail',
@@ -33,6 +38,9 @@ export class FundraiserDetailComponent implements OnInit {
     });
   }
 
+  /**
+   * Function to get fundraiser Object
+   */
   getFundraiser() {
     this.fundraiserService.getFundraiser(this.fundraiserId).subscribe(data => {
     this.fundraiser = data;
@@ -42,6 +50,10 @@ export class FundraiserDetailComponent implements OnInit {
   });
   }
 
+  /**
+   * Function to get all Donations under a particular Fundraiser
+   * Sending fundraiser Id as query param
+   */
   getDonationsByFundraiserId() {
     this.donationService.getDonationsByFundraiserId(this.fundraiserId).subscribe(data => {
       this.donations = data;

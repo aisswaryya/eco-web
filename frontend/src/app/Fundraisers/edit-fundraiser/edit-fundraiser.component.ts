@@ -1,10 +1,15 @@
+/**
+ * Component to edit fundraiser
+ */
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {NgForm} from '@angular/forms';
+import {MatSnackBar} from '@angular/material';
+
 import {FundraiserServicesService} from '../../services/fundraiser-services.service';
 import {Fundraiser} from '../../models/fundraiser';
 import {AuthService} from '../../auth/auth.service';
-import {NgForm} from '@angular/forms';
-import {MatSnackBar} from '@angular/material';
+
 
 @Component({
   selector: 'app-edit-fundraiser',
@@ -14,6 +19,7 @@ import {MatSnackBar} from '@angular/material';
 export class EditFundraiserComponent implements OnInit {
   fundraiserId: string;
   fundraiser: Fundraiser;
+  // fundraiser categories options
   fundraiserCategory = [
     'Birthday Fundraisers',
     'Team Campaign',
@@ -41,6 +47,9 @@ export class EditFundraiserComponent implements OnInit {
     });
   }
 
+  /**
+   * Function to get fundraiser
+   */
   getFundraiser() {
     this.fundraiserService.getFundraiser(this.fundraiserId).subscribe(data => {
       this.fundraiser = data;
@@ -50,7 +59,12 @@ export class EditFundraiserComponent implements OnInit {
     });
   }
 
+  /**
+   * Function called on update submit button click.
+   * @param form
+   */
   update(form: NgForm) {
+    // check for authentication token
     if (this.authService.isLoggedIn) {
       form.value.emailId = this.authService.userProfile.email;
       this.fundraiserService.updateFundraiser(this.fundraiserId, form.value, this.authService.accessToken).subscribe(data => {

@@ -1,11 +1,15 @@
+/**
+ * Component to display details of personal fundraisers
+ */
 import { Component, OnInit } from '@angular/core';
-import {Fundraiser} from '../../models/fundraiser';
 import {ActivatedRoute, Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material';
+
+import {Fundraiser} from '../../models/fundraiser';
 import {FundraiserServicesService} from '../../services/fundraiser-services.service';
 import {DonationServicesService} from '../../services/donation-services.service';
 import {AuthService} from '../../auth/auth.service';
 import { MessageBoxButton} from '../../helpers/shared/message-box';
-import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-my-fundraiser-detail',
@@ -44,6 +48,9 @@ export class MyFundraiserDetailComponent implements OnInit {
     this.getDonationsByFundraiserId();
   }
 
+  /**
+   * get fundraiser object by Id
+   */
   getFundraiser() {
     this.fundraiserService.getFundraiser(this.fundraiserId).subscribe(data => {
       this.fundraiser = data;
@@ -53,6 +60,9 @@ export class MyFundraiserDetailComponent implements OnInit {
     });
   }
 
+  /**
+   * Get all donations by fundraiser
+   */
   getDonationsByFundraiserId() {
     this.donationService.getDonationsByFundraiserId(this.fundraiserId).subscribe(data => {
       this.donations = data;
@@ -68,6 +78,10 @@ export class MyFundraiserDetailComponent implements OnInit {
     });
   }
 
+  /**
+   * Function to delete fundraiser. API is protected
+   * Hence sending bearer token
+   */
   deleteFundraiser() {
     this.fundraiserService.deleteFundraiser(this.fundraiserId, this.authService.accessToken).subscribe(data => {
       console.log(data);

@@ -1,7 +1,10 @@
+/**
+ * Components to display personal donation list
+ */
 import { Component, OnInit } from '@angular/core';
+import {MatSnackBar} from '@angular/material';
 import {DonationServicesService} from '../../services/donation-services.service';
 import {AuthService} from '../../auth/auth.service';
-import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-my-donations-list',
@@ -11,7 +14,6 @@ import {MatSnackBar} from '@angular/material';
 export class MyDonationsListComponent implements OnInit {
 
   donations: any = [];
-  totalDonation = 0;
 
   constructor( private donationService: DonationServicesService,
                public authService: AuthService,
@@ -28,6 +30,7 @@ export class MyDonationsListComponent implements OnInit {
     });
   }
 
+  // Get donation by sending emailId of user as query param
   getDonationsByEmail() {
     this.donationService.getDonationsByEmailId(this.authService.userProfile.email).subscribe(data => {
       this.donations = data;
