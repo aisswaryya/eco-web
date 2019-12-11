@@ -1,9 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
-import { SharedModule} from './helpers/shared/shared.module';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SocialFeedListComponent } from './social-feed/social-feed-list/social-feed-list.component';
+import { SocialFeedCreateUpdateComponent } from './social-feed/social-feed-create-update/social-feed-create-update.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from "@angular/material/dialog";
+import { SocialFeedService } from "./services/social-feed.service";
+import { BlogDetailComponent } from './blog-detail/blog-detail.component';
+import { BlogsListComponent } from './blogs-list/blogs-list.component';
+import { SharedModule} from './helpers/shared/shared.module';
 import { FundraiserListComponent } from './Fundraisers/fundraiser-list/fundraiser-list.component';
 import { FundraiserDetailComponent } from './Fundraisers/fundraiser-detail/fundraiser-detail.component';
 import { MyFundraiserListComponent } from './Fundraisers/my-fundraiser-list/my-fundraiser-list.component';
@@ -12,7 +21,6 @@ import { FundraiserCreateComponent } from './Fundraisers/fundraiser-create/fundr
 import { DonationCreateComponent } from './Donations/donation-create/donation-create.component';
 import { MyDonationsListComponent } from './Donations/my-donations-list/my-donations-list.component';
 import { HttpClientModule } from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
 import {DonationServicesService} from './services/donation-services.service';
 import {FundraiserServicesService} from './services/fundraiser-services.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -31,6 +39,8 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {SignatureService} from './services/signature.service';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { EditFundraiserComponent } from './Fundraisers/edit-fundraiser/edit-fundraiser.component';
+import { DateAgoPipe } from './helpers/pipes/date-ago.pipe';
+import { MySocialFeedComponent } from "./social-feed/my-social-feed/my-social-feed.component";
 import {ProgressBarModule} from 'angular-progress-bar';
 import { SimpleDialogComponent } from './helpers/simple-dialog/simple-dialog.component';
 import {MAT_DIALOG_DATA} from '@angular/material';
@@ -39,6 +49,11 @@ import {MessageBox} from './helpers/shared/message-box';
 @NgModule({
   declarations: [
     AppComponent,
+    HomePageComponent,
+    SocialFeedListComponent,
+    SocialFeedCreateUpdateComponent,
+    BlogDetailComponent,
+    BlogsListComponent,
     FundraiserListComponent,
     FundraiserDetailComponent,
     MyFundraiserListComponent,
@@ -57,9 +72,17 @@ import {MessageBox} from './helpers/shared/message-box';
     ServerErrorComponent,
     MyProfileComponent,
     EditFundraiserComponent,
+    DateAgoPipe,
+    MySocialFeedComponent,
     SimpleDialogComponent
     ],
   imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     SharedModule,
@@ -67,7 +90,6 @@ import {MessageBox} from './helpers/shared/message-box';
     HttpClientModule,
     MatBadgeModule,
     AppRoutingModule,
-    HttpClientModule,
     FormsModule,
     AngularRaveModule.forRoot({
       key: 'FLWPUBK_TEST-15175d68b5f7a725f15d52f5c1d5316e-X',
@@ -75,7 +97,8 @@ import {MessageBox} from './helpers/shared/message-box';
     }),
     ProgressBarModule
   ],
-  providers: [
+  providers: [ 
+    SocialFeedService,
     DonationServicesService,
     FundraiserServicesService,
     AuthService,
@@ -84,6 +107,8 @@ import {MessageBox} from './helpers/shared/message-box';
     {provide: MAT_DIALOG_DATA, useValue: {}},
     MessageBox
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  entryComponents: [ SocialFeedCreateUpdateComponent ]
 })
 export class AppModule { }
