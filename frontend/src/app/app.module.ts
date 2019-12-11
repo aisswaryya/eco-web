@@ -62,6 +62,7 @@ import { MyeventsComponent } from './event/myevents/myevents.component';
 import { MyEventsComponent } from './events/my-events/my-events.component';
 import { AttendeeComponent } from './events/attendee/attendee.component';
 import { MyAttendeeComponent } from './events/my-attendee/my-attendee.component';
+import { AirQualityCheckComponent } from './air-quality-check/air-quality-check.component';
 
 
 
@@ -100,7 +101,8 @@ import { MyAttendeeComponent } from './events/my-attendee/my-attendee.component'
     EditFundraiserComponent,
     DateAgoPipe,
     MySocialFeedComponent,
-    SimpleDialogComponent
+    SimpleDialogComponent,
+    AirQualityCheckComponent
     ],
   imports: [
     BrowserModule,
