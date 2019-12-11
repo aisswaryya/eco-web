@@ -40,4 +40,10 @@ export class PetitionService {
     console.log(this.petitionUrl + '/' + id);
     return this.http.get<Petition>(this.petitionUrl + '/' + id);
   }
+
+  // call get by ID petition API
+  public getbyEmailPetition(email) {
+    console.log(this.petitionUrl + "/email/"+ email);
+    return this.http.get<Petition[]>(this.petitionUrl + "/email/" + email);
+  }
 }
