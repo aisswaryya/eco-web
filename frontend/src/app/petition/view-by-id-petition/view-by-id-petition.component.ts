@@ -16,13 +16,16 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class ViewByIDPetitionComponent implements OnInit {
  public petition: Petition;
  public signature: Signature =new Signature();
-
+ public userId: String;
+ public signed: boolean =  false;
  public petitionId: String;
  //for dependency injection from other class
   constructor( private snackBar: MatSnackBar, private signatureService:SignatureService,private router: Router, private auth: AuthService,private petitionService:PetitionService,private activateRoute:ActivatedRoute) { }
   // Initialize petition and retrieve petition object from Service
   ngOnInit() {
     this.getPetitionByID();
+    this.userId = this.auth.userProfile.email;
+    this.getSignedPetition();
   }
  public getPetitionByID=()=>{
 this.petitionId = this.activateRoute.snapshot.params['id'];
@@ -51,12 +54,32 @@ public signPetition=()=>{
 
 }
 
-   //alert
+   //alert using snackbar
    openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 5000
     });
   }
+
+  public getSignedPetition = () => {
+    this.signatureService.getbyIDSignature(this.userId)
+      .subscribe( data => {
+        
+
+        data.forEach((value) => {
+          console.log("Petition ID"+value.petitionId);
+              if(value.petitionId === this.petitionId)
+              {
+                this.signed = true;
+              }
+          });
+
+        });
+          
+  }
+
+
+
 
 }
 
