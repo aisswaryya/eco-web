@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'my-donations-list', component: MyDonationsListComponent, canActivate: [ AuthGuard ] },
   { path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuard ]},
   { path: 'callback', component: CallbackComponent },
-  { path: 'petition', loadChildren: './petition/petition.module#PetitionModule' },
+  { path: 'petition', loadChildren: './petition/petition.module#PetitionModule', canActivate:[ AuthGuard ] },
   { path: '404', component: NotFoundComponent },
   { path: '500', component: ServerErrorComponent },
   { path: '', redirectTo: '/', pathMatch: 'full' },

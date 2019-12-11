@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PetitionService } from '../../services/petition.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-update-petition',
@@ -16,7 +17,7 @@ export class UpdatePetitionComponent implements OnInit {
   public petition: Petition = new Petition  ();
   public petitionId: string
 
-    constructor(private location: Location,private petitionService: PetitionService,private  router: Router, private dialog: MatDialog,private activeRoute: ActivatedRoute) { }
+    constructor( private snackBar: MatSnackBar, private location: Location,private petitionService: PetitionService,private  router: Router, private dialog: MatDialog,private activeRoute: ActivatedRoute) { }
 
     ngOnInit() {
       this.updatePetitionForm = new FormGroup({
@@ -79,9 +80,16 @@ export class UpdatePetitionComponent implements OnInit {
       console.log(JSON.stringify(this.petition));
       this.petitionService.updatePetition(this.petition, this.petitionId)
         .subscribe( data => {
-          alert("petition updated successfully.");
+          this.openSnackBar(this.petition.title + " updated successfully.", "Close");
           this.router.navigate(["petition/list"]);
         });
 
     }
+
+     //alert
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 5000
+    });
+  }
   }

@@ -5,6 +5,8 @@ import { PetitionService } from '../../services/petition.service'; // to call HT
 import { Router } from '@angular/router'; // to navigate between various component
 import { Signature } from 'src/app/model/signature.model';
 import { SignatureService } from 'src/app/services/signature.service';
+import { AuthService } from 'src/app/auth/auth.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-view-by-id-petition',
@@ -17,7 +19,7 @@ export class ViewByIDPetitionComponent implements OnInit {
 
  public petitionId: String;
  //for dependency injection from other class
-  constructor( private signatureService:SignatureService,private router: Router,private petitionService:PetitionService,private activateRoute:ActivatedRoute) { }
+  constructor( private snackBar: MatSnackBar, private signatureService:SignatureService,private router: Router, private auth: AuthService,private petitionService:PetitionService,private activateRoute:ActivatedRoute) { }
   // Initialize petition and retrieve petition object from Service
   ngOnInit() {
     this.getPetitionByID();
@@ -36,16 +38,24 @@ this.petitionService.getbyIDPetition(this.petitionId)
 public signPetition=()=>{
   this.signature.name = this.petition.createdby;
   this.signature.petitionId = this.petition._id;
-  this.signature.email=this.petition.email;
+  this.signature.email=this.auth.userProfile.email;
   this.signature.signed=true;
   console.log(this.signature);
+  console.log("Signed by "+ this.signature.email);
       console.log(JSON.stringify(this.signature));
       this.signatureService.createSignature(this.signature)
         .subscribe( data => {
-          alert("petition signed successfully.");
+          this.openSnackBar("Thanks for signing", "Close");
           this.router.navigate(["/"]);
         });
 
 }
+
+   //alert
+   openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 5000
+    });
+  }
 
 }
