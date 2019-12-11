@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FundraiserServicesService} from '../../services/fundraiser-services.service';
 import {AuthService} from '../../auth/auth.service';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-my-fundraiser-list',
@@ -12,10 +13,17 @@ export class MyFundraiserListComponent implements OnInit {
   fundraisers: any = [];
 
   constructor(private fundraiserService: FundraiserServicesService,
-              public authService: AuthService ) { }
+              public authService: AuthService,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.getFundraisersByEmail();
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
   getFundraisersByEmail() {
@@ -23,7 +31,7 @@ export class MyFundraiserListComponent implements OnInit {
       this.fundraisers = data;
     }, error => {
       console.log(error);
-      alert('Error fetching Fundraisers');
+      this.openSnackBar('Error fetching Fundraisers', 'Okay');
     });
   }
 

@@ -3,6 +3,7 @@ import {Fundraiser} from '../../models/fundraiser';
 import {ActivatedRoute} from '@angular/router';
 import {FundraiserServicesService} from '../../services/fundraiser-services.service';
 import {DonationServicesService} from '../../services/donation-services.service';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-fundraiser-detail',
@@ -16,7 +17,8 @@ export class FundraiserDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private fundraiserService: FundraiserServicesService,
-              private donationService: DonationServicesService) {
+              private donationService: DonationServicesService,
+              private snackBar: MatSnackBar) {
     this.fundraiserId = route.snapshot.paramMap.get('id');
   }
 
@@ -25,12 +27,18 @@ export class FundraiserDetailComponent implements OnInit {
     this.getDonationsByFundraiserId();
   }
 
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
   getFundraiser() {
     this.fundraiserService.getFundraiser(this.fundraiserId).subscribe(data => {
     this.fundraiser = data;
   }, error => {
     console.log(error);
-    alert('Failed to get fundraiser with id:' + this.fundraiserId);
+    this.openSnackBar('Failed to get fundraiser with id:' + this.fundraiserId, 'Okay');
   });
   }
 
@@ -39,7 +47,7 @@ export class FundraiserDetailComponent implements OnInit {
       this.donations = data;
     }, error => {
       console.log(error);
-      alert('Error fetching Fundraisers');
+      this.openSnackBar('Error fetching Fundraisers', 'Okay');
     });
   }
 

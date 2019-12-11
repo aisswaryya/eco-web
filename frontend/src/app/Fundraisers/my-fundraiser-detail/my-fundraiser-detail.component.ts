@@ -4,8 +4,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FundraiserServicesService} from '../../services/fundraiser-services.service';
 import {DonationServicesService} from '../../services/donation-services.service';
 import {AuthService} from '../../auth/auth.service';
-import {MatDialog} from '@angular/material';
-import {MessageBox, MessageBoxButton} from '../../helpers/shared/message-box';
+import { MessageBoxButton} from '../../helpers/shared/message-box';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-my-fundraiser-detail',
@@ -35,7 +35,7 @@ export class MyFundraiserDetailComponent implements OnInit {
               private donationService: DonationServicesService,
               private router: Router,
               public authService: AuthService,
-              private dialog: MatDialog) {
+              private snackBar: MatSnackBar) {
     this.fundraiserId = route.snapshot.paramMap.get('id');
   }
 
@@ -62,19 +62,16 @@ export class MyFundraiserDetailComponent implements OnInit {
     });
   }
 
-  onShowClick() {
-    this.width = (this.width !== undefined && this.width !== 'px') ? this.width + 'px' : '1000px';
-    MessageBox.show(this.dialog, 'Are you sure you want to delete this Fundraiser', 'Delete Fundraiser', this.information,
-      this.button, this.allow_outside_click, this.style, this.width).subscribe( result => {
-      const respone = (result === undefined) ? 'none' : result.result;
-      MessageBox.show(this.dialog, `User response : ${respone}`);
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
     });
-    this.width = this.width.replace('px', '');
   }
 
   deleteFundraiser() {
     this.fundraiserService.deleteFundraiser(this.fundraiserId, this.authService.accessToken).subscribe(data => {
       console.log(data);
+      this.openSnackBar('Fundraiser Deleted', 'Okay');
       this.router.navigate(['/my-fundraisers-list']);
     }, error => {
       console.log(error);

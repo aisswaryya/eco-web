@@ -7,6 +7,7 @@ import {PaymentInstance} from 'angular-rave';
 import {Fundraiser} from '../../models/fundraiser';
 import {FundraiserServicesService} from '../../services/fundraiser-services.service';
 import {AuthService} from '../../auth/auth.service';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-donation-create',
@@ -24,7 +25,8 @@ export class DonationCreateComponent implements OnInit {
               private router: Router,
               private donationService: DonationServicesService,
               private fundraiserService: FundraiserServicesService,
-              public authService: AuthService) {
+              public authService: AuthService,
+              private snackBar: MatSnackBar) {
     this.fundraiserId = route.snapshot.paramMap.get('id');
     this.donation.fundraiserId = this.fundraiserId;
     this.donation.emailId = this.authService.userProfile.email;
@@ -32,6 +34,12 @@ export class DonationCreateComponent implements OnInit {
 
   ngOnInit() {
     this.getFundraiser();
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
   saveDonation(form: NgForm) {
@@ -42,7 +50,7 @@ export class DonationCreateComponent implements OnInit {
         this.updateTotalAmount();
         this.router.navigate(['/fundraiser-detail', this.fundraiserId]);
       }, error => {
-        alert('Payment Failure');
+        this.openSnackBar('Payment Failure', 'Okay');
         console.log(error);
       });
     } else {
@@ -72,7 +80,7 @@ export class DonationCreateComponent implements OnInit {
       this.fundraiser = data;
     }, error => {
       console.log(error);
-      alert('Failed to get fundraiser with id:' + this.fundraiserId);
+      this.snackBar.open('Failed to get fundraiser with id:' + this.fundraiserId, 'Okay');
     });
   }
 

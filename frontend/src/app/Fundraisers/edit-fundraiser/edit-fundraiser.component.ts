@@ -4,6 +4,7 @@ import {FundraiserServicesService} from '../../services/fundraiser-services.serv
 import {Fundraiser} from '../../models/fundraiser';
 import {AuthService} from '../../auth/auth.service';
 import {NgForm} from '@angular/forms';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-edit-fundraiser',
@@ -25,7 +26,8 @@ export class EditFundraiserComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private fundraiserService: FundraiserServicesService,
               private router: Router,
-              public authService: AuthService) {
+              public authService: AuthService,
+              private snackBar: MatSnackBar) {
     this.fundraiserId = route.snapshot.paramMap.get('id');
   }
 
@@ -33,12 +35,18 @@ export class EditFundraiserComponent implements OnInit {
     this.getFundraiser();
   }
 
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
   getFundraiser() {
     this.fundraiserService.getFundraiser(this.fundraiserId).subscribe(data => {
       this.fundraiser = data;
     }, error => {
       console.log(error);
-      alert('Failed to get fundraiser with id:' + this.fundraiserId);
+      this.openSnackBar('Failed to get fundraiser with id:' + this.fundraiserId, 'Okay');
     });
   }
 
@@ -46,12 +54,12 @@ export class EditFundraiserComponent implements OnInit {
     if (this.authService.isLoggedIn) {
       form.value.emailId = this.authService.userProfile.email;
       this.fundraiserService.updateFundraiser(this.fundraiserId, form.value, this.authService.accessToken).subscribe(data => {
-        alert('Fundraiser Updated');
+        this.openSnackBar('Fundraiser Updated', 'Okay');
         console.log(data);
         this.router.navigate(['/my-fundraiser-detail', data.id]);
       }, error => {
         if (error.status === 401) {
-          alert('Not authenticated!! Please login to continue');
+          this.openSnackBar('Not authenticated!! Please login to continue', 'Okay');
         }
         console.log(error);
       });
