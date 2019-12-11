@@ -1,4 +1,8 @@
+/**
+ * Fundraiser list component
+ */
 import { Component, OnInit } from '@angular/core';
+import {MatSnackBar} from '@angular/material';
 import {FundraiserServicesService} from '../../services/fundraiser-services.service';
 
 @Component({
@@ -10,18 +14,28 @@ export class FundraiserListComponent implements OnInit {
 
   fundraisers: any = [];
 
-  constructor(private fundraiserService: FundraiserServicesService) { }
+  constructor(private fundraiserService: FundraiserServicesService,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.getFundraisers();
   }
 
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
+  /**
+   * Function to get a list of all fundraisers
+   */
   getFundraisers() {
     this.fundraiserService.getFundraisers().subscribe(data => {
       this.fundraisers = data;
     }, error => {
       console.log(error);
-      alert('Error fetching Fundraisers');
+      this.openSnackBar('Error fetching Fundraisers', 'Okay');
     });
   }
 

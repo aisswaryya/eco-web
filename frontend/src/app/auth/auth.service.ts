@@ -1,3 +1,6 @@
+/**
+ * Auth Service to get tokens and user profiles of Logged in user.
+ */
 import { Injectable } from '@angular/core';
 import * as auth0 from 'auth0-js';
 import { environment } from './../../environments/environment';
@@ -29,6 +32,7 @@ export class AuthService {
     this.getAccessToken();
   }
 
+  // Login function
   login() {
     // Auth0 authorize request
     this.auth0.authorize();
@@ -47,6 +51,8 @@ export class AuthService {
     });
   }
 
+
+  // Get access token function
   getAccessToken() {
     this.auth0.checkSession({}, (err, authResult) => {
       if (authResult && authResult.accessToken) {
@@ -74,8 +80,6 @@ export class AuthService {
 
   logout() {
     // Log out of Auth0 session
-    // Ensure that returnTo URL is specified in Auth0
-    // Application settings for Allowed Logout URLs
     this.auth0.logout({
       returnTo: 'http://localhost:4200',
       clientID: environment.auth.clientID

@@ -4,6 +4,8 @@ import { SocialFeed } from '../../models/social-feed-model';
 import { SocialFeedService } from '../../services/social-feed.service';
 import { AuthService } from "../../auth/auth.service";
 import { FormBuilder, FormControl, Validators, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { GooglePlaceDirective, GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
 
 @Component({
   selector: 'app-social-feed-create-update',
@@ -82,7 +84,7 @@ onFileSelected(event) {
     socialfeed.id = "";
     socialfeed.image= this.imgURL;
     socialfeed.description= this.socialFeedGroup.get('description').value;
-    socialfeed.location= this.socialFeedGroup.get('location').value;
+    socialfeed.location= this.location;
     socialfeed.emailId= "abc@gmail.com";
     socialfeed.createdDate = new Date();
     socialfeed.updatedDate = new Date();
@@ -113,7 +115,7 @@ onFileSelected(event) {
     socialfeed.id = this.socialFeedGroup.get('id').value;
     socialfeed.image= this.data.image;
     socialfeed.description= this.socialFeedGroup.get('description').value;
-    socialfeed.location= this.socialFeedGroup.get('location').value;
+    socialfeed.location= this.location;
     socialfeed.emailId= "abc@gmail.com";
     socialfeed.createdDate = new Date();
     socialfeed.updatedDate = new Date();
@@ -138,10 +140,10 @@ onFileSelected(event) {
     this.dialogRef.close();
   }
 
-  // @ViewChild("venue",{static: false}) placesRef : GooglePlaceDirective;
+  @ViewChild("venue",{static: false}) placesRef : GooglePlaceDirective;
 
-  // public handleAddressChange(address: Address) {
-  //   // Do some stuff
-  //   this.location = address.formatted_address;
-  // } 
+  public handleAddressChange(address: Address) {
+    // Do some stuff
+    this.location = address.formatted_address;
+  } 
 }

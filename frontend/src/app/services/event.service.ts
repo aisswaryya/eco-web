@@ -4,9 +4,9 @@ import { HttpHeaders } from '@angular/common/http';
 
 import { Event } from '../models/event';
 
-import { environment } from '../../../environments/environment';
+import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
-import { EventStatus } from '../EventStatus';
+import { EventStatus } from '../events/EventStatus';
 
 @Injectable()
 /**
@@ -67,8 +67,11 @@ export class EventService {
    * @param  {Event} event: Event {new Event object}
    * @return {Observable<Event>} {Observable for saved event object}
    */
-  createEvent(event: Event = null): Observable<Event> {
-    return this.http.post<Event>(this.eventResourceURL, event);
+  createEvent(event: Event = null, accessToken: string): Observable<Event> {
+    return this.http.post<Event>(this.eventResourceURL, event,
+      {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${accessToken}`)
+      });
   }
 
   /**
@@ -77,8 +80,11 @@ export class EventService {
    * @param  {Event} event: Event { Event object to be modified}
    * @return {Observable<Event>} {Observable for saved event object}
    */
-  modifyEvent(event: Event = null): Observable<Event> {
-    return this.http.put<Event>(this.eventResourceURL+"/"+event._id, event);
+  modifyEvent(event: Event = null, accessToken: string): Observable<Event> {
+    return this.http.put<Event>(this.eventResourceURL+"/"+event._id, event,
+    {
+      headers: new HttpHeaders().set('Authorization', `Bearer ${accessToken}`)
+    });
   }
 
   //--------------------------------------------------------------------------
@@ -89,8 +95,8 @@ export class EventService {
    *
    * @return {Observable<Array<Attendee>>} {Observable attendee array of single event}
    */
-  getEventByAttendeeEmailId(emailId : string): Observable<Array<Event>> {
-    return this.http.get<Array<Event>>(`${this.eventResourceURL}/?attendeeEmailId=${emailId}`);
+  getEventByCreatorEmailId(emailId : string): Observable<Array<Event>> {
+    return this.http.get<Array<Event>>(`${this.eventResourceURL}/?creatorEmailId=${emailId}`);
   }
 
   /**

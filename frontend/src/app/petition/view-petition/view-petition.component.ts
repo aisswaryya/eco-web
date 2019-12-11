@@ -80,7 +80,7 @@ export class ViewPetitionComponent implements OnInit, AfterViewInit {
   }
 
 
-
+  
 
 
 

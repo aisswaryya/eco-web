@@ -1,7 +1,12 @@
-import { Injectable } from '@angular/core';
-import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router} from '@angular/router';
-import { Observable } from 'rxjs';
+/**
+ * Auth Guard Service to protect routes on frontEnd
+ */
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {Observable} from 'rxjs';
+// import services
 import {AuthService} from './auth.service';
+
 
 @Injectable({
   providedIn: 'root'

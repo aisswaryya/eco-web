@@ -1,3 +1,8 @@
+
+<div *ngIf="isMyEvents !== undefined">
+    <app-nav-bar>p-nav-bar></app-nav-bar>
+</div>
+
 <div *ngIf="events === undefined || events?.length === 0 ">
     <h2>No Upcoming events!</h2>
 </div>
@@ -38,7 +43,7 @@
                             width: 50,
                             height: 50
                         }
-                        }" (markerClick)=select_marker(infoWindow)>
+                        }" (markerClick)=select_marker(marker)>
                 
                                     <!--The event Info which pops up with the info-->
                                     <agm-info-window #infoWindow>

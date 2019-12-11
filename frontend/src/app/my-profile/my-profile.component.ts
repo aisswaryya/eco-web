@@ -1,3 +1,6 @@
+/**
+ * Simple component to display a nav-bar of personally created objects
+ */
 import { Component, OnInit } from '@angular/core';
 
 @Component({

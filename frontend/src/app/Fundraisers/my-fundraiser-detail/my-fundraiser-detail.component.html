@@ -21,7 +21,7 @@
             <p class="centre">Collected {{fundraiser.collectedAmount}} of {{fundraiser.targetAmount}}</p>
             <hr>
             <button class="btn btn-info" [routerLink]="['/edit-fundraiser', this.fundraiser.id]">Edit</button>
-            <button class="btn btn-danger" (click)="onShowClick()">Delete</button>
+            <button class="btn btn-danger" (click)="deleteFundraiser()">Delete</button>
           </div>
         </div>
       </div>

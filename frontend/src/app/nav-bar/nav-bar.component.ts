@@ -1,3 +1,6 @@
+/**
+ * Secondary nav-bar component
+ */
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../auth/auth.service';
 

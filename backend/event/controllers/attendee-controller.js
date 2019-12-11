@@ -26,6 +26,7 @@ exports.list = function (request, response) {
         response.json(attendees);
     };
 
+    //querying based on eventid
     if (request.query.eventId !== undefined) {
 
         //search based on eventId

@@ -2,6 +2,11 @@
  * fundraiser endpoint route definitions
  */
 'use strict';
+/**
+ * Authentication tokens
+ * @type {((options: jwt.Options) => jwt.RequestHandler) | jwt}
+ */
+
 let jwt = require('express-jwt'),
     jwks = require('jwks-rsa');
 
@@ -26,11 +31,13 @@ module.exports = function (app) {
     // Fundraiser Routes for search and create.
     app.route('/v1/eco/fundraisers')
         .get(fundraiserController.list)
+        // securing creation of fundraisers
         .post(jwtCheck, fundraiserController.post);
 
     // Fundraiser Routes for get, update and delete.
     app.route('/v1/eco/fundraisers/:fundraiserId')
         .get(fundraiserController.get)
+        // securing put and delete
         .put(jwtCheck, fundraiserController.put)
         .delete(jwtCheck, fundraiserController.delete);
 };
