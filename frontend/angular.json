@@ -24,7 +24,8 @@
             "tsConfig": "tsconfig.app.json",
             "aot": false,
             "assets": [
-              "src/favicon.ico",
+              "src/icons/favicon.ico",
+              "src/icons/marker-icon.ico",
               "src/assets"
             ],
             "styles": [

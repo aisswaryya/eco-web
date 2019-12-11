@@ -35,6 +35,8 @@ import { LayoutComponent } from './layout/layout.component';
 import { NotFoundComponent} from './error-pages/not-found/not-found.component';
 import { ServerErrorComponent } from './error-pages/server-error/server-error.component';
 import {PetitionService} from './services/petition.service';
+
+// @ts-ignore
 import {MatBadgeModule} from '@angular/material/badge';
 import {SignatureService} from './services/signature.service';
 import { MyProfileComponent } from './my-profile/my-profile.component';
@@ -45,6 +47,23 @@ import {ProgressBarModule} from 'angular-progress-bar';
 import { SimpleDialogComponent } from './helpers/simple-dialog/simple-dialog.component';
 import {MAT_DIALOG_DATA} from '@angular/material';
 import {MessageBox} from './helpers/shared/message-box';
+
+
+import {NgbModule , NgbDateAdapter, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
+import { AgmCoreModule } from '@agm/core';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { DlDateTimeDateModule, DlDateTimePickerModule } from 'angular-bootstrap-datetimepicker';
+import { EventCreateComponent } from './events/event-create/event-create.component';
+import { EventService } from './events/services/event.service';
+import { EventViewComponent } from './events/event-view/event-view.component';
+import { EventComponent } from './events/event/event.component';
+import { AttendeeService } from './events/services/attendee.service';
+import { MyeventsComponent } from './event/myevents/myevents.component';
+import { MyEventsComponent } from './events/my-events/my-events.component';
+import { AttendeeComponent } from './events/attendee/attendee.component';
+import { MyAttendeeComponent } from './events/my-attendee/my-attendee.component';
+
+
 
 @NgModule({
   declarations: [
@@ -71,6 +90,13 @@ import {MessageBox} from './helpers/shared/message-box';
     NotFoundComponent,
     ServerErrorComponent,
     MyProfileComponent,
+    EventCreateComponent,
+    EventViewComponent,
+    EventComponent,
+    MyEventsComponent,
+    EditFundraiserComponent,
+    AttendeeComponent,
+    MyAttendeeComponent,
     EditFundraiserComponent,
     DateAgoPipe,
     MySocialFeedComponent,
@@ -94,6 +120,14 @@ import {MessageBox} from './helpers/shared/message-box';
     AngularRaveModule.forRoot({
       key: 'FLWPUBK_TEST-15175d68b5f7a725f15d52f5c1d5316e-X',
       isTest: true,
+    }),    
+    GooglePlaceModule,
+    NgbModule,
+    DlDateTimeDateModule,  // <--- Determines the data type of the model
+    DlDateTimePickerModule,
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({ //maps API key
+      apiKey: 'AIzaSyD4vSXcefSGKfJF9vqQdF_aLjC56JoS5sc'
     }),
     ProgressBarModule
   ],
@@ -101,6 +135,8 @@ import {MessageBox} from './helpers/shared/message-box';
     SocialFeedService,
     DonationServicesService,
     FundraiserServicesService,
+    EventService,
+    AttendeeService,
     AuthService,
     PetitionService,
     SignatureService,

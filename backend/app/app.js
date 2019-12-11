@@ -21,6 +21,14 @@ module.exports = function (app) {
 
     fundraiserRoutes(app);
     donationRoutes(app);
+
+    //Initializing Events
+    let eventRoutes = require('../event/routes/event-route');
+    eventRoutes(app);
+
+    //Initializing attendee routes init
+    let attendeeRoutes = require('../event/routes/attendee-route');
+    attendeeRoutes(app);
     socialfeedRoutes(app);
     petitionRoutes(app);
     signatureRoutes(app);
