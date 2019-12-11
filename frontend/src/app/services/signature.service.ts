@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Signature } from '../model/signature.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Petition } from '../model/petition.model';
+import {environment} from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -10,8 +10,16 @@ const httpOptions = {
 @Injectable()
 export class SignatureService {
 
-  constructor(private http: HttpClient) { }
-  private signatureUrl = 'http://localhost:3000/signature';
+  
+  signatureUrl: string;
+  signatureResourceUrl: string;
+
+  constructor(private http: HttpClient) { 
+  this.signatureResourceUrl = 'signature';
+  this.signatureUrl = `${environment.serverBaseURL}/${this.signatureResourceUrl}`;
+   }
+
+  
   // All the common services go here
 
   // Call create signature API

@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PetitionService } from '../../services/petition.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-update-petition',
@@ -14,9 +15,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class UpdatePetitionComponent implements OnInit {
   public updatePetitionForm: FormGroup;
   public petition: Petition = new Petition  ();
-  public petitionId: string;
+  public petitionId: string
 
-    constructor(private location: Location, private petitionService: PetitionService, private  router: Router, private dialog: MatDialog, private activeRoute: ActivatedRoute) { }
+    constructor( private snackBar: MatSnackBar, private location: Location,private petitionService: PetitionService,private  router: Router, private dialog: MatDialog,private activeRoute: ActivatedRoute) { }
 
     ngOnInit() {
       this.updatePetitionForm = new FormGroup({
@@ -25,14 +26,14 @@ export class UpdatePetitionComponent implements OnInit {
         shortDescription: new FormControl('', [Validators.required, Validators.maxLength(30)]),
         briefDescription: new FormControl('', [Validators.required, Validators.maxLength(400)]),
         mediapath: new FormControl('', [Validators.maxLength(60)]),
-        email: new FormControl('', [Validators.required, Validators.maxLength(30)]),
-        category: new FormControl('', [Validators.required, Validators.maxLength(30)]),
-        createdby: new FormControl('', [Validators.required, Validators.maxLength(30)])
+        email: new FormControl('', [Validators.required,Validators.maxLength(30)]),
+        category:new FormControl('', [Validators.required,Validators.maxLength(30)]),
+        createdby:new FormControl('', [Validators.required,Validators.maxLength(30)])
 
       });
 
 
-      this.getPetitionById();
+     this.getPetitionById();
     }
 
     public hasError = (controlName: string, errorName: string) => {
@@ -52,8 +53,8 @@ export class UpdatePetitionComponent implements OnInit {
     }
 
     private getPetitionById = () => {
-      this.petitionId = this.activeRoute.snapshot.params.id;
-      console.log('Petition ID - ' + this.petitionId);
+      this.petitionId = this.activeRoute.snapshot.params['id'];
+      console.log("Petition ID - "+ this.petitionId);
       this.petitionService.getbyIDPetition(this.petitionId)
       .subscribe( data => {
         this.petition = data as Petition;
@@ -63,7 +64,7 @@ export class UpdatePetitionComponent implements OnInit {
 
 
     private executePetitionUpdation = (updatePetitionFormValue) => {
-      console.log('Petition Title - ' + updatePetitionFormValue.title);
+      console.log("Petition Title - "+ updatePetitionFormValue.title);
       this.petition.title = updatePetitionFormValue.title;
       this.petition.target = updatePetitionFormValue.target;
       this.petition.shortDescription = updatePetitionFormValue.shortDescription;
@@ -79,9 +80,16 @@ export class UpdatePetitionComponent implements OnInit {
       console.log(JSON.stringify(this.petition));
       this.petitionService.updatePetition(this.petition, this.petitionId)
         .subscribe( data => {
-          alert('petition updated successfully.');
-          this.router.navigate(['petition/list']);
+          this.openSnackBar(this.petition.title + " updated successfully.", "Close");
+          this.router.navigate(["petition/list"]);
         });
 
     }
+
+     //alert
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 5000
+    });
+  }
   }

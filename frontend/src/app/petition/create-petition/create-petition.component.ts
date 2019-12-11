@@ -6,6 +6,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PetitionService } from '../../services/petition.service';
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { AuthService } from 'src/app/auth/auth.service';
 
 /**
  *
@@ -24,28 +25,33 @@ export class CreatePetitionComponent implements OnInit {
 
   /**
    *Creates an instance of CreatePetitionComponent.
-   * @param {MatSnackBar} _snackBar
+   * @param {MatSnackBar} snackBar
    * @param {Router} router
    * @param {Location} location
    * @param {PetitionService} petitionService
    * @param {MatDialog} dialog
    * @memberof CreatePetitionComponent
    */
-  constructor( private router: Router, private snackBar: MatSnackBar, private location: Location, private petitionService: PetitionService, private dialog: MatDialog) { }
+  constructor( private router: Router, 
+    private snackBar: MatSnackBar, 
+    private location: Location, 
+    private petitionService: PetitionService, 
+    private dialog: MatDialog,
+    private auth: AuthService) { }
 
-  ngOnInit() {
+    ngOnInit() {
     this.createPetitionForm = new FormGroup({
       title: new FormControl('', [Validators.required, Validators.maxLength(200)]),
       target: new FormControl('', [Validators.required, Validators.maxLength(200)]),
       shortdescription: new FormControl('', [Validators.required, Validators.maxLength(200)]),
       briefdescription: new FormControl('', [Validators.required, Validators.maxLength(1000)]),
       mediapath: new FormControl('', [Validators.maxLength(200)]),
-      email: new FormControl('', [Validators.required, Validators.maxLength(200)]),
+      email: new FormControl(this.auth.userProfile.email, [Validators.required, Validators.maxLength(200)]),
       category: new FormControl('', [Validators.required, Validators.maxLength(200)]),
       createdby: new FormControl('', [Validators.required, Validators.maxLength(200)])
     });
   }
-
+// alert for petition creation
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 2000,
@@ -65,8 +71,15 @@ export class CreatePetitionComponent implements OnInit {
     if (this.createPetitionForm.valid) {
       this.executePetitionCreation(petitionFormValue);
     }
+    
   }
 
+  /**
+   *
+   *function to create petition
+   * @private
+   * @memberof CreatePetitionComponent
+   */
   private executePetitionCreation = (petitionFormValue) => {
     let petition: Petition = {
       _id: '',
@@ -84,11 +97,9 @@ export class CreatePetitionComponent implements OnInit {
     console.log(JSON.stringify(petition));
     this.petitionService.createPetition(petition)
       .subscribe(data => {
-        // alert("petition created successfully.");
-        this.openSnackBar(petition._id + " petition created successfully.", "okay");
+        this.openSnackBar(petition._id + " petition created successfully.", "Close");
         this.router.navigate(["petition/list"]);
       });
-
 
   }
 
