@@ -13,6 +13,12 @@ import { EventStatus } from '../EventStatus';
 })
 export class EventViewComponent implements OnInit {
 
+  /**
+   * Input parameter from the list component
+   *
+   * @type {string}
+   * @memberof EventViewComponent
+   */
   @Input() 
   isMyEvents : string;
 
@@ -27,11 +33,6 @@ export class EventViewComponent implements OnInit {
   myEvents: Array<Event>;
 
   /**
-   * event sevice instance to get event
-   */
-  eventService: EventService;
-
-  /**
    * the following two are used to close other more info boxes of markers
    */
   infoWindowOpened = null
@@ -44,10 +45,8 @@ export class EventViewComponent implements OnInit {
   longitude = -71.07718549999998;
 
 
-  constructor(eventService: EventService, public authService: AuthService,
+  constructor(private eventService: EventService, public authService: AuthService,
         private router: Router) {
-    //Injecting the event service
-    this.eventService = eventService;
 
     console.log("The parameter passed::" + this.isMyEvents);
 
@@ -78,6 +77,7 @@ export class EventViewComponent implements OnInit {
 
         this.events = events;
 
+        
         this.events = this.events.filter(
           event => event.status === EventStatus.UPCOMING);
 

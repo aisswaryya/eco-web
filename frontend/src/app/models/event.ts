@@ -46,36 +46,9 @@ export class Event {
      */
     time = {hour: 12, minute: 0};
 
-    // constructor(
-    //     name: string,
-    //     cause: string,
-    //     venue: string,
-    //     city: string,
-    //     state: string,
-    //     country: string,
-    //     zip: string,
-    //     description: string,
-    //     status: string,
-    //     dateOfEvent: Date,
-    //     maxAttendees: Number,
-    //     isWheelchair: Boolean,
-    //     isPrivate: Boolean,
-    //     creator: string
-    //     ) {
-            
-    //         this.name = name;
-    //         this.cause = cause;
-    //         this.venue = venue;
-    //         this.city = city;
-    //         this.state = state;
-    //         this.country = country;
-    //         this.zip = zip;
-    //         this.description = description;
-    //         this.status = status;
-    //         this.dateOfEvent = dateOfEvent;
-    //         this.maxAttendees = maxAttendees;
-    //         this.isWheelchair = isWheelchair;
-    //         this.isPrivate = isPrivate;
-    //         this.creator = creator;
-    // }
+    /**
+     * Am i attending this event
+     * boolean to display if i am attending
+     */
+    amIAttending = false;
 }

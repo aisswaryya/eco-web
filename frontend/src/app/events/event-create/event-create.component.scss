@@ -1,3 +1,4 @@
+//main form styling
 .form {
   background: #fff;
   border: 1px solid;
@@ -17,10 +18,12 @@
   font-weight: bold;
 }
 
+//h1
 h1 {
   color: darkseagreen;
 }
 
+//h3
 h3 {
   color: dodgerblue;
   text-align: center;
@@ -51,6 +54,7 @@ h4, .centre {
 
 }
 
+//each card styling
 .firma-card{
   background: #fff;
   border: 1px solid;
@@ -69,6 +73,7 @@ h4, .centre {
   padding: 15px;
 }
 
+//button styling
 button {
   align-content: center;
   width: 50%;
@@ -95,7 +100,7 @@ button {
   }
 }
 
-
+//date div used for outer box size
 .dateDiv {
   width: 150px;
 }

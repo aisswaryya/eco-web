@@ -31,13 +31,11 @@ export class AttendeeComponent implements OnInit {
   constructor(public attendeeService: AttendeeService, private router: Router,
     public authService: AuthService, private snackBar: MatSnackBar) { }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   /**
    *
-   *  Called to cancel the current registration
+   * Called to cancel the current registration
    * @param {Attendee} attendee
    * @memberof AttendeeComponent
    */
@@ -45,9 +43,12 @@ export class AttendeeComponent implements OnInit {
 
     console.log(attendee);
 
+    //calling the attendee service
     let removedAttendee$: Observable<Array<Attendee>> = this.attendeeService.deleteAttendeeById(attendee.id, this.authService.accessToken);
+    
     removedAttendee$.subscribe(removedEvent => {
-      console.log(removedEvent);
+
+      //snackbar to display message
       this.openSnackBar("Cancelled the registration of the event Successfully!","okay");
       //navigating to my attendee list
       this.router.navigate(['/my-event-list']);
@@ -55,8 +56,14 @@ export class AttendeeComponent implements OnInit {
   }
 
 
+  /**
+   * Snackbar code
+   * @param {string} message
+   * @param {string} action
+   * @memberof AttendeeComponent
+   */
   openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
+    this.snackBar.open(message, action, {//4000 ms
       duration: 4000,
     });
   }

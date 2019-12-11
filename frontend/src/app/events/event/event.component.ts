@@ -16,74 +16,109 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./event.component.scss']
 })
 export class EventComponent implements OnInit {
+
+  /**
+   * Router Information
+   * @type {Router}
+   * @memberof EventComponent
+   */
   public get router(): Router {
     return this._router;
   }
+
+  /**
+   * @memberof EventComponent
+   */
   public set router(value: Router) {
     this._router = value;
   }
 
-  @Input() 
-  event : Event = new Event();
-
+  /**
+   *
+   * Input from the list screen to display
+   * @type {Event}
+   * @memberof EventComponent
+   */
   @Input()
-  isMyEvents : String;
-  
-  attendeeService : AttendeeService;
-  authService: AuthService
+  event: Event = new Event();
 
-  constructor(attendeeService: AttendeeService, authService: AuthService,
-    public eventService: EventService, private _router: Router , private snackBar: MatSnackBar) {
+  /**
+   *
+   * variable to check if my event needs to be displayed
+   * @type {String}
+   * @memberof EventComponent
+   */
+  @Input()
+  isMyEvents: String;
 
-    this.attendeeService = attendeeService;
-    this.authService = authService;
-    console.log(">>"+this.isMyEvents);
+/**
+ *Creates an instance of EventComponent.
+ * @param {AttendeeService} attendeeService
+ * @param {AuthService} authService
+ * @param {EventService} eventService
+ * @param {Router} _router
+ * @param {MatSnackBar} snackBar
+ * @memberof EventComponent
+ */
+constructor(private attendeeService: AttendeeService, private authService: AuthService,
+    private eventService: EventService, private _router: Router, private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
-    console.log(this.event);
   }
-  
-  addAttendee(e : Event){
+
+  addAttendee(e: Event) {
 
     console.log(e);
 
-    if(this.authService.isLoggedIn) {
-      
-      let attendee = new Attendee(e._id,this.event.name,this.authService.userProfile.email,this.event.dateOfEvent);
+    //check if the user is logged in
+    if (this.authService.isLoggedIn) {
 
-      let newAttendee$: Observable<Attendee> = this.attendeeService.createAttendee(attendee,this.authService.accessToken);
+      //creating a new event based on the parameters entered
+      let attendee = new Attendee(e._id, this.event.name, this.authService.userProfile.email, this.event.dateOfEvent);
+
+      //calling the event service to create the event
+      let newAttendee$: Observable<Attendee> = this.attendeeService.createAttendee(attendee, this.authService.accessToken);
       newAttendee$.subscribe(newAttendee => {
-        console.log(newAttendee);
-        this.openSnackBar("Registered to "+ this.event.name +" successfully.", "okay");
+        this.openSnackBar("Registered to " + this.event.name + " successfully.", "okay");
       });
 
-    } 
-    else {
+    } else {
+      //force login the user
       this.authService.login();
     }
   }
 
+/**
+ *
+ * Modifying the status of the event to cancelled and also deleting the attendees
+ * @param {Event} e
+ * @memberof EventComponent
+ */
+cancelEvent(e: Event) {
 
-  cancelEvent(e : Event){
-
-
+    //setting the status to cancelled
     e.status = EventStatus.CANCELLED;
 
-    console.log(e);
-
-    let modifiedEvent$: Observable<Event> = this.eventService.modifyEvent(e,this.authService.accessToken);
+    //modifying the event object
+    let modifiedEvent$: Observable<Event> = this.eventService.modifyEvent(e, this.authService.accessToken);
+    
     modifiedEvent$.subscribe(newEvent => {
-      console.log(newEvent);
+
+      //navigate to the list screen
       this.router.navigate(['/my-event-list']);
-
     });
-
   }
 
-
+  /**
+   *
+   * Snack bar code
+   * @param {string} message
+   * @param {string} action
+   * @memberof EventComponent
+   */
   openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
+    this.snackBar.open(message, action, {//4000 ms
       duration: 4000,
     });
   }
