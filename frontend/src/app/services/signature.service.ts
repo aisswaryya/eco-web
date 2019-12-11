@@ -24,7 +24,7 @@ export class SignatureService {
 
   // Call create signature API
   public createSignature(signature) {
-    console.log("Request Object" + signature);
+    console.log('Request Object' + signature);
     return this.http.post<Signature>(this.signatureUrl, signature);
   }
 

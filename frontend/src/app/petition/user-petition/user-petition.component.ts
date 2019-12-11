@@ -4,7 +4,7 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { Petition } from '../../model/petition.model';
 import { Signature } from '../../model/signature.model';
-import { ErrorHandlerService } from '../../shared/error-handler.service';
+import { ErrorHandlerService } from '../../helpers/shared/error-handler.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 
