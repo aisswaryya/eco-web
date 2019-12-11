@@ -1,4 +1,5 @@
 const eventService = require('../services/event-service');
+const attendeeService = require('../services/attendee-service');
 
 /**
  * Creating a new Event 
@@ -24,12 +25,12 @@ exports.list = function (request, response) {
         response.json(events);
     };
 
-    //searching based on attendeeEmailId for listing
-    if (request.query.attendeeEmailId !== undefined) {
+    //searching based on creatorEmailId for listing
+    if (request.query.creatorEmailId !== undefined) {
 
         //search based on eventId
         console.log('Searching Events by Attendee Email Id');
-        eventService.findByAttendeeEmail(request.query.attendeeEmailId)
+        eventService.findByCreatorEmail(request.query.creatorEmailId)
             .then(resolve)
             .catch(renderErrorResponse(response));
 
@@ -71,8 +72,11 @@ exports.get = function (request, response) {
         .catch(renderErrorResponse(response));
 };
 
+
 /**
- * updating based on id
+ * Editing the Event put method. 
+ * The event which will have the status as CANCELLED 
+ * will also delete the attendee objects for this Event
  */
 exports.put = function (request, response) {
     const event = Object.assign({}, request.body);
@@ -81,9 +85,31 @@ exports.put = function (request, response) {
         response.json(event);
     };
 
-    eventService.update(event)
-        .then(resolve)
-        .catch(renderErrorResponse(response));
+    //Deleting all attendee along with cancelling the event 
+    if( event.status === 'CANCELLED' ){
+
+        console.log(event);
+
+        //Running two queries and returning the same promise
+        var promises = [
+            eventService.update(event),
+            attendeeService.deleteBasedOnEventId(event._id)
+        ];
+    
+        Promise.all(promises)
+            .then(resolve)
+            .catch(renderErrorResponse(response));
+
+    } else {
+
+        //Default put
+        eventService.update(event)
+            .then(resolve)
+            .catch(renderErrorResponse(response));
+
+    }
+
+
 };
 
 /**
@@ -96,8 +122,11 @@ exports.delete = function (request, response) {
             message: 'Event Successfully deleted'
         });
     };
+
     eventService.delete(request.params.eventId)
         .then(resolve)
         .catch(renderErrorResponse(response));
+
+
 };
 

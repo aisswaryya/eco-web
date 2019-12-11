@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 //import schema from mongoose
 const Schema = mongoose.Schema;
 
+// Fundraiser Model
 let FundraiserModel = new Schema({
 
     //Title of the fundraiser

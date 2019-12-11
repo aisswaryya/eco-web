@@ -9,6 +9,10 @@ const mongoose = require('mongoose');
 //import schema from mongoose
 const Schema = mongoose.Schema;
 
+
+/**
+ * Donation Object model
+ */
 let DonationModel = new Schema({
 
     //Foreign key to fundraiser table

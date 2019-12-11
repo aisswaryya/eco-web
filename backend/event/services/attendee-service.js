@@ -59,3 +59,10 @@ exports.delete = function (attendeeId) {
     const promise = Attendee.remove({ _id: attendeeId });
     return promise;
 };
+
+
+//Deleting an attendee based on eventId
+exports.deleteBasedOnEventId = function (attendeeId) {
+    const promise = Attendee.remove({ eventId: attendeeId });
+    return promise;
+};

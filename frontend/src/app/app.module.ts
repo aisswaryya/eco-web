@@ -54,15 +54,15 @@ import { AgmCoreModule } from '@agm/core';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { DlDateTimeDateModule, DlDateTimePickerModule } from 'angular-bootstrap-datetimepicker';
 import { EventCreateComponent } from './events/event-create/event-create.component';
-import { EventService } from './events/services/event.service';
-import { EventViewComponent } from './events/event-view/event-view.component';
+import { EventService } from './services/event.service';
+import { EventViewComponent } from './events/event-list-view/event-view.component';
 import { EventComponent } from './events/event/event.component';
-import { AttendeeService } from './events/services/attendee.service';
+import { AttendeeService } from './services/attendee.service';
 import { MyeventsComponent } from './event/myevents/myevents.component';
 import { MyEventsComponent } from './events/my-events/my-events.component';
 import { AttendeeComponent } from './events/attendee/attendee.component';
-import { MyAttendeeComponent } from './events/my-attendee/my-attendee.component';
 import { AirQualityCheckComponent } from './air-quality-check/air-quality-check.component';
+import { MyAttendeeComponent } from './events/my-attendee-list/my-attendee.component';
 
 
 
@@ -122,7 +122,7 @@ import { AirQualityCheckComponent } from './air-quality-check/air-quality-check.
     AngularRaveModule.forRoot({
       key: 'FLWPUBK_TEST-15175d68b5f7a725f15d52f5c1d5316e-X',
       isTest: true,
-    }),    
+    }),
     GooglePlaceModule,
     NgbModule,
     DlDateTimeDateModule,  // <--- Determines the data type of the model
@@ -133,7 +133,7 @@ import { AirQualityCheckComponent } from './air-quality-check/air-quality-check.
     }),
     ProgressBarModule
   ],
-  providers: [ 
+  providers: [
     SocialFeedService,
     DonationServicesService,
     FundraiserServicesService,

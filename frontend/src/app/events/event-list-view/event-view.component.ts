@@ -1,10 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { EventService } from '../services/event.service';
+import { EventService } from '../../services/event.service';
 import { Observable } from 'rxjs';
-import { Event } from '../models/event'
+import { Event } from '../../models/event'
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
 import { EventStatus } from '../EventStatus';
+import { AttendeeService } from 'src/app/services/attendee.service';
+import { Attendee } from 'src/app/models/attendee';
 
 @Component({
   selector: 'app-event-view',
@@ -13,8 +15,14 @@ import { EventStatus } from '../EventStatus';
 })
 export class EventViewComponent implements OnInit {
 
-  @Input() 
-  isMyEvents : string;
+  /**
+   * Input parameter from the list component
+   *
+   * @type {string}
+   * @memberof EventViewComponent
+   */
+  @Input()
+  isMyEvents: string;
 
   /**
    * Holds all the events that need to be displayed on the screen
@@ -22,9 +30,9 @@ export class EventViewComponent implements OnInit {
   events: Array<Event>;
 
   /**
-   * event sevice instance to get event
+   * Holds all the events that this user is attending
    */
-  eventService: EventService;
+  myEvents: Array<Event>;
 
   /**
    * the following two are used to close other more info boxes of markers
@@ -39,10 +47,9 @@ export class EventViewComponent implements OnInit {
   longitude = -71.07718549999998;
 
 
-  constructor(eventService: EventService, public authService: AuthService,
-        private router: Router) {
-    //Injecting the event service
-    this.eventService = eventService;
+  constructor(private eventService: EventService, private attendeeService: AttendeeService
+    , public authService: AuthService,
+    private router: Router) {
 
     console.log("The parameter passed::" + this.isMyEvents);
 
@@ -52,13 +59,13 @@ export class EventViewComponent implements OnInit {
   ngOnInit() {
     console.log(this.isMyEvents);
 
-    if(this.isMyEvents !== undefined){
-    
-      console.log("Fetching Events by created EmailId");
+    if (this.isMyEvents !== undefined) {
+
+      console.log("Fetching Events by creator EmailId");
 
       //Getting all events based on emailId
-      let eventsObs$: Observable<Array<Event>> = 
-        this.eventService.getEventByAttendeeEmailId(this.authService.userProfile.email);
+      let eventsObs$: Observable<Array<Event>> =
+        this.eventService.getEventByCreatorEmailId(this.authService.userProfile.email);
       eventsObs$.subscribe(events => {
         this.events = events;
       });
@@ -67,16 +74,49 @@ export class EventViewComponent implements OnInit {
 
       console.log("Fetching all Events");
 
-      //Getting all events
-      let eventsObs$: Observable<Array<Event>> = this.eventService.getEvents();
-      eventsObs$.subscribe(events => {
+      if (this.authService.isLoggedIn) {
 
-        this.events = events;
+        let eventsObs$: Observable<Array<Event>> = this.eventService.getEvents();
+        eventsObs$.subscribe(events => {
 
-        this.events = this.events.filter(
-          event => event.status === EventStatus.UPCOMING);
+          this.events = events;
 
-      });
+          this.events = this.events.filter(
+            event => event.status === EventStatus.UPCOMING);
+
+          let myEventsObs$: Observable<Array<Attendee>> =
+            this.attendeeService.getAttendeesByEmailId(this.authService.userProfile.email);
+
+
+          myEventsObs$.subscribe(myAttendees => {
+
+            for (let i = 0; i < events.length; i++) {
+              for (let j = 0; j < myAttendees.length; j++) {
+                if (this.events[i]._id === myAttendees[j].eventId) {
+                  this.events[i].amIAttending = true;
+                  break;
+                }
+              }
+            }
+          });
+
+
+
+        });
+
+      } else {
+
+        let eventsObs$: Observable<Array<Event>> = this.eventService.getEvents();
+        eventsObs$.subscribe(events => {
+
+          this.events = events;
+
+          this.events = this.events.filter(
+            event => event.status === EventStatus.UPCOMING);
+
+        });
+
+      }
 
     }
 

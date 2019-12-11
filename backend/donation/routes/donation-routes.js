@@ -5,6 +5,10 @@
 let jwt = require('express-jwt'),
     jwks = require('jwks-rsa');
 
+/**
+ * Authentication for backend
+ * @type {jwt.RequestHandler}
+ */
 let jwtCheck = jwt({
     secret: jwks.expressJwtSecret({
         cache: true,
@@ -27,6 +31,7 @@ module.exports = function (app) {
     // Donation Routes for search  and create.
     app.route('/v1/eco/donations')
         .get(donationController.list)
+        // adding jwt check to make creation secure
         .post(jwtCheck, donationController.post);
 
     // donation Routes for get

@@ -1,8 +1,7 @@
 //background color
 
 .bgimg {
-    background-image: url('../../../assets/ed-van-duijn-2uTjeMfeVEU-unsplash.jpg');
-  
+     
     /* Half height */
     height: 100%;
   
@@ -12,6 +11,9 @@
     background-size: cover;
     }
     
+    .mat-card-content{
+        height:200px;
+    }
 .mat-card{
     margin-top: 20px;
     height:400px

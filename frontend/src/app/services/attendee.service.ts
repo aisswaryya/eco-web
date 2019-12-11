@@ -4,7 +4,7 @@ import { HttpHeaders } from '@angular/common/http';
 
 import { Attendee } from '../models/attendee';
 
-import { environment } from '../../../environments/environment';
+import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -39,8 +39,11 @@ export class AttendeeService {
    * @param  {Attendee} event: Attendee {new Attendee object}
    * @return {Observable<Attendee>} {Observable for saved Attendee object}
    */
-  createAttendee(attendee: Attendee = null): Observable<Attendee> {
-    return this.http.post<Attendee>(this.attendeeResourceURL, attendee);
+  createAttendee(attendee: Attendee = null, accessToken: string): Observable<Attendee> {
+    return this.http.post<Attendee>(this.attendeeResourceURL, attendee,
+      {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${accessToken}`)
+      });
   }
 
   /**
@@ -66,8 +69,11 @@ export class AttendeeService {
    *
    * @return {Observable<Array<Attendee>>} {Observable attendee array of single attendee}
    */
-  deleteAttendeeById(id: string): Observable<Array<Attendee>> {
-    return this.http.delete<Array<Attendee>>(`${this.attendeeResourceURL}/${id}`);
+  deleteAttendeeById(id: string, accessToken: string): Observable<Array<Attendee>> {
+    return this.http.delete<Array<Attendee>>(`${this.attendeeResourceURL}/${id}`,
+    {
+      headers: new HttpHeaders().set('Authorization', `Bearer ${accessToken}`)
+    });
   }
 
 }
