@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Attendee } from '../models/attendee';
+import { Attendee } from '../../models/attendee';
 import { AttendeeService } from '../services/attendee.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';

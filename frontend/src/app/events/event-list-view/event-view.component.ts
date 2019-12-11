@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { EventService } from '../services/event.service';
 import { Observable } from 'rxjs';
-import { Event } from '../models/event'
+import { Event } from '../../models/event'
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
 import { EventStatus } from '../EventStatus';
@@ -20,6 +20,11 @@ export class EventViewComponent implements OnInit {
    * Holds all the events that need to be displayed on the screen
    */
   events: Array<Event>;
+
+  /**
+   * Holds all the events that this user is attending
+   */
+  myEvents: Array<Event>;
 
   /**
    * event sevice instance to get event
@@ -54,11 +59,11 @@ export class EventViewComponent implements OnInit {
 
     if(this.isMyEvents !== undefined){
     
-      console.log("Fetching Events by created EmailId");
+      console.log("Fetching Events by creator EmailId");
 
       //Getting all events based on emailId
       let eventsObs$: Observable<Array<Event>> = 
-        this.eventService.getEventByAttendeeEmailId(this.authService.userProfile.email);
+        this.eventService.getEventByCreatorEmailId(this.authService.userProfile.email);
       eventsObs$.subscribe(events => {
         this.events = events;
       });

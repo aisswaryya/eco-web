@@ -4,7 +4,7 @@ import { AttendeeService } from '../services/attendee.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Attendee } from '../models/attendee';
+import { Attendee } from '../../models/attendee';
 /**
  *
  * Component used for listing all the Attendees for the user

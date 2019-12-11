@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 
-import { Attendee } from '../models/attendee';
+import { Attendee } from '../../models/attendee';
 
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';

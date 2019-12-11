@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 
-import { Event } from '../models/event';
+import { Event } from '../../models/event';
 
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
@@ -89,8 +89,8 @@ export class EventService {
    *
    * @return {Observable<Array<Attendee>>} {Observable attendee array of single event}
    */
-  getEventByAttendeeEmailId(emailId : string): Observable<Array<Event>> {
-    return this.http.get<Array<Event>>(`${this.eventResourceURL}/?attendeeEmailId=${emailId}`);
+  getEventByCreatorEmailId(emailId : string): Observable<Array<Event>> {
+    return this.http.get<Array<Event>>(`${this.eventResourceURL}/?creatorEmailId=${emailId}`);
   }
 
   /**

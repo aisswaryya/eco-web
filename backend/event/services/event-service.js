@@ -56,7 +56,7 @@ exports.delete = function (eventId) {
 /**
  * Finding the Events based on the attendees Emaild
  */
-exports.findByAttendeeEmail = function (value) {
+exports.findByCreatorEmail = function (value) {
     console.log(value);
     const promise = Event.find({creatorEmailId: value}).exec();
     return promise;

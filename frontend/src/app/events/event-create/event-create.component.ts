@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { FormControl } from '@angular/forms';
-import { Event } from '../models/event';
+import { Event } from '../../models/event';
 import { EventService } from '../services/event.service';
 import { Observable } from 'rxjs';
 import {NgbDateStruct, NgbCalendar, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';

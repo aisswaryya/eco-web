@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Event } from '../models/event';
-import { Attendee } from '../models/attendee';
+import { Event } from '../../models/event';
+import { Attendee } from '../../models/attendee';
 import { AttendeeService } from '../services/attendee.service';
 import { EventService } from '../services/event.service';
 import { Observable } from 'rxjs/internal/Observable';
@@ -47,15 +47,20 @@ export class EventComponent implements OnInit {
 
     console.log(e);
 
-    let attendee = new Attendee(e._id,this.event.name
-      ,this.authService.userProfile.email,this.event.dateOfEvent);
+    if(this.authService.isLoggedIn) {
+      
+      let attendee = new Attendee(e._id,this.event.name,this.authService.userProfile.email,this.event.dateOfEvent);
 
+      let newAttendee$: Observable<Attendee> = this.attendeeService.createAttendee(attendee);
+      newAttendee$.subscribe(newAttendee => {
+        console.log(newAttendee);
+        this.openSnackBar("Registered to "+ this.event.name +" successfully.", "okay");
+      });
 
-    let newAttendee$: Observable<Attendee> = this.attendeeService.createAttendee(attendee);
-    newAttendee$.subscribe(newAttendee => {
-      console.log(newAttendee);
-    });
-
+    } 
+    else {
+      this.authService.login();
+    }
   }
 
 
