@@ -1,21 +1,22 @@
 //background color
 
 .bgimg {
-    background-image: url('../../../assets/b-nw-zJCRuCJV5Is-unsplash.jpg');
-  
-    /* Half height */
-    height: 100%;
-  
-    /* Center and scale the image */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    }
+  background-image: url("../../../assets/b-nw-zJCRuCJV5Is-unsplash.jpg");
 
-mat-form-field{
-    width: 400px;
+  /* Half height */
+  height: 100%;
+
+  /* Center and scale the image */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-mat-card-title{
-    text-align: center;
+//mat-field customization
+mat-form-field {
+  width: 400px;
+}
+
+mat-card-title {
+  text-align: center;
 }
