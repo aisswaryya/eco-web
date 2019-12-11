@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule} from '../shared/shared.module';
+import { SharedModule} from '../helpers/shared/shared.module';
 import {CreatePetitionComponent} from './create-petition/create-petition.component';
 import { ViewPetitionComponent} from './view-petition/view-petition.component';
 import { ViewByIDPetitionComponent} from './view-by-id-petition/view-by-id-petition.component';
@@ -11,21 +11,21 @@ import { ManagePetitionComponent } from './manage-petition/manage-petition.compo
 import { UserPetitionComponent } from './user-petition/user-petition.component';
 
 @NgModule({
-  declarations:[CreatePetitionComponent, 
+  declarations: [CreatePetitionComponent,
     ViewPetitionComponent,
     ViewByIDPetitionComponent,
     UpdatePetitionComponent,
     ManagePetitionComponent,
     UserPetitionComponent],
-    
+
   imports: [
     CommonModule,
     PetitionRoutingModule,
     ReactiveFormsModule,
     SharedModule
-  ]  
+  ]
 })
-export class PetitionModule { 
+export class PetitionModule {
 
 
 }
