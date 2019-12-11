@@ -1,0 +1,35 @@
+<div class="firmalar">
+  <div class="container">
+    <h1 class="mainTitle">Fundraisers</h1>
+    <hr>
+    <div class="row" *ngFor="let fundraiser of fundraisers">
+      <div class="col-md-2 firma-imageBox"></div>
+      <div class="col-md-8">
+        <div class="firma-card row">
+          <div class="col-md-12">
+            <div class="firma-aciklama card-body">
+              <h2>{{fundraiser.title}}</h2>
+              <p>by <i>{{fundraiser.emailId}}</i></p>
+              <p class="category">Category: {{fundraiser.category}}</p>
+              <p class="short-desc">{{fundraiser.shortDescription}}</p>
+              <hr>
+                <h4>Donation Collected</h4>
+                <progress-bar [progress]="fundraiser.collectedAmount/fundraiser.targetAmount*100" [color-degraded]="{'0': '#2BA84A', '100': '#FF0202'}">
+                </progress-bar>
+              <p class="centre">Collected {{fundraiser.collectedAmount}} of {{fundraiser.targetAmount}}</p>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="col-md-2 firma-buttons">
+        <div class="buttons">
+        <button class="btn btn-info" [routerLink]="['/fundraiser-detail',fundraiser.id]">Learn More</button>
+        <hr>
+        <button class="btn btn-success"[routerLink]="['/donate', fundraiser.id]">Donate</button>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,27 +1,95 @@
-# EcoWebApp
+# EcoWebApp 
+
+This application is a single place for creating Events, Fundraisers, Starting Petitons and Signing them, as well as updating a status with any work that you did that reduced your carbon footprint
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.3.
 
-## Development server
+##Motivation
+While it can seem like a hippy-dippy thing to say, protecting the environment is of the utmost importance. We all need to work together to make protecting our planet a priority within society and within our individual lives
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+We are trying to achieve this by building this application. Be proud of the things you do to protect the environment at the same time, create awareness.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Technology/ Framework used
+FrontEnd - Angular 8
+
+Backend - ExpressJs, NodeJS
+
+Database - MongoDB
+
+Style: SASS, CSS, Bootstrap, Angular Material and Google Material Icons
+
+Authentication/Authorization: Auth0 with JWT tokens. (Algorithm Rs256 following OIDC specifications)
+
+
+External APIs connected to the app: Google Maps for Event Location, Flutterwave for Payment using Angular Rave, Air Quality Info, News API for Blog.
+
+
+## Features
+1. Live Air Quality Index on Home page
+3. Read blogs related to climate change
+2. Create, manage and attend events
+3. Create and Manage Fundraisers
+4. Donate to various fundraisers
+5. A platform to share activities that reduce carbon footprint
+6. Create and Manage Petitions
+7. Sign Petitions
+
+##API Endpoints
+Events:
+1. GET: v1/eco/events
+2. POST: v1/eco/events
+3. GET: v1/eco/events/:id
+4. PUT: v1/eco/events/:id
+5. DELETE: v1/eco/events/:id
+
+Attendees:
+1. GET: v1/eco/attendees
+2. POST: v1/eco/attendees
+3. GET: v1/eco/attendees/:id
+4. PUT: v1/eco/attendees/:id
+5. DELETE: v1/eco/attendees/:id
+
+Fundraisers:
+1. GET: v1/eco/fundraisers
+2. POST: v1/eco/fundraisers
+3. GET: v1/eco/fundraisers/:id
+4. PUT: v1/eco/fundraisers/:id
+5. DELETE: v1/eco/fundraisers/:id
+
+Donations:
+1. GET: v1/eco/donations
+2. POST: v1/eco/donations
+
+Social Feeds:
+1. GET: v1/eco/socialfeeds
+2. POST: v1/eco/socialfeeds
+3. GET: v1/eco/socialfeeds/:id
+4. PUT: v1/eco/socialfeeds/:id
+5. DELETE: v1/eco/socialfeeds/:id
+
+
+## Running the app
+Prerequisites:
+1. MongoDB should be installed
+2. NodeJS and Angular CLI
+
+Step1: Run `npm install` on both frontend and backend folders
+
+Step2: On backend folder, run `node server.js`
+
+Step3: On frontend folder run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. 
 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Contributors
+Pavan Kalyan - srkantarao.p@husky.neu.edu
 
-## Running end-to-end tests
+Floyed Pinto - pinto.fl@husky.neu.edu
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Aisswaryya Murugananth - murugananth.a@husky.neu.edu
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Thushanth Bengre - bengre.t@husky.neu.edu

@@ -1,0 +1,24 @@
+<div class="firmalar">
+  <div class="container" *ngIf="blogData">
+    <h1 class="mainTitle">{{blogData.title}}</h1>
+    <p>by <i>{{blogData.author}}</i></p>
+    <hr>
+    <div class="col-md-12">
+      <div class="firma-card row">
+        <div class="col-md-12">
+          <div class="firma-aciklama card-body">
+            <div><img [src]="blogData.urlToImage" width="80%" height="80%"></div>
+            <span> Published on: {{blogData.publishedAt | date: 'medium' }}</span>
+            <hr>
+            <p class="short-desc">{{blogData.description}}</p>
+            <p class="long-desc">{{blogData.content}}</p>
+            <a href="{{blogData.url}}" target="_blank">Read More here...</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

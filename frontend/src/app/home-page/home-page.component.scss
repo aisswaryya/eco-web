@@ -1,0 +1,27 @@
+.background {
+    width: 100%;
+}
+
+.overlay-video{
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    right: 25%;
+    bottom: 25%;
+    text-align: center;
+  }
+
+.text {
+    color: white;
+    font-size: 63px;
+    font-weight: bolder;
+    font-family: fantasy;
+}
+
+.blogs-header, .aqi-header {
+    font-size: 55px;
+    text-align: center;
+    color: green;
+    margin-top: 3%;
+    font-family: fantasy;
+}

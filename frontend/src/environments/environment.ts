@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  serverBaseURL: 'http://localhost:3000',
+  // auth token needed for authentication
+  auth: {
+    clientID: 'TInCDwC3RcjhIwTtDgdTGuQCuPD3qple',
+    domain: 'dev-vgga-ftr.auth0.com',
+    audience: 'http://localhost:3001',
+    redirect: 'http://localhost:4200/callback',
+    scope: 'openid profile email'
+  }
 };
 
 /*

@@ -1,0 +1,79 @@
+<!--Using grid layout to put info in card-->
+<div class="firmalar">
+  <div class="container" *ngIf="fundraiser">
+    <h1 class="mainTitle">Donate</h1>
+    <hr>
+    <div class="col-md-8">
+      <div class="firma-card row">
+        <div class="col-md-12">
+          <div class="firma-aciklama card-body">
+            <h1>{{fundraiser.title}}</h1>
+            <p>by <i>{{fundraiser.emailId}}</i></p>
+            <p class="category">Category: {{fundraiser.category}}</p>
+            <p class="short-desc">{{fundraiser.shortDescription}}</p>
+            <p class="long-desc">{{fundraiser.longDescription}}</p>
+            <hr>
+            <h4>Donation Collected</h4>
+            <progress-bar [progress]="fundraiser.collectedAmount/fundraiser.targetAmount*100" [color-degraded]="{'0': '#2BA84A', '100': '#FF0202'}">
+            </progress-bar>
+            <p class="centre">Collected {{fundraiser.collectedAmount}} of {{fundraiser.targetAmount}}</p>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form">
+        <h3>Donate</h3>
+        <form #donationForm="ngForm" (ngSubmit)="saveDonation(donationForm)">
+                  <div class="form-group">
+                      <label for="name">Name</label>
+                      <input type="text" class="form-control" id="name"
+                             required
+                             [(ngModel)]="donation.name" name="name"
+                             #name="ngModel">
+                      <div [hidden]="name.valid || name.pristine"
+                           class="alert alert-danger">
+                          Name is required
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="emailId">Email</label>
+                      <input type="email" class="form-control" id="emailId"
+                             required
+                             [(ngModel)]="donation.emailId" name="emailId" [value]="donation.emailId"
+                             readonly
+                             #emailId="ngModel">
+                      <div [hidden]="emailId.valid || emailId.pristine"
+                           class="alert alert-danger">
+                          Email Id is required
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="amount">Amount</label>
+                      <input type="number" class="form-control" id="amount"
+                             [(ngModel)]="donation.amount" name="amount"
+                             customMin="1"
+                             #amount="ngModel">
+                      <div [hidden]="amount.valid || amount.pristine"
+                           class="alert alert-danger">
+                          Amount is required and should not be 0
+                      </div>
+                  </div>
+                  <button
+                          angular-rave
+                          [PBFPubKey]="'FLWPUBK_TEST-15175d68b5f7a725f15d52f5c1d5316e-X'"
+                          [customer_email]="donation.emailId"
+                          [custom_title]="'Thank you ' + donation.name"
+                          [amount]="donation.amount"
+                          [txref]="donation.emailId + donation.amount"
+                          [currency]="'USD'"
+                          [autoClose]="true"
+                          (callback)="paymentSuccess($event)"
+                          (close)="paymentFailure()"
+                          class="btn btn-success" [disabled]="!donationForm.form.valid">Donate ${{donation.amount}}</button>
+              </form>
+      </div>
+    </div>
+  </div>
+</div>

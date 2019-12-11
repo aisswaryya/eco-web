@@ -1,0 +1,48 @@
+<app-nav-bar></app-nav-bar>
+<div class="firmalar">
+  <div class="container" *ngIf="fundraiser">
+    <h1 class="mainTitle">My Fundraiser More Information</h1>
+    <hr>
+    <div class="col-md-8">
+      <div class="firma-card row">
+        <div class="col-md-12">
+          <div class="firma-aciklama card-body">
+            <h1>{{fundraiser.title}}</h1>
+            <p>by <i>{{fundraiser.emailId}}</i></p>
+            <p class="category">Category: {{fundraiser.category}}</p>
+            <p> Account Number: {{fundraiser.accountNo}}</p>
+            <p> Routing Number: {{fundraiser.routingNo}}</p>
+            <p class="short-desc">{{fundraiser.shortDescription}}</p>
+            <p class="long-desc">{{fundraiser.longDescription}}</p>
+            <hr>
+            <h4>Donation Collected</h4>
+            <progress-bar [progress]="fundraiser.collectedAmount/fundraiser.targetAmount*100" [color-degraded]="{'0': '#2BA84A', '100': '#FF0202'}">
+            </progress-bar>
+            <p class="centre">Collected {{fundraiser.collectedAmount}} of {{fundraiser.targetAmount}}</p>
+            <hr>
+            <button class="btn btn-info" [routerLink]="['/edit-fundraiser', this.fundraiser.id]">Edit</button>
+            <button class="btn btn-danger" (click)="deleteFundraiser()">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="table">
+        <h3>Donors List</h3>
+        <table class="table table-striped">
+          <thead>
+          <th scope="col">Name</th>
+          <th scope="col">Amount</th>
+          </thead>
+          <tbody>
+          <tr *ngFor="let donation of donations">
+            <td>{{donation.name}}</td>
+            <td>{{donation.amount}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

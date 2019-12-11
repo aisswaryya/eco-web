@@ -1,0 +1,37 @@
+<div class="container">
+    <h3><div class="post-header" *ngIf="!data.create"> Update your feed</div></h3>
+    <h3><div class="post-header" *ngIf="data.create"> New Post </div></h3>
+    <form [formGroup]="socialFeedGroup">
+            <div class="form-group">
+                <div class="xyz" *ngIf="data.create">
+                    <div>
+                        <input id="image" type="file" btn-success (change)="onFileSelected($event)">
+                        <div>
+                            <img [src]="imgURL" class="image-preview" *ngIf="imgURL">
+                        </div>
+                    </div>
+                </div>
+                <div class="xyz" *ngIf="!data.create">
+                    <img [src]="data.image" class="image-preview">
+                </div>    
+            </div>
+    
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text-area" class="form-control" id="description" formControlName="description">                
+            </div>
+    
+            <div class="form-group">
+                <label for="location"> Location:</label>
+                <!-- <input id="location" type="text" class="form-control" matInput formControlName="location"> -->
+                <input id="location" class="form-control" name="venue" formControlName="location" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/>
+            </div>
+    
+            <button *ngIf="!data.create" class="btn btn-success" (click)="updatePost()">SAVE</button>
+
+            <button *ngIf="data.create" class="btn btn-success"  (click)="uploadPost()">UPLOAD</button> 
+            
+            <button class="btn btn-success btn-cancel"  (click)="cancelPost()">CANCEL</button> 
+
+    </form>
+</div>
