@@ -6,6 +6,7 @@ import { Petition } from '../../model/petition.model';
 import { Signature } from '../../model/signature.model';
 import { ErrorHandlerService } from '../../helpers/shared/error-handler.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-user-petition',
@@ -15,26 +16,27 @@ import { Router } from '@angular/router';
 export class UserPetitionComponent implements OnInit {
 
   public displayedColumns = ['title'];//To display table header
-  public dataSource = new MatTableDataSource<Petition>();
-  public signedSource = new MatTableDataSource<Petition>();
-  petitionList: any[] = [];
+  public dataSource = new MatTableDataSource<Petition>(); 
+  public signedSource = new MatTableDataSource<Petition>(); 
+  petitionList: any[] = []; 
   signatureList: Signature[] = [];
   myArray: Signature[] = new Array<Signature>();
   signedPetitionList: Petition[] = new Array<Petition>();
   petition: Petition;
-
-  email: String = "dfg";
-
+  email: String = "";
+  
   @ViewChild(MatSort , {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
 
-  constructor(private petitionService: PetitionService, private signatureService: SignatureService, private errorService: ErrorHandlerService, private router: Router) { }
+  constructor(private petitionService: PetitionService, private auth: AuthService, private signatureService: SignatureService, private errorService: ErrorHandlerService, private router: Router) { }
 
   ngOnInit() {
+    this.email = this.auth.userProfile.email;
     this.getbyEmailPetition();
     this.getByEmailSignature();
     this.getSignedPetitions();
+    
   }
 
   ngAfterViewInit(): void {
@@ -45,6 +47,7 @@ export class UserPetitionComponent implements OnInit {
   }
 
   public getbyEmailPetition = () => {
+    console.log("Authorized Email "+ this.email);
     this.petitionService.getbyEmailPetition(this.email)
       .subscribe( data => {
         this.petitionList = data;
@@ -56,7 +59,7 @@ export class UserPetitionComponent implements OnInit {
   public getByEmailSignature = () => {
     this.signatureService.getbyIDSignature(this.email)
       .subscribe( data => {
-
+      
         data.forEach((value) => {
           console.log(value);
           this.myArray.push(value);
@@ -79,8 +82,8 @@ export class UserPetitionComponent implements OnInit {
          });
          this.getSignedPetitions();
       });
-
-
+      
+      
   }
 
 
@@ -90,9 +93,14 @@ export class UserPetitionComponent implements OnInit {
   }
 
 
-  public redirectToDetails = (id: string) => {
+  public redirectToManage = (id: string) => {
     let url: string = `/petition/manage/${id}`;
     this.router.navigate([url]);
   }
 
+  public redirectToDetails = (id: string) => {
+    let url: string = `/petition/details/${id}`;
+    this.router.navigate([url]);
+  }
+  
 }
