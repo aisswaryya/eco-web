@@ -24,7 +24,6 @@ export class EventService {
    */
   eventResourceURL: string;
 
-
   /**
    * Attendee resource
    */
@@ -69,7 +68,6 @@ export class EventService {
    * @return {Observable<Event>} {Observable for saved event object}
    */
   createEvent(event: Event = null): Observable<Event> {
-    console.log(this.eventResourceURL);
     return this.http.post<Event>(this.eventResourceURL, event);
   }
 
@@ -80,7 +78,6 @@ export class EventService {
    * @return {Observable<Event>} {Observable for saved event object}
    */
   modifyEvent(event: Event = null): Observable<Event> {
-    console.log(this.eventResourceURL);
     return this.http.put<Event>(this.eventResourceURL+"/"+event._id, event);
   }
 
@@ -102,8 +99,6 @@ export class EventService {
    */
   completeEvent(event : Event) : Observable<Event> {
 
-    console.log(this.eventResourceURL+"/"+event._id);
-
     event.status = EventStatus.COMPLETED;
 
     return this.http.put<Event>(this.eventResourceURL+"/"+event._id,event);
@@ -114,8 +109,6 @@ export class EventService {
    * @param event : Edits this particular Event object
    */
   editEvent(event : Event) : Observable<Event> {
-
-    console.log(this.eventResourceURL+"/"+event._id);
 
     return this.http.put<Event>(this.eventResourceURL+"/"+event._id , event);
   }
