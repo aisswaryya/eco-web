@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PetitionService } from '../../services/petition.service';
 import { Router } from '@angular/router';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/auth/auth.service';
 
 /**
@@ -32,14 +32,14 @@ export class CreatePetitionComponent implements OnInit {
    * @param {MatDialog} dialog
    * @memberof CreatePetitionComponent
    */
-  constructor( private router: Router, 
-    private snackBar: MatSnackBar, 
-    private location: Location, 
-    private petitionService: PetitionService, 
+  constructor(private router: Router,
+    private snackBar: MatSnackBar,
+    private location: Location,
+    private petitionService: PetitionService,
     private dialog: MatDialog,
     private auth: AuthService) { }
 
-    ngOnInit() {
+  ngOnInit() {
     this.createPetitionForm = new FormGroup({
       title: new FormControl('', [Validators.required, Validators.maxLength(200)]),
       target: new FormControl('', [Validators.required, Validators.maxLength(200)]),
@@ -51,27 +51,45 @@ export class CreatePetitionComponent implements OnInit {
       createdby: new FormControl('', [Validators.required, Validators.maxLength(200)])
     });
   }
-// alert for petition creation
+  /**
+   *
+   *
+   * @param {string} message
+   * @param {string} action
+   * @memberof CreatePetitionComponent
+   */
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 2000,
     });
   }
 
-
+  /**
+   *
+   *
+   * @memberof CreatePetitionComponent
+   */
   public hasError = (controlName: string, errorName: string) => {
     return this.createPetitionForm.controls[controlName].hasError(errorName);
   }
-
+  /**
+   *
+   *
+   * @memberof CreatePetitionComponent
+   */
   public onCancel = () => {
     this.location.back();
   }
-
+  /**
+   *
+   *
+   * @memberof CreatePetitionComponent
+   */
   public createPetition = (petitionFormValue) => {
     if (this.createPetitionForm.valid) {
       this.executePetitionCreation(petitionFormValue);
     }
-    
+
   }
 
   /**
@@ -98,7 +116,7 @@ export class CreatePetitionComponent implements OnInit {
     this.petitionService.createPetition(petition)
       .subscribe(data => {
         this.openSnackBar(petition._id + " petition created successfully.", "Close");
-        this.router.navigate(["petition/list"]);
+        this.router.navigate(["/petition/profile"]);
       });
 
   }
@@ -106,9 +124,9 @@ export class CreatePetitionComponent implements OnInit {
 }
 
 
-    
 
 
-    
+
+
 
 

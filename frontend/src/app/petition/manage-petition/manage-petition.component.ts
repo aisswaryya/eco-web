@@ -5,7 +5,7 @@ import { PetitionService } from '../../services/petition.service'; // to call HT
 import { Router } from '@angular/router';// to navigate between various component
 import { Signature } from 'src/app/model/signature.model';
 import { SignatureService } from 'src/app/services/signature.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-manage-petition',
@@ -16,13 +16,14 @@ export class ManagePetitionComponent implements OnInit {
   public petition: Petition;
   public signature: Signature = new Signature();
   public petitionId: String;
-  
+
   //for dependency injection from other class
   constructor(private signatureService: SignatureService,
-    private snackBar: MatSnackBar, 
+    private snackBar: MatSnackBar,
     private router: Router,
     private petitionService: PetitionService,
     private activateRoute: ActivatedRoute) { }
+
   // Initialize petition and retrieve petition object from Service
   ngOnInit() {
     this.getPetitionByID();
@@ -52,7 +53,7 @@ export class ManagePetitionComponent implements OnInit {
     this.router.navigate([url]);
   }
 
-  //alert
+  //alert using snackbar
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 5000
