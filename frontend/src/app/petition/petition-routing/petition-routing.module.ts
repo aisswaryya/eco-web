@@ -6,7 +6,7 @@ import { ViewPetitionComponent} from '../view-petition/view-petition.component';
 import { ViewByIDPetitionComponent} from '../view-by-id-petition/view-by-id-petition.component';
 import { UpdatePetitionComponent} from '../update-petition/update-petition.component';
 import { ManagePetitionComponent} from '../manage-petition/manage-petition.component';
-import {UserPetitionComponent } from "../user-petition/user-petition.component";
+import {UserPetitionComponent } from '../user-petition/user-petition.component';
 
 
 const routes: Routes = [
@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: 'update/:id', component: UpdatePetitionComponent},
   {path: 'details/:id', component: ViewByIDPetitionComponent},
   {path: 'manage/:id', component: ManagePetitionComponent},
-  {path: 'profile/:email', component: UserPetitionComponent}
+  {path: 'profile', component: UserPetitionComponent}
 ];
 
 

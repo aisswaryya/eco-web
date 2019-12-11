@@ -23,11 +23,11 @@ export class DonationServicesService {
     return this.http.get<Array<Donation>>(this.donationResourceUrl);
   }
 
-  getDonationsByEmailId(emailId: string): Observable<Array<Donation>>{
+  getDonationsByEmailId(emailId: string): Observable<Array<Donation>> {
     return this.http.get<Array<Donation>>(`${this.donationResourceUrl}?emailId=${emailId}`);
   }
 
-  getDonationsByFundraiserId(fundraiserId: string): Observable<Array<Donation>>{
+  getDonationsByFundraiserId(fundraiserId: string): Observable<Array<Donation>> {
     return this.http.get<Array<Donation>>(`${this.donationResourceUrl}?fundraiserId=${fundraiserId}`);
   }
 
