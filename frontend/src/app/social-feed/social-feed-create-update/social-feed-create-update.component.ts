@@ -1,9 +1,11 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { SocialFeed } from '../../models/social-feed-model';
 import { SocialFeedService } from '../../services/social-feed.service';
 import { AuthService } from "../../auth/auth.service";
 import { FormBuilder, FormControl, Validators, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { GooglePlaceDirective, GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
 
 @Component({
   selector: 'app-social-feed-create-update',
@@ -42,6 +44,7 @@ constructor(
   public imagePath;
   imgURL: any;
   public message: string;
+  location: string;
 
 /**
  *
@@ -136,4 +139,11 @@ onFileSelected(event) {
   cancelPost() {
     this.dialogRef.close();
   }
+
+  // @ViewChild("venue",{static: false}) placesRef : GooglePlaceDirective;
+
+  // public handleAddressChange(address: Address) {
+  //   // Do some stuff
+  //   this.location = address.formatted_address;
+  // } 
 }
