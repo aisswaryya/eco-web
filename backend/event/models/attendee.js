@@ -39,7 +39,6 @@ let Attendee = new Schema({
             type: Number
         }
         ,
-
         month: {
             type: Number
         }

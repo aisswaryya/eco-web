@@ -53,16 +53,6 @@ exports.delete = function (eventId) {
 };
 
 
-
-// /**
-//  * Increasing the count of Attendees in Event object
-//  */
-// exports.addAttendeeCount = function (eventId) {
-//     const promise = Event.find(eventId).exec();
-//     return promise;
-// };
-
-
 /**
  * Finding the Events based on the attendees Emaild
  */

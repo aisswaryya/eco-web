@@ -48,37 +48,6 @@ let Event = new Schema({
 
 
     /**
-     * City of the event
-     */
-    city: {
-        type: String
-    },
-
-
-    /**
-     * State of the event
-     */
-    state: {
-        type: String
-    },
-
-
-    /**
-     * Country of the event
-     */
-    country: {
-        type: String
-    },
-
-    /**
-     * Zip of the event
-     */
-    zip: {
-        type: String
-    },
-
-
-    /**
      * Description of the event
      */
     description: {
@@ -87,7 +56,7 @@ let Event = new Schema({
 
 
     /**
-     * Status of the Event (UPCOMING, LIVE, COMPLETED, CANCELLED).
+     * Status of the Event (UPCOMING, COMPLETED, CANCELLED).
      */
     status: {
         type: String
@@ -116,15 +85,6 @@ let Event = new Schema({
      */
     hostName: {
         type: String
-    },
-
-
-    /**
-     * Private/Public event
-     */
-    isPrivate: {
-        type: Boolean,
-        default: false
     },
 
 

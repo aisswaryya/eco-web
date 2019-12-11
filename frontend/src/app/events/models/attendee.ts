@@ -3,6 +3,9 @@
  */
 export class Attendee {
 
+    //Id of the attendee
+    id: string;
+
     /**
      * The event id which the attendee will be attending
      */

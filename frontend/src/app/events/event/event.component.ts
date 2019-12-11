@@ -6,6 +6,8 @@ import { AttendeeService } from '../services/attendee.service';
 import { EventService } from '../services/event.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { AuthService } from 'src/app/auth/auth.service';
+import { Router } from '@angular/router';
+import { EventStatus } from '../EventStatus';
 
 @Component({
   selector: 'app-event',
@@ -13,6 +15,12 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./event.component.scss']
 })
 export class EventComponent implements OnInit {
+  public get router(): Router {
+    return this._router;
+  }
+  public set router(value: Router) {
+    this._router = value;
+  }
 
   @Input() 
   event : Event = new Event();
@@ -23,7 +31,8 @@ export class EventComponent implements OnInit {
   attendeeService : AttendeeService;
   authService: AuthService
 
-  constructor(attendeeService: AttendeeService, authService: AuthService) {
+  constructor(attendeeService: AttendeeService, authService: AuthService,
+    public eventService: EventService, private _router: Router) {
 
     this.attendeeService = attendeeService;
     this.authService = authService;
@@ -45,6 +54,23 @@ export class EventComponent implements OnInit {
     let newAttendee$: Observable<Attendee> = this.attendeeService.createAttendee(attendee);
     newAttendee$.subscribe(newAttendee => {
       console.log(newAttendee);
+    });
+
+  }
+
+
+  cancelEvent(e : Event){
+
+
+    e.status = EventStatus.CANCELLED;
+
+    console.log(e);
+
+    let modifiedEvent$: Observable<Event> = this.eventService.modifyEvent(e);
+    modifiedEvent$.subscribe(newEvent => {
+      console.log(newEvent);
+      this.router.navigate(['/my-event-list']);
+
     });
 
   }

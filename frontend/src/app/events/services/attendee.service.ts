@@ -63,4 +63,14 @@ export class AttendeeService {
   getAttendeesByEmailId(emailId : string): Observable<Array<Attendee>> {
     return this.http.get<Array<Attendee>>(`${this.attendeeResourceURL}/?emailId=${emailId}`);
   }
+
+  /**
+   * Delete the Attendees based on attendee Id.
+   *
+   * @return {Observable<Array<Attendee>>} {Observable attendee array of single attendee}
+   */
+  deleteAttendeeById(id : string): Observable<Array<Attendee>> {
+    return this.http.delete<Array<Attendee>>(`${this.attendeeResourceURL}/${id}`);
+  }
+
 }

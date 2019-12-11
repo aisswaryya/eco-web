@@ -6,6 +6,7 @@ import { Event } from '../models/event';
 
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
+import { EventStatus } from '../EventStatus';
 
 @Injectable()
 /**
@@ -70,6 +71,17 @@ export class EventService {
   createEvent(event: Event = null): Observable<Event> {
     console.log(this.eventResourceURL);
     return this.http.post<Event>(this.eventResourceURL, event);
+  }
+
+  /**
+   * Modifies new Event.
+   *
+   * @param  {Event} event: Event { Event object to be modified}
+   * @return {Observable<Event>} {Observable for saved event object}
+   */
+  modifyEvent(event: Event = null): Observable<Event> {
+    console.log(this.eventResourceURL);
+    return this.http.put<Event>(this.eventResourceURL+"/"+event._id, event);
   }
 
   //--------------------------------------------------------------------------

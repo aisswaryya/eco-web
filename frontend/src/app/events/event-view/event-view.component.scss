@@ -15,7 +15,7 @@ agm-map {
   height:100%;
 }
 
-.container {
+.divHeight {
   height: 100vh;
 }
 
@@ -100,4 +100,8 @@ agm-map {
       padding-right: 0px;
       padding-left: 0px;
     }
+  }
+
+  .eventList {
+    height: 100px;
   }

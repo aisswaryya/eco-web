@@ -27,6 +27,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { NotFoundComponent} from './error-pages/not-found/not-found.component';
 import { ServerErrorComponent } from './error-pages/server-error/server-error.component';
 import {PetitionService} from './services/petition.service';
+
 // @ts-ignore
 import {MatBadgeModule} from '@angular/material/badge';
 import {SignatureService} from './services/signature.service';
@@ -46,6 +47,7 @@ import { AttendeeService } from './events/services/attendee.service';
 import { MyeventsComponent } from './event/myevents/myevents.component';
 import { MyEventsComponent } from './events/my-events/my-events.component';
 import { AttendeeComponent } from './events/attendee/attendee.component';
+import { MyAttendeeComponent } from './events/my-attendee/my-attendee.component';
 
 
 
@@ -74,7 +76,8 @@ import { AttendeeComponent } from './events/attendee/attendee.component';
     EventComponent,
     MyEventsComponent,
     EditFundraiserComponent,
-    AttendeeComponent
+    AttendeeComponent,
+    MyAttendeeComponent
     ],
   imports: [
     BrowserModule,

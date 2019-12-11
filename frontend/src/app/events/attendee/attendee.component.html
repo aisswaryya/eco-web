@@ -1,1 +1,8 @@
-<p>attendee works!</p>
+<h1>Name of event: {{attendee.eventName}}</h1>
+
+<h4>When: {{ attendee.dateOfEvent.month}}/{{attendee.dateOfEvent.day}}/{{attendee.dateOfEvent.year}}</h4>
+
+<h4>Hosted by: {{ attendee.emailId}}</h4>
+
+
+<button (click)="cancelRegistration(attendee)">Cancel this registration!</button>

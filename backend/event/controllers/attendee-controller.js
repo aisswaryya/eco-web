@@ -10,7 +10,7 @@ exports.post = function (request, response) {
         response.status(200);
         response.json(attendee);
     };
-    
+
     attendeeService.save(newAttendee)
         .then(resolve)
         .catch(renderErrorResponse(response));
@@ -20,13 +20,13 @@ exports.post = function (request, response) {
  * Listing all the Attendees based on Event Id / Email Id / All
  */
 exports.list = function (request, response) {
-    
+
     const resolve = (attendees) => {
         response.status(200);
         response.json(attendees);
     };
 
-    if(request.query.eventId !== undefined){    
+    if (request.query.eventId !== undefined) {
 
         //search based on eventId
         console.log('Searching Attendee by Event Id');
@@ -34,7 +34,7 @@ exports.list = function (request, response) {
             .then(resolve)
             .catch(renderErrorResponse(response));
 
-    } else if(request.query.emailId !== undefined){
+    } else if (request.query.emailId !== undefined) {
 
         //search based on emailId
         console.log('Searching Attendee by Email Id');
@@ -98,9 +98,8 @@ let renderErrorResponse = (response) => {
 };
 
 
-
 /**
- * updating based on id
+ * updating based on id of an attendee
  */
 exports.put = function (request, response) {
     const attendee = Object.assign({}, request.body);
@@ -113,26 +112,3 @@ exports.put = function (request, response) {
         .then(resolve)
         .catch(renderErrorResponse(response));
 };
-
-
-
-// /**
-//  * Increases the Attendee count based on event Id
-//  */
-// addAttendeeCount = function (request, response) {
-//     const newAttendee = Object.assign({}, request.body);
-//     const resolve = (attendee) => {
-//         response.status(200);
-//         response.json(attendee);
-//     };
-
-//     //Updating the attendee count in the event Object
-//     eventService.addAttendeeCount(request.body.eventId);
-    
-
-//     attendeeService.save(newAttendee)
-//         .then(resolve)
-//         .catch(renderErrorResponse(response));
-// };
-
-

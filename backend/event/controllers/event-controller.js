@@ -1,7 +1,7 @@
 const eventService = require('../services/event-service');
 
 /**
- * Creating a new Event
+ * Creating a new Event 
  */
 exports.post = function (request, response) {
     const newEvent = Object.assign({}, request.body);
@@ -9,14 +9,14 @@ exports.post = function (request, response) {
         response.status(200);
         response.json(event);
     };
-    
+
     eventService.save(newEvent)
         .then(resolve)
         .catch(renderErrorResponse(response));
 };
 
 /**
- * Listing all the Event
+ * Listing all the Events
  */
 exports.list = function (request, response) {
     const resolve = (events) => {
@@ -24,9 +24,8 @@ exports.list = function (request, response) {
         response.json(events);
     };
 
-    if(request.query.attendeeEmailId !== undefined){    
-
-        console.log(request.query.attendeeEmailId);
+    //searching based on attendeeEmailId for listing
+    if (request.query.attendeeEmailId !== undefined) {
 
         //search based on eventId
         console.log('Searching Events by Attendee Email Id');
@@ -35,12 +34,11 @@ exports.list = function (request, response) {
             .catch(renderErrorResponse(response));
 
     } else {
+        //returning all the events
         eventService.find()
-        .then(resolve)
-        .catch(renderErrorResponse(response));
+            .then(resolve)
+            .catch(renderErrorResponse(response));
     }
-
-
 };
 
 

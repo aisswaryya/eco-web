@@ -3,6 +3,8 @@ import { EventService } from '../services/event.service';
 import { Observable } from 'rxjs';
 import { Event } from '../models/event'
 import { AuthService } from 'src/app/auth/auth.service';
+import { Router } from '@angular/router';
+import { EventStatus } from '../EventStatus';
 
 @Component({
   selector: 'app-event-view',
@@ -37,7 +39,8 @@ export class EventViewComponent implements OnInit {
   longitude = -71.07718549999998;
 
 
-  constructor(eventService: EventService, public authService: AuthService) {
+  constructor(eventService: EventService, public authService: AuthService,
+        private router: Router) {
     //Injecting the event service
     this.eventService = eventService;
 
@@ -67,7 +70,12 @@ export class EventViewComponent implements OnInit {
       //Getting all events
       let eventsObs$: Observable<Array<Event>> = this.eventService.getEvents();
       eventsObs$.subscribe(events => {
+
         this.events = events;
+
+        this.events = this.events.filter(
+          event => event.status === EventStatus.UPCOMING);
+
       });
 
     }

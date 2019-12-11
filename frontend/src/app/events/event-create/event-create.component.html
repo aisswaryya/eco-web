@@ -1,6 +1,7 @@
-<p>Enter details for the event!</p>
 
 <div class="container">
+<h1>Enter details for the event!</h1>
+
     <form #eventForm="ngForm" class="needs-validation">
 
         <!-- {{ eventForm.value | json }} -->
@@ -42,9 +43,6 @@
         <div class="form-group">
             <label>Venue</label>
 
-            <!-- <input type="text" required [(ngModel)]="eventModel.venue" 
-                #desc="ngModel" name="desc" class="form-control"> -->
-
             <input ngx-google-places-autocomplete [options]='options' 
                 required    
                 [(ngModel)]="eventModel.venue"
@@ -66,7 +64,7 @@
 
             <label>Date of the event</label>
 
-            <div class="input-group">
+            <div class="input-group dateDiv">
 
                 <input class="form-control"
                 [formControl]="formControl"
@@ -122,19 +120,6 @@
 
 
 
-        <div class="form-group">
-            <div class="form-check">
-                <input class="form-check-input" 
-                    type="checkbox" value="" id="invalidCheck" required>
-                <label class="form-check-label" for="invalidCheck">
-                    Agree to terms and conditions
-                </label>
-                <div class="invalid-feedback">
-                    You must agree before submitting.
-                </div>
-            </div>
-        </div>
-
 
         <div class="text-center">
             <input  class="btn btn-success" type="submit"
@@ -145,4 +130,3 @@
     </form>
 
 </div>
-

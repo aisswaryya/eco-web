@@ -5,15 +5,6 @@ require('../models/attendee.js');
 const Attendee = mongoose.model('attendee');
 
 
-// /**
-//  * Finding the Attendee based on id
-//  */
-// exports.find = function (params) {
-//     const promise = Attendee.find(params).exec();
-//     return promise;
-// };
-
-
 /**
  * Saving the new Attendee object
  */
@@ -36,13 +27,13 @@ exports.get = function (attendeeId) {
  * Searches and returns the Attendee objects based on emailId/eventId/all
  */
 exports.search = function (searchBy, value) {
-    
+
     let promise;
-    
-    if(searchBy === 'emailId') {
-        promise = Attendee.find({emailId: value}).exec();
-    } else if(searchBy === 'eventId'){
-        promise = Attendee.find({eventId: value}).exec();
+
+    if (searchBy === 'emailId') {
+        promise = Attendee.find({ emailId: value }).exec();
+    } else if (searchBy === 'eventId') {
+        promise = Attendee.find({ eventId: value }).exec();
     } else {
         promise = Attendee.find().exec();
     }
@@ -57,7 +48,7 @@ exports.search = function (searchBy, value) {
  */
 exports.update = function (attendee) {
     attendee.modified_date = new Date();
-    const promise = Attendee.findOneAndUpdate({_id: attendee._id}, attendee).exec();
+    const promise = Attendee.findOneAndUpdate({ _id: attendee._id }, attendee).exec();
     return promise;
 };
 
@@ -65,6 +56,6 @@ exports.update = function (attendee) {
  * Deleting the Attendee object based on the id parameter passed
  */
 exports.delete = function (attendeeId) {
-    const promise = Attendee.remove({_id: attendeeId});
+    const promise = Attendee.remove({ _id: attendeeId });
     return promise;
 };

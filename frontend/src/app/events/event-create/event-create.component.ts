@@ -8,7 +8,9 @@ import {NgbDateStruct, NgbCalendar, NgbDatepickerConfig} from '@ng-bootstrap/ng-
 import { GooglePlaceDirective, GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { AuthService } from 'src/app/auth/auth.service';
-
+import { Router } from '@angular/router';
+import { EventStatus } from '../EventStatus';
+ 
 @Component({
   selector: 'app-event-create',
   templateUrl: './event-create.component.html',
@@ -25,7 +27,7 @@ export class EventCreateComponent implements OnInit {
   
 
   constructor(eventService: EventService, config: NgbDatepickerConfig
-          ,public authService: AuthService) {
+          ,public authService: AuthService , private router: Router) {
 
     //Injected Event service
     this.eventService = eventService;
@@ -54,11 +56,14 @@ export class EventCreateComponent implements OnInit {
 
     this.eventModel.hostName = this.authService.userProfile.name;
 
+    this.eventModel.status = EventStatus.UPCOMING;
+
     console.log(this.authService.userProfile);
 
     let newEvent$: Observable<Event> = this.eventService.createEvent(this.eventModel);
     newEvent$.subscribe(newEvent => {
       console.log(newEvent);
+      this.router.navigate(['/event-list']);
     });
   }
 
