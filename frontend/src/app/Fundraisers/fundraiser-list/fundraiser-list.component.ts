@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FundraiserServicesService} from '../services/fundraiser-services.service';
+import {FundraiserServicesService} from '../../services/fundraiser-services.service';
 
 @Component({
   selector: 'app-fundraiser-list',

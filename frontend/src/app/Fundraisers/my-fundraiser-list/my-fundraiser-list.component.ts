@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FundraiserServicesService} from '../services/fundraiser-services.service';
-import {AuthService} from '../auth/auth.service';
+import {FundraiserServicesService} from '../../services/fundraiser-services.service';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-my-fundraiser-list',

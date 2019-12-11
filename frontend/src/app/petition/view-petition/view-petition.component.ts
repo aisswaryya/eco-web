@@ -2,7 +2,7 @@ import { PetitionService } from '../../services/petition.service';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { Petition } from '../../model/petition.model';
-import { ErrorHandlerService } from '../../shared/error-handler.service';
+import { ErrorHandlerService } from '../../helpers/shared/error-handler.service';
 import { Router } from '@angular/router';
 
 @Component({

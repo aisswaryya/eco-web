@@ -1,15 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { SharedModule} from './shared/shared.module';
+import { SharedModule} from './helpers/shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FundraiserListComponent } from './fundraiser-list/fundraiser-list.component';
-import { FundraiserDetailComponent } from './fundraiser-detail/fundraiser-detail.component';
-import { MyFundraiserListComponent } from './my-fundraiser-list/my-fundraiser-list.component';
-import { MyFundraiserDetailComponent} from './my-fundraiser-detail/my-fundraiser-detail.component';
-import { FundraiserCreateComponent } from './fundraiser-create/fundraiser-create.component';
-import { DonationCreateComponent } from './donation-create/donation-create.component';
-import { MyDonationsListComponent } from './my-donations-list/my-donations-list.component';
+import { FundraiserListComponent } from './Fundraisers/fundraiser-list/fundraiser-list.component';
+import { FundraiserDetailComponent } from './Fundraisers/fundraiser-detail/fundraiser-detail.component';
+import { MyFundraiserListComponent } from './Fundraisers/my-fundraiser-list/my-fundraiser-list.component';
+import { MyFundraiserDetailComponent} from './Fundraisers/my-fundraiser-detail/my-fundraiser-detail.component';
+import { FundraiserCreateComponent } from './Fundraisers/fundraiser-create/fundraiser-create.component';
+import { DonationCreateComponent } from './Donations/donation-create/donation-create.component';
+import { MyDonationsListComponent } from './Donations/my-donations-list/my-donations-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {DonationServicesService} from './services/donation-services.service';
@@ -20,7 +21,6 @@ import {CustomMinDirective} from './helpers/custom-min-validator.directive';
 import {AngularRaveModule} from 'angular-rave';
 import { AuthService } from './auth/auth.service';
 import { CallbackComponent } from './callback.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent} from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { LayoutComponent } from './layout/layout.component';
@@ -30,8 +30,11 @@ import {PetitionService} from './services/petition.service';
 import {MatBadgeModule} from '@angular/material/badge';
 import {SignatureService} from './services/signature.service';
 import { MyProfileComponent } from './my-profile/my-profile.component';
-import { EditFundraiserComponent } from './edit-fundraiser/edit-fundraiser.component';
+import { EditFundraiserComponent } from './Fundraisers/edit-fundraiser/edit-fundraiser.component';
 import {ProgressBarModule} from 'angular-progress-bar';
+import { SimpleDialogComponent } from './helpers/simple-dialog/simple-dialog.component';
+import {MAT_DIALOG_DATA} from '@angular/material';
+import {MessageBox} from './helpers/shared/message-box';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,8 @@ import {ProgressBarModule} from 'angular-progress-bar';
     NotFoundComponent,
     ServerErrorComponent,
     MyProfileComponent,
-    EditFundraiserComponent
+    EditFundraiserComponent,
+    SimpleDialogComponent
     ],
   imports: [
     BrowserModule,
@@ -76,7 +80,9 @@ import {ProgressBarModule} from 'angular-progress-bar';
     FundraiserServicesService,
     AuthService,
     PetitionService,
-    SignatureService
+    SignatureService,
+    {provide: MAT_DIALOG_DATA, useValue: {}},
+    MessageBox
   ],
   bootstrap: [AppComponent]
 })

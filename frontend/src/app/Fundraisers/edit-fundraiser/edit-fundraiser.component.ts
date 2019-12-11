@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FundraiserServicesService} from '../services/fundraiser-services.service';
-import {Fundraiser} from '../models/fundraiser';
-import {AuthService} from '../auth/auth.service';
+import {FundraiserServicesService} from '../../services/fundraiser-services.service';
+import {Fundraiser} from '../../models/fundraiser';
+import {AuthService} from '../../auth/auth.service';
 import {NgForm} from '@angular/forms';
 
 @Component({

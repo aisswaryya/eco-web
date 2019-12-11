@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Fundraiser} from '../models/fundraiser';
-import {FundraiserServicesService} from '../services/fundraiser-services.service';
+import {Fundraiser} from '../../models/fundraiser';
+import {FundraiserServicesService} from '../../services/fundraiser-services.service';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
-import {AuthService} from '../auth/auth.service';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-fundraiser-create',

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule} from '../shared/shared.module';
+import { SharedModule} from '../helpers/shared/shared.module';
 import {CreatePetitionComponent} from './create-petition/create-petition.component';
 import { ViewPetitionComponent} from './view-petition/view-petition.component';
 import { ViewByIDPetitionComponent} from './view-by-id-petition/view-by-id-petition.component';

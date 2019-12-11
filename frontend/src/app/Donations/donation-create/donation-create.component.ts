@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {DonationServicesService} from '../services/donation-services.service';
-import {Donation} from '../models/donation';
+import {DonationServicesService} from '../../services/donation-services.service';
+import {Donation} from '../../models/donation';
 import {NgForm, Validators, FormBuilder, FormControl} from '@angular/forms';
 import {PaymentInstance} from 'angular-rave';
-import {Fundraiser} from '../models/fundraiser';
-import {FundraiserServicesService} from '../services/fundraiser-services.service';
-import {AuthService} from '../auth/auth.service';
+import {Fundraiser} from '../../models/fundraiser';
+import {FundraiserServicesService} from '../../services/fundraiser-services.service';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-donation-create',
