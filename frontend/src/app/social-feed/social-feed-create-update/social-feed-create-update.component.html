@@ -23,8 +23,8 @@
     
             <div class="form-group">
                 <label for="location"> Location:</label>
-                <input id="location" type="text" class="form-control" matInput formControlName="location">
-                <!-- <input id="location" class="form-control" formControlName="location" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/> -->
+                <!-- <input id="location" type="text" class="form-control" matInput formControlName="location"> -->
+                <input id="location" class="form-control" name="venue" formControlName="location" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/>
             </div>
     
             <button *ngIf="!data.create" class="btn btn-success" (click)="updatePost()">SAVE</button>
