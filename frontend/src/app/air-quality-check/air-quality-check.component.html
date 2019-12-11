@@ -1,28 +1,35 @@
 <!--Map marking each events location-->
-Inside air quality check
 <agm-map [latitude]='latitude' [longitude]='longitude' minZoom=5 maxZoom=10000 [zoom]="7" id="eventMap"
 (mapClick)="close_window($event)" class="map-view">
 
-<!--Adding markers to each of the event-->
-<agm-marker *ngFor="let city of citylist" [latitude]="city.latitude"
-    [longitude]="city.longitude" (dragEnd)="markerDragEnd(currentEvent, $event)" [iconUrl]="
-    {
-        url: './icons/marker-icon.ico',
-        scaledSize: {
-            width: 50,
-            height: 50
-        }
-        }" 
-        (markerClick)=select_marker(infoWindow)>
+    <!--Adding markers to each of the event-->
+    <agm-marker *ngFor="let city of citylist" [latitude]="city.latitude"
+        [longitude]="city.longitude" (dragEnd)="markerDragEnd(currentEvent, $event)" [iconUrl]="
+        {
+            url: './icons/marker-icon.ico',
+            scaledSize: {
+                width: 50,
+                height: 50
+            }
+            }" 
+            (markerClick)=select_marker(infoWindow)>
 
-    <!-- The event Info which pops up with the info -->
-    <agm-info-window #infoWindow>
-        <strong>
-            <p class="markerInfo">{{city.cityName}}</p><br>
-            <button class="btn btn-primary btn-sm" (click)="clickedInfoMarker(city.cityName)">
-                View Air Quality Statistics
-            </button>
-        </strong>
-    </agm-info-window>
-</agm-marker>
+        <!-- The event Info which pops up with the info -->
+        <agm-info-window #infoWindow>
+            <strong>
+                <p class="markerInfo">{{city.cityName}}</p><br>
+                <button class="btn btn-primary btn-sm" (click)="clickedInfoMarker(city.cityName)">
+                    View Air Quality Statistics
+                </button>
+            </strong>
+        </agm-info-window>
+    </agm-marker>
 </agm-map>
+
+<div *ngIf="statsAvailable">
+    <div>{{cityQualityIndex.text}}</div>
+    <div>{{cityQualityIndex.alert}}</div>
+    <div>{{cityQualityIndex.value}}</div>
+    <div>{{cityQualityIndex.data}}</div>
+    <div>{{cityQualityIndex.index}}</div>
+</div>

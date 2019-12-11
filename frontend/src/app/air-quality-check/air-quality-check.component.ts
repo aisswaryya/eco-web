@@ -15,10 +15,13 @@ export class AirQualityCheckComponent implements OnInit {
   citylist: Array<CityCoordinates> = [];
   latitude: number = 42.360081;
   longitude: number = -71.058884;
-  cityQualityIndex: any;
+  cityQualityIndex: CityQualityIdex;
+  statsAvailable: boolean = false;
+
   ngOnInit() {
 
     this.initializeCitiesOnMap();
+    this.clickedInfoMarker("Boston");
   }
 
     /**
@@ -50,6 +53,7 @@ export class AirQualityCheckComponent implements OnInit {
           this.airQualityService.getAQIStats(city.latitude,city.longitude).subscribe((response)=>{
               this.cityQualityIndex = response.data;
               console.log(this.cityQualityIndex);
+              this.statsAvailable = true;
           });
         }
     });
