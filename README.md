@@ -4,7 +4,7 @@ This application is a single place for creating Events, Fundraisers, Starting Pe
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.3.
 
-##Motivation
+## Motivation
 
 While it can seem like a hippy-dippy thing to say, protecting the environment is of the utmost importance. We all need to work together to make protecting our planet a priority within society and within our individual lives
 
@@ -36,7 +36,7 @@ External APIs connected to the app: Google Maps for Event Location, Flutterwave 
 6. Create and Manage Petitions
 7. Sign Petitions
 
-##API Endpoints
+## API Endpoints
 Events:
 1. GET: v1/eco/events
 2. POST: v1/eco/events
