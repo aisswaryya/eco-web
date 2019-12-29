@@ -1,0 +1,23 @@
+// mat-form customization
+mat-form-field {
+  width: 400px;
+}
+
+mat-card-title {
+  text-align: center;
+}
+
+.mat-input {
+  text-decoration-color: whitesmoke;
+}
+// background image
+.bgimg {
+  background: url("../../../assets//michael-benz--IZ2sgQKIhM-unsplash.jpg");
+
+  height: 100%;
+
+  /* Center and scale the image */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

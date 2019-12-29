@@ -1,0 +1,28 @@
+<!--Using flex layout -->
+<section class="bgimg" id="mat-card" fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card fxFlex="1200px" fxFlex.xs="100%">
+
+
+    <mat-card-header>
+      <mat-card-title>{{petition?.title}}</mat-card-title>
+      <mat-card-subtitle>{{petition?.category}}</mat-card-subtitle>
+      <mat-card-subtitle> Started by{{petition?.createdby}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div id="div-left" style="width: 50%; float:left">
+        <img [src]="petition?.mediapath" mat-card-image class="test-card" alt="media">
+      </div>
+
+      <div style="width: 50%; float:right">
+        {{petition?.briefDescription}}
+      </div>
+    </mat-card-content>
+
+    <div>
+      <button [disabled]="signed" mat-flat-button class="button-custom" color="primary" (click)="signPetition()">Sign
+        this petition</button>
+    </div>
+  </mat-card>
+
+</section>

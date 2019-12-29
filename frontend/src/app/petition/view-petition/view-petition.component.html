@@ -1,0 +1,55 @@
+<div class="bgimg">
+  <div fxLayout fxLayout.lt-md="column wrap" fxLayoutAlign="center center" fxLayoutGap.gt-sm="500px"
+    fxLayoutGap.lt.md="20px">
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput type="text" (keyup)="doFilter($event.target.value)">
+    </mat-form-field>
+    <div>
+      <a [routerLink]="['/petition/create']" mat-button color="accent">Create Petition</a>
+    </div>
+  </div>
+
+  <table id="mat-table" align="center" width="800" mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="title">
+
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Petition Title </th>
+      <td>
+        <div *matCellDef="let element; let i = index">
+
+          <mat-card class=" mat-card-custom" mat-icon-button>
+            <mat-card-header>
+              <mat-card-title>{{element.title}}</mat-card-title>
+              <mat-card-subtitle>{{element.category}}</mat-card-subtitle>
+              <mat-card-subtitle>Started by {{element.createdby}}</mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card-content style="height:120px">
+              <div id="div-left" style="width: 25%; float:left">
+                <img [src]="element.mediapath" mat-card-image class="test-card" alt="Media">
+              </div>
+
+              <div style="width: 75%; float:right">
+                {{element.shortDescription}}
+                <button mat-icon-button color="primary" (click)="redirectToDetails(element._id)">
+                  Read More...
+                </button>
+              </div>
+            </mat-card-content>
+
+            <mat-progress-bar class="progress-custom" color="warn" mode="determinate" value={{myArray[i]}}>
+            </mat-progress-bar>
+            {{myArray[i]}} signed of 100
+          </mat-card>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+
+  <mat-paginator class="mat-paginator-custom" [pageSize]="5" [pageSizeOptions]="[5, 10, 15, 20]">
+  </mat-paginator>
+</div>

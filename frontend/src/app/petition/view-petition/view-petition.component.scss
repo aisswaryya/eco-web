@@ -1,0 +1,99 @@
+//background color
+
+.bgimg {
+  background-image: url('../../../assets/nathan-anderson-PdPKIkd1L9g-unsplash.jpg');
+
+  /* Half height */
+  height: 100%;
+
+  /* Center and scale the image */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+
+  
+  //progressbar 
+  .progressbar-custom{
+    width:400px;
+     float:right;
+  }
+
+  
+//filter customization
+::ng-deep .mat-focused .mat-form-field-label{
+  /*change color of label*/
+  color:white !important;
+ }
+
+ ::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: white !important;
+} 
+
+::ng-deep.mat-drawer-container {
+  background-color: white !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+ /*change color of underline when focused*/
+ background-color:white !important;
+}
+
+
+::ng-deep.mat-table  {
+  background-color: transparent !important;
+
+}
+
+::ng-deep.mat-table tbody {
+  background-color: transparent !important;
+ opacity:none !important;
+}
+
+
+
+mat-label {
+  color: white;
+}
+
+
+.mat-paginator {
+    display: flex;
+    justify-content: flex-end;
+    width: 800px;
+    margin: 0 auto;
+}
+
+.mat-card-custom {
+
+    justify-content: flex-end;
+    width: 800px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+   // background-color: rgba(0, 0, 0, 0.5);
+  }
+ 
+  .mat-table{
+    opacity: 1;
+  }
+
+  .div-left{
+       margin-top: 10px;
+       margin: 10px, 5px,10px,5px; 
+       
+  }
+  
+  .test-card{
+    height: 80%;
+    width: 80%;   
+    margin: 0 auto;
+    background-repeat:no-repeat;
+    background-size:cover;
+  }
+
+  th, input{
+    color: white;
+  }
+
+ 

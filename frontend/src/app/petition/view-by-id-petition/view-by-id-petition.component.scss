@@ -1,0 +1,35 @@
+//background color
+
+.bgimg {
+  /* Half height */
+  height: 100%;
+
+  /* Center and scale the image */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.mat-card-content {
+  height: 200px;
+}
+.mat-card {
+  margin-top: 20px;
+  height: 400px;
+}
+#div-left {
+  margin-top: 10px;
+  margin: 10px, 5px, 10px, 5px;
+}
+
+.test-card {
+  height: 80%;
+  width: 80%;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.button-custom {
+  justify-content: center;
+}

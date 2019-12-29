@@ -1,0 +1,67 @@
+
+<div *ngIf="isMyEvents !== undefined">
+    <app-nav-bar>p-nav-bar></app-nav-bar>
+</div>
+
+<div *ngIf="events === undefined || events?.length === 0 ">
+    <h2>No Upcoming events!</h2>
+</div>
+
+<div *ngIf=" events?.length > 0 ">
+
+        <div class="eventList">
+                <div class="firmalar">
+                    <div class="divHeight">
+                         
+                        <div class="col-md-6 leftScroll">
+                
+                                <div class="row" *ngFor="let event of events" id="{{ event._id }}">
+                
+                                    <div class="firma-card row">
+                                        <div class="col-md-12">
+                                            <div class="firma-aciklama card-body">
+                                                <app-event [event]="event" [isMyEvents]="isMyEvents"></app-event>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <div class="col-md-6">
+                
+                
+                            <!--Map marking each events location-->
+                            <agm-map [latitude]='latitude' [longitude]='longitude' minZoom=5 maxZOom=10000 [zoom]="13" id="eventMap"
+                                (mapClick)="close_window($event)">
+                
+                                <!--Adding markers to each of the event-->
+                                <agm-marker *ngFor="let currentEvent of events; let i = index" [latitude]="currentEvent.lat"
+                                    [longitude]="currentEvent.lng" (dragEnd)="markerDragEnd(currentEvent, $event)" [iconUrl]="
+                        {
+                        url: './icons/marker-icon.ico',
+                        scaledSize: {
+                            width: 50,
+                            height: 50
+                        }
+                        }" (markerClick)=select_marker(marker)>
+                
+                                    <!--The event Info which pops up with the info-->
+                                    <agm-info-window #infoWindow>
+                                        <strong>
+                                            <p class="markerInfo">{{ currentEvent.name }}</p><br>
+                                            <button class="btn btn-primary btn-sm" (click)="clickedInfoMarker(currentEvent.id)">
+                                                More Info
+                                            </button>
+                                        </strong>
+                                    </agm-info-window>
+                                </agm-marker>
+                            </agm-map>
+                        </div>
+                
+                
+                    </div>
+                
+                </div>
+                </div>
+
+</div>

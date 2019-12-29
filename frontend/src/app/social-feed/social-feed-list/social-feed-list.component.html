@@ -1,0 +1,83 @@
+<nav class="navbar navbar-light bg-white">
+    <button class="btn btn-success" routerLink="/my-socialfeeds"> MY GOOD DEEDS </button>
+</nav>
+
+
+<div class="container-fluid feed-container gedf-wrapper">
+    <div class="row">
+
+        <!--profile section-->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="h5">{{loggedInUserName}}</div>
+                    <div class="h7 text-muted">User Id : {{loggedInUserEmailId}}</div>
+                    <img class="rounded-circle" width="200" [src]="loggedInUserDP" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 gedf-main">
+
+            <!--- Create new feed-->
+            <div class="card gedf-card">
+                <div class="card-body">
+                    <div class="btn-toolbar justify-content-between">
+                        <div class="btn-group">
+                            <button type="submit" (click)="createPost()" class="btn btn-success">HOW ECO-FRIENDLY WERE YOU TODAY?</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Post /////-->
+
+            <!--- \\\\\\\Post-->
+            <div *ngFor="let socialFeed of socialFeedList" class="card gedf-card">
+
+                <div class="social-feed-card">
+
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mr-2">
+                                    <img *ngIf="socialFeed.emailId == loggedInUserEmailId" class="rounded-circle" width="45" [src]="loggedInUserDP" alt="">
+                                    <img *ngIf="socialFeed.emailId != loggedInUserEmailId" class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                </div>
+                                <div class="ml-2">
+                                    
+                                    <div class="h5 m-0" *ngIf="socialFeed.emailId == loggedInUserEmailId">{{loggedInUserName}}</div>
+                                    <div class="h5 m-0" *ngIf="socialFeed.emailId != loggedInUserEmailId">Miracles Lee Cross</div>
+
+                                    <div class="h7 text-muted" *ngIf="socialFeed.emailId == loggedInUserEmailId">{{loggedInUserEmailId}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>  {{socialFeed.updatedDate | dateAgo}} </div>
+                        <a class="card-link" href="#">
+                            <h5 class="card-title">{{socialFeed.location}}</h5>
+                        </a>
+
+                        <p class="card-text">
+                            {{socialFeed.description}}
+                        </p>
+                            
+                        <div>
+                            <img width="400" height="400" [src]="socialFeed.image">
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <button class="btn btn-success" (click)="updatePost(socialFeed)" *ngIf="socialFeed.emailId == loggedInUserEmailId"><i class="material-icons">edit</i> </button>
+                        <button class="btn btn-success btn-delete" (click)="deletePost(socialFeed)" *ngIf="socialFeed.emailId == loggedInUserEmailId"><i class="material-icons">delete</i> </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

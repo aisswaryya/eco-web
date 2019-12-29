@@ -1,0 +1,23 @@
+{
+  "name": "ecoweb-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "app": "^0.1.0",
+    "express-jwt": "^5.3.1",
+    "jwks-rsa": "^1.6.0",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.14"
+  }
+}

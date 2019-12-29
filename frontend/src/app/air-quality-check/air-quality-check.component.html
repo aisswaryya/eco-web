@@ -1,0 +1,62 @@
+<!--Map marking each events location-->
+<div class="container">
+    <div class="row">
+        <div class="col map-for-aqi">
+            <agm-map [latitude]='latitude' [longitude]='longitude' minZoom=5 maxZoom=10000 [zoom]="5" id="eventMap"
+            (mapClick)="close_window($event)" class="map-view">
+
+                <!--Adding markers to each of the event-->
+                <agm-marker *ngFor="let city of citylist" [latitude]="city.latitude"
+                    [longitude]="city.longitude" (dragEnd)="markerDragEnd(currentEvent, $event)" [iconUrl]="
+                    {
+                        url: './icons/marker-icon.ico',
+                        scaledSize: {
+                            width: 50,
+                            height: 50
+                        }
+                        }"
+                        (markerClick)=select_marker(infoWindow)>
+
+                    <!-- The event Info which pops up with the info -->
+                    <agm-info-window #infoWindow>
+                        <strong>
+                            <p class="markerInfo">{{city.cityName}}</p><br>
+                            <button class="btn btn-primary btn-sm" (click)="clickedInfoMarker(city.cityName)">
+                                View Air Quality Statistics
+                            </button>
+                        </strong>
+                    </agm-info-window>
+                </agm-marker>
+            </agm-map>
+        </div>
+        <div class="col">
+            <div class="row stats">
+                <div *ngIf="statsAvailable">
+                    <div class="aqi-row">
+                        <div class="key">STATUS</div>
+                        <div class="value">{{cityQualityIndex.text}}</div>
+                    </div>
+                    <div class="aqi-row">
+                        <div class="key">ALERT</div>
+                        <div class="value">{{cityQualityIndex.alert}}</div>
+                    </div>
+                    <div class="aqi-row">
+                        <div class="key">VALUE</div>
+                        <div class="value">{{cityQualityIndex.value}}</div>
+                    </div>
+                    <div class="aqi-row">
+                        <div class="key">AS OF</div>
+                        <div class="value">{{cityQualityIndex.updated | date: 'short'}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row aqi-img">
+                <img class="img-aqi" src="../../assets/images/AQI.png">
+            </div>
+
+
+        </div>
+    </div>
+</div>
+

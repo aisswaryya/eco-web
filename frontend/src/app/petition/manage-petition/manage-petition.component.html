@@ -1,0 +1,41 @@
+<!--Using flex layout -->
+<section class="bgimg" fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card fxFlex="auto" fxFlex.xs="100%">
+    <mat-card-title>Brief description</mat-card-title>
+    <mat-card-content>
+      <div fxLayout="column wrap" fxLayoutGap="40px">
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Petition Title:</strong></div>
+          <div fxFlex>{{petition?.title}}</div>
+        </div>
+
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Description:</strong></div>
+          <div fxFlex>{{petition?.briefDescription}}</div>
+        </div>
+
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Created by</strong></div>
+          <div fxFlex>{{petition?.createdby}}</div>
+        </div>
+
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Mediapath:</strong></div>
+          <div fxFlex>{{petition?.mediapath}}</div>
+        </div>
+
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Email:</strong></div>
+          <div fxFlex>{{petition?.email}}</div>
+        </div>
+
+        <mat-card-actions>
+          <button mat-icon-button color="primary" style="margin-right: 16px"
+            (click)="redirectToUpdate()">Update</button>
+          <button mat-icon-button color="primary" (click)="deletePetition()">Delete</button>
+        </mat-card-actions>
+
+      </div>
+    </mat-card-content>
+  </mat-card>
+</section>

@@ -1,0 +1,138 @@
+<!--firmalar div for main div-->
+<div class="firmalar">
+    <div class="container">
+        <h1 class="mainTitle">Create an Event</h1>
+        <hr>
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="firma-card row">
+                <div class="col-md-12">
+                    <div class="firma-aciklama card-body">
+
+                        <!--Form object-->
+                        <form #eventForm="ngForm" (ngSubmit)="postData()" class="needs-validation">
+
+
+                            <!-- Name of the event -->
+                            <div class="form-group">
+                                <label>Name of the Event</label>
+
+                                <input type="text" required [(ngModel)]="eventModel.name" #name="ngModel" name="name"
+                                    class="form-control">
+
+                                <div class="text-danger" *ngIf="name.touched && !name.valid">Name for an Event is
+                                    Required!
+                                </div>
+                            </div>
+
+
+                            <!-- Cause of the event -->
+                            <div class="form-group">
+                                <label>Cause</label>
+
+                                <input type="text" required [(ngModel)]="eventModel.cause" #cause="ngModel" name="cause"
+                                    class="form-control">
+
+                                <div class="text-danger" *ngIf="cause.touched && !cause.valid">Cause for an Event is
+                                    Required!
+                                </div>
+                            </div>
+
+                            <!-- Description of the event -->
+                            <div class="form-group">
+                                <label>Description</label>
+
+                                <input type="text" required [(ngModel)]="eventModel.desc" #desc="ngModel" name="desc"
+                                    class="form-control">
+
+                                <div class="text-danger" *ngIf="desc.touched && !desc.valid">Description for an Event is
+                                    Required!
+                                </div>
+                            </div>
+
+                            <!-- Description of the event -->
+                            <div class="form-group">
+                                <label>Venue</label>
+
+                                <input ngx-google-places-autocomplete [options]='options' required
+                                    [(ngModel)]="eventModel.venue" name="venue" #venue="ngx-places" class="form-control"
+                                    (onAddressChange)="handleAddressChange($event)" />
+
+                                <div class="text-danger" *ngIf="venue.touched && !venue.valid">Venue for an Event is
+                                    Required!
+
+                                </div>
+                            </div>
+
+
+
+                            <!--Date picker-->
+
+                            <div class="form-group">
+
+                                <label>Date of the event</label>
+
+                                <div class="input-group dateDiv">
+
+                                    <input class="form-control" [formControl]="formControl"
+                                        [class.is-invalid]="formControl.invalid" placeholder="yyyy-mm-dd"
+                                        name="dateOfEvent" [(ngModel)]="eventModel.dateOfEvent" ngbDatepicker
+                                        #d="ngbDatepicker">
+
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary calendar calButton fa fa-calendar"
+                                            (click)="d.toggle()" type="button"></button>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="text-danger">
+                                    {{ formControl.invalid ? "Date is invalid" : undefined }}
+                                </div>
+
+                            </div>
+
+
+                            <!-- Time picker -->
+
+                            <div class="form-group">
+
+                                <label>Time of the event</label>
+
+                                <div class="input-group">
+
+                                    <ngb-timepicker [(ngModel)]="eventModel.time" name="time" readonlyInputs="true">
+                                    </ngb-timepicker>
+
+                                </div>
+                            </div>
+
+
+
+                            <!-- Description of the event -->
+                            <div class="form-group">
+                                <label>Max Signups</label>
+
+                                <input type="number" required [(ngModel)]="eventModel.maxSignups" #maxSignups="ngModel"
+                                    name="maxSignups" customMin="1" class="form-control">
+
+                                <div class="text-danger" *ngIf="maxSignups.touched && !maxSignups.valid">
+                                    Max Signups for an Event is Required and should not be 0!
+                                </div>
+                            </div>
+
+
+                            <!--Submit button-->
+                            <button type="submit" class="btn btn-success" 
+                            [disabled]="!eventForm.form.valid">
+                                Submit</button>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+//for page number and content
+.mat-paginator {
+  display: flex;
+  justify-content: flex-end;
+  width: 832px;
+  margin: 0 auto;
+}
+
+// card sizing
+.mat-card-custom {
+  justify-content: flex-end;
+  width: 800px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  // background-color: rgba(0, 0, 0, 0.5);
+}
+
+.mat-table {
+  opacity: 1;
+}
+
+#div-left {
+  margin-top: 10px;
+  margin: 10px, 5px, 10px, 5px;
+}
+.test-card {
+  height: 80%;
+  width: 80%;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+//testing background image
+.testclass {
+  float: right;
+}

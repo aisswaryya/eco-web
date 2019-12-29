@@ -1,0 +1,14 @@
+<app-nav-bar></app-nav-bar>
+<h1>My Donations</h1>
+<table>
+    <thead>
+    <th scope="col">FundraiserId</th>
+    <th scope="col">Amount</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let donation of donations">
+        <td>{{donation.fundraiserId}}</td>
+        <td>{{donation.amount}}</td>
+    </tr>
+    </tbody>
+</table>

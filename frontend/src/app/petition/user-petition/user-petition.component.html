@@ -1,0 +1,98 @@
+<!--Using flex layout -->
+<mat-tab-group>
+  <mat-tab label="Started">
+    <div fxLayout fxLayout.lt-md="column wrap" fxLayoutAlign="center center" fxLayoutGap.gt-sm="500px"
+      fxLayoutGap.lt.md="20px">
+
+    </div>
+
+    <table id="mat-table" align="center" width="800" mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="title">
+
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Petition Title </th>
+        <td>
+          <div *matCellDef="let element">
+            <mat-card class=" mat-card-custom" mat-icon-button>
+              <mat-card-header>
+                <mat-card-title>{{element.title}}</mat-card-title>
+                <mat-card-subtitle>{{element.category}}</mat-card-subtitle>
+                <mat-card-subtitle>Started by {{element.createdby}}</mat-card-subtitle>
+              </mat-card-header>
+
+              <mat-card-content style="height:120px">
+                <div id="div-left" style="width: 25%; float:left">
+                  <img [src]="element.mediapath" mat-card-image class="test-card" alt="Media">
+                </div>
+
+                <div style="width: 75%; float:right">
+                  {{element.shortDescription}}
+                  <button mat-icon-button color="primary" (click)="redirectToManage(element._id)">
+                    Read More...
+                  </button>
+                </div>
+              </mat-card-content>
+
+            </mat-card>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 15, 20]">
+    </mat-paginator>
+
+
+
+
+
+
+
+
+  </mat-tab>
+  <mat-tab label="Signed">
+
+
+    <table id="mat-table" align="center" width="800" mat-table [dataSource]="signedSource" matSort>
+      <ng-container matColumnDef="title">
+
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Petition Title </th>
+        <td>
+          <div *matCellDef="let element">
+            <mat-card class=" mat-card-custom" mat-icon-button>
+              <mat-card-header>
+                <mat-card-title>{{element.title}}</mat-card-title>
+                <mat-card-subtitle>{{element.category}}</mat-card-subtitle>
+                <mat-card-subtitle>Started by {{element.createdby}}</mat-card-subtitle>
+              </mat-card-header>
+
+              <mat-card-content style="height:120px">
+                <div id="div-left" style="width: 25%; float:left">
+                  <img [src]="element.mediapath" mat-card-image class="test-card" alt="Media">
+                </div>
+
+                <div style="width: 75%; float:right">
+                  {{element.shortDescription}}
+                  <button mat-icon-button color="primary" (click)="redirectToDetails(element._id)">
+                    Read More...
+                  </button>
+                </div>
+              </mat-card-content>
+
+            </mat-card>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 15, 20]">
+    </mat-paginator>
+</mat-tab>
+</mat-tab-group>

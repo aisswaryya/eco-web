@@ -1,0 +1,108 @@
+//Main map styling
+agm-map {
+    height: 600px;
+}
+
+//Marker Info box styling
+.markerInfo {
+    padding: 2px;
+    margin-bottom: 0rem;
+}
+
+
+.leftScroll {
+  overflow-y:auto;
+  height:100%;
+}
+
+.divHeight {
+  height: 100vh;
+}
+
+
+.firma-imageBox {
+    background: #fff;
+    border: 1px solid;
+    height: 300px;
+    border-color: #c7bdbd40;
+    margin: 1rem auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px -1px rgb(198, 207, 234);
+    margin-bottom: 1.6%;
+    overflow: hidden;
+    background-repeat: round;
+  }
+  
+  .firma-buttons {
+    background: #fff;
+    border: 1px solid;
+    height: 300px;
+    border-color: #c7bdbd40;
+    margin: 1rem auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px -1px rgb(198, 207, 234);
+    margin-bottom: 1.6%;
+    overflow: hidden;
+  }
+  
+  .category {
+    color: #039be5;
+    font-weight: bold;
+  }
+  
+  h1 {
+    color: darkseagreen;
+  }
+  
+  
+  h4, .centre {
+    color: chocolate;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .short-desc {
+    color: #555555;
+    font-weight: bold;
+    font-family: "Bookman Old Style";
+    display: inline-block;
+    text-align: justify;
+  }
+  
+  .firma-card{
+    background: #fff;
+    border: 1px solid;
+    height: 300px;
+    border-color: #c7bdbd40;
+    margin: 1rem auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px -1px rgb(198, 207, 234);
+    margin-bottom: 1.6%;
+    overflow: hidden;
+  }
+  .firmalar{
+    background: #f1f4f5c7;
+  }
+  
+  @media (max-width: 768px) {
+  
+    .firma-logo{
+      width: calc(33.66667% - .75rem);
+      height: 6.5rem;
+      margin: 5px .375rem;
+    }
+    .firma-resim {
+      position: relative;
+      z-index: 0;
+      height: 200px;
+    }
+    .img-padding-no{
+      padding-right: 0px;
+      padding-left: 0px;
+    }
+  }
+
+  .eventList {
+    height: 100px;
+  }
+

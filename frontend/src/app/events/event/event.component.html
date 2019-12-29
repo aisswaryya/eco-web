@@ -1,0 +1,33 @@
+<!--View of the component Event-->
+<div class="eventBlock">
+
+    <h2>{{ event.name }}</h2>
+
+    <h4>When: {{ event.dateOfEvent.month}}/{{event.dateOfEvent.day}}/{{event.dateOfEvent.year}}</h4>
+
+    <h4>Address: {{ event.venue}}</h4>
+
+    <h4>Hosted by: {{ event.hostName}}</h4>
+
+    <h4>Status: {{ event.status}}</h4>
+
+    <div *ngIf="event.status === 'UPCOMING'">
+        <div *ngIf="isMyEvents === undefined;else not_defined">
+
+            <div *ngIf="event.amIAttending === true;else other_content">
+                <h4>You are attending this event!</h4>
+            </div>
+
+            <ng-template #other_content>
+                <!--Button adding an attendee-->
+                <button (click)="addAttendee(event)">Attend this event!</button>
+            </ng-template>
+        </div>
+        <ng-template #not_defined>
+            <div *ngIf="isMyEvents !== undefined">
+                <!--Button cancelling the attendee-->
+                <button (click)="cancelEvent(event)">Cancel event!</button>
+            </div>
+        </ng-template>
+    </div>
+</div>
