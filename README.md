@@ -99,13 +99,3 @@ Step3: On frontend folder run `ng serve` for a dev server. Navigate to `http://l
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-
-## Contributors
-Pavan Kalyan - srkantarao.p@husky.neu.edu
-
-Floyed Pinto - pinto.fl@husky.neu.edu
-
-Aisswaryya Murugananth - murugananth.a@husky.neu.edu
-
-Thushanth Bengre - bengre.t@husky.neu.edu
